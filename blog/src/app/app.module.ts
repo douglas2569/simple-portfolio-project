@@ -3,22 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoverComponent } from './components/cover/cover.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutComponent } from './components/about/about.component';
 import { NavigationMenuComponent } from './components/navigation-menu/navigation-menu.component';
 import { SkillComponent } from './components/skill/skill.component';
 import { ProjectComponent } from './components/project/project.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ProjectContentComponent } from './pages/project-content/project-content.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CoverComponent,
     FooterComponent,
     AboutComponent,
     NavigationMenuComponent,
     SkillComponent,
-    ProjectComponent
+    ProjectComponent,
+    HomeComponent,
+    ProjectContentComponent,
   ],
   imports: [
     BrowserModule,
