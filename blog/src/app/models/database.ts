@@ -9,21 +9,21 @@ type Database =
     position: string,
     title: string,
     description: string,
-    socialMedia:SocialMedia
+    socialMedia:Array<SocialMedia>
   },
-  settings:
+  settings:Array<Settings>
+}
+
+type SocialMedia =
+  {
+    id:string,
+    name:string
+  }
+
+type Settings =
   {
     id:string,
     appName:string
   }
-}
 
-type SocialMedia =
-  [
-    {
-      id:string,
-      name:string
-    }
-  ]
-
-export {Database, SocialMedia}
+export {Database, SocialMedia, Settings}

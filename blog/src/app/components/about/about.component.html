@@ -1,1 +1,10 @@
 <img [src]="photoCover" alt="">
+<div>
+  <img [src]="photoProfile" alt="" srcset="">
+  <h1>{{ name }} | {{ position }}</h1>
+  <h2>{{ title }}</h2>
+  <p>{{description}}</p>
+  <ul>
+    <li *ngFor="let media of socialMedia" >{{media.name}}</li>
+  </ul>
+</div>

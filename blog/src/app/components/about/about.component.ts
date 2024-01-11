@@ -15,7 +15,7 @@ export class AboutComponent implements OnInit {
   position!:string
   title!:string
   description!:string
-  socialMedia!:SocialMedia
+  socialMedia!:Array<SocialMedia>
 
   constructor() {
   }
