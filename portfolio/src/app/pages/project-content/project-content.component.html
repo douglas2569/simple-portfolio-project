@@ -9,5 +9,5 @@
 
 <a [href]="project.documentation" target="_blank" rel="noopener noreferrer" *ngIf="project.documentation" >Documentação</a>
 <p>{{project.description}}</p>
-
-<!-- <youtube-player [videoId]="videoId" loadApi="false"/> -->
+<p>{{project.videoId}}</p>
+<youtube-player [videoId]="project.videoId"> </youtube-player>

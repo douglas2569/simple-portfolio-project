@@ -13,6 +13,8 @@ import { ProjectContentComponent } from './pages/project-content/project-content
 import { ContactComponent } from './components/contact/contact.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
+import { YouTubePlayerModule } from '@angular/youtube-player';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,11 +26,12 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
     HomeComponent,
     ProjectContentComponent,
     ContactComponent,
-    PageNotFoundComponent,    
+    PageNotFoundComponent,      
   ],
-  imports: [
+  imports: [    
     BrowserModule,
-    AppRoutingModule,    
+    AppRoutingModule,
+    YouTubePlayerModule,    
   ],
   providers: [],
   bootstrap: [AppComponent]
