@@ -11,6 +11,7 @@ import { ProjectComponent } from './components/project/project.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProjectContentComponent } from './pages/project-content/project-content.component';
 import { ContactComponent } from './components/contact/contact.component';
+import { PageNotFoundComponent } from './pages/page-not-found/page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ContactComponent } from './components/contact/contact.component';
     HomeComponent,
     ProjectContentComponent,
     ContactComponent,
+    PageNotFoundComponent,
   ],
   imports: [
     BrowserModule,

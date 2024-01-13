@@ -9,6 +9,7 @@
 </div>
 <div id="works">
     <app-project *ngFor="let project of projects" 
+    [id]="project.id"    
     [thumbnail]="project.thumbnail"    
     [name]="project.name"    
     [tags]="project.tags"    

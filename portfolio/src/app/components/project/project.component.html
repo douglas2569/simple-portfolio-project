@@ -1,5 +1,7 @@
-<img [src]="thumbnail" [alt]="name" srcset="">
-<h3>{{name}}</h3>
-<ul>
-    <li *ngFor="let tag of tags" >{{tag}}</li>
-</ul>
+<a [routerLink]="['/project', id]">
+    <img [src]="thumbnail" [alt]="name" srcset="">
+    <h3>{{name}}</h3>
+    <ul>
+        <li *ngFor="let tag of tags" >{{tag}}</li>
+    </ul>
+</a>

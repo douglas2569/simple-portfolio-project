@@ -8,6 +8,8 @@ import { Component, OnInit, Input } from '@angular/core';
 
 export class ProjectComponent implements OnInit {  
   @Input()
+  id!:string
+  @Input()
   thumbnail!:string
   @Input()
   name!:string
