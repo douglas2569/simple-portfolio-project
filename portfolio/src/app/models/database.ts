@@ -32,7 +32,8 @@ type Project =
     tags:Array<string>,
     description:string,
     repository:string,
-    documentation:string //link section github
+    documentation:string, //link section github
+    videoId:string,
   }
 
 type SocialMedia =
