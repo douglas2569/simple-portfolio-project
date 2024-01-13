@@ -1,4 +1,16 @@
 <app-about></app-about>
 <app-navigation-menu></app-navigation-menu>
-<app-skill></app-skill>
-<app-project></app-project>
+<div id="skills">
+    <app-skill *ngFor="let skill of skills" 
+    [icon]="skill.icon"
+    [name]="skill.name"
+    [tags]="skill.tags"    
+    ></app-skill>
+</div>
+<div id="works">
+    <app-project *ngFor="let project of projects" 
+    [thumbnail]="project.thumbnail"    
+    [name]="project.name"    
+    [tags]="project.tags"    
+    ></app-project>
+</div>

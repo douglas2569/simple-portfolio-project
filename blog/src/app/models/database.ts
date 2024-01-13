@@ -11,15 +11,20 @@ type Database =
     description: string,
     socialMedia:Array<SocialMedia>
   },
-  skills:
+  skills:Array<Skill>, 
+  projects:Array<Project>,
+  settings:Array<Settings>,
+}
+
+type Skill =
   {
     id:string,
     icon:string,
     name:string,
     tags:Array<string>
-  },
+  }
 
-  whorks:
+type Project =
   {
     id:string,
     thumbnail:string,
@@ -28,9 +33,7 @@ type Database =
     description:string,
     repository:string,
     documentation:string //link section github
-  },
-  settings:Array<Settings>,
-}
+  }
 
 type SocialMedia =
   {
@@ -44,5 +47,6 @@ type Settings =
     id:string,
     appName:string,
   }
+  
 
-export {Database, SocialMedia, Settings}
+export {Database, SocialMedia, Settings, Skill, Project}
