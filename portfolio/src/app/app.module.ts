@@ -10,6 +10,7 @@ import { SkillComponent } from './components/skill/skill.component';
 import { ProjectComponent } from './components/project/project.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProjectContentComponent } from './pages/project-content/project-content.component';
+import { ContactComponent } from './components/contact/contact.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { ProjectContentComponent } from './pages/project-content/project-content
     ProjectComponent,
     HomeComponent,
     ProjectContentComponent,
+    ContactComponent,
   ],
   imports: [
     BrowserModule,
