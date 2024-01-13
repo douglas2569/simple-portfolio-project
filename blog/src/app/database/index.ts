@@ -15,18 +15,38 @@ const dataBase:Database =
             {
               id:"1",
               name:"Facebook",
+              icon: ""
             },
             {
               id:"2",
               name:"Instagram",
+              icon: ""
             },
             {
               id:"3",
               name:"Linkedin",
+              icon: ""
             },
 
         ],
     },
+    skills:
+  {
+    id:'1',
+    icon:'',
+    name:'Front-end',
+    tags:['html','css','js'],
+  },
+  whorks:
+  {
+    id:'1',
+    thumbnail:'',
+    name:'Achaí',
+    tags:['html','css','js'],
+    description:'',
+    repository:'',
+    documentation:'',
+  },
 
     settings:
     [
