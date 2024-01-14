@@ -23,9 +23,8 @@ new class extends Component {
     #[Validate('required|string|min:20')]
     public string $description; 
     
-    public function mount():void
-    {   
-        $this->about = (About::with('user')->get())[0];
+    public function mount():void    {   
+        $this->about = (auth()->user()->about()->get())[0];
         $this->cover_photo = $this->about->cover_photo;
         $this->profile_photo = $this->about->profile_photo;
         $this->name = $this->about->name;

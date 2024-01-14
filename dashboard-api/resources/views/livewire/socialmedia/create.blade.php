@@ -16,12 +16,12 @@ new class extends Component {
     
     public Collection $about; 
 
-    public function store():void
+    public function store()
     {   
         if (!Auth::check()) return;
 
         $validated = $this->validate(); 
-        $this->about = About::with('user')->get();        
+        $about = auth()->user()->about()->get();       
         $validated['about_id'] = $this->about[0]->id;              
         SocialMedia::create($validated);
     }
