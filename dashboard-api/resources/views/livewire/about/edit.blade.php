@@ -1,34 +1,57 @@
 <?php
 
+use App\Models\About;
+use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
-use Livewire\Attributes\Rule;
-use Illuminate\Http\Request;
 
 new class extends Component {
-    #[Rule('required|string|min:10')]
+    public About $about;
+
+    // #[Validate('required|string|unique')]
+    // public string $about_id;
+
+    #[Validate('required|string|min:10')]
     public string $cover_photo;
-    #[Rule('required|string|min:10')]
+    #[Validate('required|string|min:10')]
     public string $profile_photo;
-    #[Rule('required|string|max:255')]
+    #[Validate('required|string|max:255')]
     public string $name;
-    #[Rule('required|string|max:100')]
+    #[Validate('required|string|max:100')]
     public string $position;
-    #[Rule('required|string|max:100')]
+    #[Validate('required|string|max:100')]
     public string $title;
-    #[Rule('required|string|min:20')]
-    public string $description;    
+    #[Validate('required|string|min:20')]
+    public string $description; 
     
-    public function store():void
+    public function mount():void
+    {   
+        $this->about = (About::with('user')->get())[0];
+        $this->cover_photo = $this->about->cover_photo;
+        $this->profile_photo = $this->about->profile_photo;
+        $this->name = $this->about->name;
+        $this->position = $this->about->position;
+        $this->title = $this->about->title;
+        $this->description = $this->about->description;
+    }
+    
+
+    public function update():void
     {
-        $validated = $this->validate();                
-        auth()->user()->about()->create($validated);        
-        echo "<script>alert('Cadastrado com sucesso')</script>";
+        $this->authorize('update',$this->about);
+        $validated = $this->validate();       
+        $this->about->update($validated);         
+        
     }
 
 }; ?>
 
 <div>
-    <form wire:submit="store">
+    <form wire:submit="update">
+        <input
+            wire:model="cover_photo"
+            placeholder="{{ __('Cover Photo') }}"
+            class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+        />
         <input
             wire:model="cover_photo"
             placeholder="{{ __('Cover Photo') }}"
@@ -69,7 +92,7 @@ new class extends Component {
         <x-input-error :messages="$errors->get('title')" class="mt-2" />
         <x-input-error :messages="$errors->get('position')" class="mt-2" />
         <x-input-error :messages="$errors->get('description')" class="mt-2" />        
-        <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
+        <x-primary-button class="mt-4">{{ __('Update') }}</x-primary-button>
 
     </form>
 </div>

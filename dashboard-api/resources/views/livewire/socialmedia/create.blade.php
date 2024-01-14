@@ -16,7 +16,7 @@ new class extends Component {
     
     public Collection $about; 
 
-    public function store()
+    public function store():void
     {   
         if (!Auth::check()) return;
 
