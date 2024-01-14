@@ -1,14 +1,14 @@
 <app-cover></app-cover>
 <app-navigation-menu></app-navigation-menu>
 <app-about></app-about>
-<div id="skills">
+<div id="skills" class="px-4">
     <app-skill *ngFor="let skill of skills" 
     [icon]="skill.icon"
     [name]="skill.name"
     [tags]="skill.tags"    
     ></app-skill>
 </div>
-<div id="works">
+<div id="works" class="px-4">
     <app-project *ngFor="let project of projects" 
     [id]="project.id"    
     [thumbnail]="project.thumbnail"    
