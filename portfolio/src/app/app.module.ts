@@ -15,6 +15,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 import { YouTubePlayerModule } from '@angular/youtube-player';
+import { CoverComponent } from './components/cover/cover.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import { YouTubePlayerModule } from '@angular/youtube-player';
     HomeComponent,
     ProjectContentComponent,
     ContactComponent,
-    PageNotFoundComponent,      
+    PageNotFoundComponent,
+    CoverComponent, 
   ],
   imports: [    
     BrowserModule,
