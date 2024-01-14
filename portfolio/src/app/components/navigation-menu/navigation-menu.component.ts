@@ -6,10 +6,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navigation-menu.component.css']
 })
 export class NavigationMenuComponent implements OnInit {
+  menuSandwichVisibility:string = "hidden"
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
+  toggleMenuSandwich():void{
+    if(this.menuSandwichVisibility){
+      this.menuSandwichVisibility = ""
+      return
+    }
+    this.menuSandwichVisibility = "hidden"
+  }
 }
