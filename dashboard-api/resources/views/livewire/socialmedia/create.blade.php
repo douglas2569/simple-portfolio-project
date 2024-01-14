@@ -5,6 +5,8 @@ use Livewire\Attributes\Validate;
 use App\Models\SocialMedia;
 use App\Models\About;
 use Illuminate\Database\Eloquent\Collection; 
+use Illuminate\Support\Facades\Auth;
+ 
 
 new class extends Component {
     #[Validate('required|string|max:255')]
@@ -15,15 +17,13 @@ new class extends Component {
     public Collection $about; 
 
     public function store()
-    {
-        $validated = $this->validate();  
-        $this->about = About::with('user')->latest()->get();
-        print_r($this->about[0]->id);
-        // foreach ($this->about as $key => $value) {
-        //     print_r($value);
-        // }
-        // SocialMedia::create($validated);                  
-        // auth()->user()->about()->socialMedia()->create($validated);
+    {   
+        if (!Auth::check()) return;
+
+        $validated = $this->validate(); 
+        $this->about = About::with('user')->get();        
+        $validated['about_id'] = $this->about[0]->id;              
+        SocialMedia::create($validated);
     }
 }; ?>
 

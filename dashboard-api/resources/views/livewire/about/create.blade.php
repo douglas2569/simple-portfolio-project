@@ -17,8 +17,7 @@ new class extends Component {
     public string $title;
     #[Rule('required|string|min:20')]
     public string $description;    
-
-    // public function store(Request $request)
+    
     public function store()
     {
         $validated = $this->validate();                

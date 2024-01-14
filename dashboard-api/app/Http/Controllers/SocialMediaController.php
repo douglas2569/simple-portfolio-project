@@ -7,6 +7,7 @@ use Illuminate\View\View;
 
 class SocialMediaController extends Controller
 {
+   
     public function index():View
     {
         return view('socialmedia',[]);
