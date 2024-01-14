@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\SocialMediaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,5 +24,13 @@ Route::view('dashboard', 'dashboard')
 Route::view('profile', 'profile')
     ->middleware(['auth'])
     ->name('profile');
+
+Route::get('about',[AboutController::class, 'index'])
+    ->middleware(['auth', 'verified']) 
+    ->name('about');
+
+Route::get('socialmedia',[SocialMediaController::class, 'index'])
+->middleware(['auth', 'verified']) 
+->name('socialmedia');
 
 require __DIR__.'/auth.php';

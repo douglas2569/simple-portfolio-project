@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('position');
             $table->string('title');
-            $table->text('description');
-            $table->foreignId('social_media_id')->constrained()->onDelete('cascade');
+            $table->text('description');            
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
     }
