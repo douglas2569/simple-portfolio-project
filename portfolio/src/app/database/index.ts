@@ -44,8 +44,15 @@ const dataBase:Database =
         name:'Back-end',
         tags:['php','node','kotlin'],
       },
-    ],  
-      
+
+      {
+        id:'3',
+        icon:'',
+        name:'Mobile',
+        tags:['react-native','kotlin'],
+      },
+    ],
+
   projects:
     [
       {
@@ -68,7 +75,7 @@ const dataBase:Database =
         documentation:'',
         videoId:'',
       },
-    ],  
+    ],
 
     settings:
       [
