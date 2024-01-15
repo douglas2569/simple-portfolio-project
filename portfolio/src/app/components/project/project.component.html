@@ -1,7 +1,7 @@
 <a [routerLink]="['/project', id]">
     <img [src]="thumbnail" [alt]="name" srcset="">
     <h3>{{name}}</h3>
-    <ul>
+    <ul class="flex gap-1">
         <li *ngFor="let tag of tags" >{{tag}}</li>
     </ul>
 </a>

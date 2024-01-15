@@ -1,18 +1,28 @@
 <app-cover></app-cover>
 <app-navigation-menu></app-navigation-menu>
 <app-about></app-about>
-<div id="skills" class="px-4">
-    <app-skill *ngFor="let skill of skills" 
+<div id="skills" class="px-4 mb-4">
+  <div class="my-6">
+    <h2 class="text-xl text-center">Habilidades</h2>
+  </div>
+  <div class="grid grid-cols-2 gap-4">
+    <app-skill *ngFor="let skill of skills"
     [icon]="skill.icon"
     [name]="skill.name"
-    [tags]="skill.tags"    
+    [tags]="skill.tags"
     ></app-skill>
+  </div>
 </div>
-<div id="works" class="px-4">
-    <app-project *ngFor="let project of projects" 
-    [id]="project.id"    
-    [thumbnail]="project.thumbnail"    
-    [name]="project.name"    
-    [tags]="project.tags"    
-    ></app-project>
+<div id="works" class="px-4 mb-4">
+    <div class="my-6">
+      <h2 class="text-xl text-center">Projetos</h2>
+    </div>
+    <div class="grid grid-cols-2 gap-4">
+      <app-project *ngFor="let project of projects"
+      [id]="project.id"
+      [thumbnail]="project.thumbnail"
+      [name]="project.name"
+      [tags]="project.tags"
+      ></app-project>
+    </div>
 </div>

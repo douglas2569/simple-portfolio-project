@@ -5,7 +5,7 @@ import { Component, Input, OnInit } from '@angular/core';
   templateUrl: './skill.component.html',
   styleUrls: ['./skill.component.css']
 })
-export class SkillComponent implements OnInit { 
+export class SkillComponent implements OnInit {
   @Input()
   icon!:string
   @Input()
@@ -17,6 +17,6 @@ export class SkillComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  
+
 
 }

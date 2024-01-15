@@ -1,14 +1,14 @@
-<section id="about" class="px-4"> 
-  <div class="flex flex-col items-center">    
-      <img class="h-20 w-20 rounded-full ring-2 ring-white" [src]="photoProfile" alt="">
-    
-      <div class="w-auto">
+<section id="about" class="px-4 mb-4">
+  <div class="flex flex-col items-center">
+      <img class="h-28 w-28 border-8 border-white -mt-24 rounded-full" [src]="photoProfile" alt="">
+
+      <div class="w-auto mt-8">
         <h1>{{ name }} | {{ position }}</h1>
         <h2>{{ title }}</h2>
         <p>{{description}}</p>
-        <ul>
+        <ul class="flex gap-2">
           <li *ngFor="let media of socialMedia" >
-            <img [src]="media.icon" [alt]="media.name" srcset="">      
+            <img [src]="media.icon" [alt]="media.name" srcset="">
           </li>
         </ul>
       </div>
