@@ -11,7 +11,7 @@ type Database =
     description: string,
     socialMedia:Array<SocialMedia>
   },
-  skills:Array<Skill>, 
+  skills:Array<Skill>,
   projects:Array<Project>,
   settings:Array<Settings>,
 }
@@ -29,7 +29,7 @@ type Project =
     id:string,
     thumbnail:string,
     name:string,
-    tags:Array<string>,
+    tags:Array<Tag>,
     description:string,
     repository:string,
     documentation:string, //link section github
@@ -48,6 +48,13 @@ type Settings =
     id:string,
     appName:string,
   }
-  
 
-export {Database, SocialMedia, Settings, Skill, Project}
+  type Tag =
+  {
+    id:string,
+    name:string,
+    color:string,
+  }
+
+
+export {Database, SocialMedia, Settings, Skill, Project, Tag}

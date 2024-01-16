@@ -9,8 +9,8 @@ const dataBase:Database =
           photoProfile:"https://upload.wikimedia.org/wikipedia/commons/3/34/PICA.jpg",
           name: "Carlos Douglas",
           position: "Desenvolvedor Web Full Stack",
-          title: "Hello There",
-          description: "",
+          title: "Olá meu povo.",
+          description: "Seja bem-vindo ao meu mundo digital, onde a paixão pela tecnologia e a busca incessante por soluções inovadoras se encontram. Sou um desenvolvedor Full Stack comprometido, sempre pronto para enfrentar os desafios do universo tecnológico. Com uma sólida formação em Ciência da Computação e uma extensa experiência prática, trago uma abordagem abrangente e integrada para o desenvolvimento de software.",
           socialMedia:[
               {
                 id:"1",
@@ -34,20 +34,20 @@ const dataBase:Database =
     [
       {
         id:'1',
-        icon:'',
+        icon:'../assets/images/front-end.png',
         name:'Front-end',
         tags:['html','css','js'],
       },
       {
         id:'2',
-        icon:'',
+        icon:'../assets/images/back-end.png',
         name:'Back-end',
         tags:['php','node','kotlin'],
       },
 
       {
         id:'3',
-        icon:'',
+        icon:'../assets/images/mobile.png',
         name:'Mobile',
         tags:['react-native','kotlin'],
       },
@@ -59,7 +59,24 @@ const dataBase:Database =
         id:'1',
         thumbnail:'',
         name:'Achaí',
-        tags:['html','css','js','php'],
+        tags:[
+          {
+            id:'1',
+            name:'html',
+            color:'gray'
+          },
+          {
+            id:'2',
+            name:'css',
+            color:'purple'
+          },
+          {
+            id:'3',
+            name:'js',
+            color:'yellow'
+          }
+
+        ],
         description:'Projeto desenvolvido para gerenciar os achados e perdidos do bloco do SMD da UFC',
         repository:'',
         documentation:'',
@@ -69,7 +86,24 @@ const dataBase:Database =
         id:'2',
         thumbnail:'',
         name:'Sindicato',
-        tags:['html','css','js','php'],
+        tags:[
+          {
+            id:'1',
+            name:'html',
+            color:'gray'
+          },
+          {
+            id:'2',
+            name:'css',
+            color:'purple'
+          },
+          {
+            id:'3',
+            name:'js',
+            color:'yellow'
+          }
+
+        ],
         description:'',
         repository:'',
         documentation:'',

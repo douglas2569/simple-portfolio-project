@@ -1,6 +1,6 @@
-  <img [src]="icon" [alt]="name" srcset="">
-  <h3>{{name}}</h3>
+  <img class="w-16 h-16" [src]="icon" [alt]="name" srcset="">
+  <h3 class="font-semibold">{{name}}</h3>
   <ul class="flex gap-1">
-      <li *ngFor="let tag of tags" >{{tag}}</li>
+      <li  class="text-sm" *ngFor="let tag of tags" >{{tag}}</li>
   </ul>
 

@@ -3,8 +3,8 @@
       <img class="h-28 w-28 border-8 border-white -mt-12 rounded-full" [src]="photoProfile" alt="">
 
       <div class="w-auto mt-6">
-        <h1 class="text-center">{{ name }} | {{ position }}</h1>
-        <h2>{{ title }}</h2>
+        <h1 class="text-center text-xl">{{ name }} | {{ position }}</h1>
+        <h2 class="text-lg">{{ title }}</h2>
         <p>{{description}}</p>
         <ul class="flex gap-2">
           <li *ngFor="let media of socialMedia" >

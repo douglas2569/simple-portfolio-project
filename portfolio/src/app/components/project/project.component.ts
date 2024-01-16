@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import {Tag} from '../../models/database'
 
 @Component({
   selector: 'app-project',
@@ -6,7 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./project.component.css']
 })
 
-export class ProjectComponent implements OnInit {  
+export class ProjectComponent implements OnInit {
   @Input()
   id!:string
   @Input()
@@ -14,12 +15,12 @@ export class ProjectComponent implements OnInit {
   @Input()
   name!:string
   @Input()
-  tags!:Array<string>  
+  tags!:Array<Tag>
 
   constructor() { }
-  
+
   ngOnInit(): void {}
 
-  
+
 
 }
