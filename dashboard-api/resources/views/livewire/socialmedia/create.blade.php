@@ -4,31 +4,31 @@ use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 use App\Models\SocialMedia;
 use App\Models\About;
-use Illuminate\Database\Eloquent\Collection; 
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
- 
+
 
 new class extends Component {
     #[Validate('required|string|max:255')]
     public string $icon;
     #[Validate('required|string|max:255')]
-    public string $name;       
-    
-    public Collection $about; 
+    public string $name;
+
+    public Collection $about;
 
     public function store()
-    {   
+    {
         if (!Auth::check()) return;
 
-        $validated = $this->validate(); 
-        $about = auth()->user()->about()->get();       
-        $validated['about_id'] = $this->about[0]->id;              
+        $validated = $this->validate();
+        $about = auth()->user()->about()->get();
+        $validated['about_id'] = $about[0]->id;
         SocialMedia::create($validated);
     }
 }; ?>
 
 <div>
-    <form wire:submit="store">        
+    <form wire:submit="store">
         <input
             wire:model="icon"
             placeholder="{{ __('Icone') }}"
