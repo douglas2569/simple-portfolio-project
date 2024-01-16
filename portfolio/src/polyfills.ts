@@ -51,3 +51,21 @@ import 'zone.js';  // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+function addClasssCrolling():void{
+
+  document.addEventListener('scroll', ()=>{
+    const navbar:any = document.querySelector('#navbar-button')
+    
+    if(window.scrollY >= 204)
+        navbar.classList.add('bg-gray-900')
+    else
+        navbar.classList.remove('bg-gray-900')
+  })
+}
+
+function main():void{
+  addClasssCrolling()
+}
+
+main()
