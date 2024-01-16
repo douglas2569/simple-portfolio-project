@@ -2,7 +2,7 @@
 
 use Livewire\Volt\Component;
 use Livewire\Attributes\Rule;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 
 new class extends Component {
     #[Rule('required|string|min:10')]
@@ -16,13 +16,15 @@ new class extends Component {
     #[Rule('required|string|max:100')]
     public string $title;
     #[Rule('required|string|min:20')]
-    public string $description;    
-    
-    public function store():void
+    public string $description;
+
+    public function store():RedirectResponse
     {
-        $validated = $this->validate();                
-        auth()->user()->about()->create($validated);        
+        $validated = $this->validate();
+        auth()->user()->about()->create($validated);
         echo "<script>alert('Cadastrado com sucesso')</script>";
+
+        return redirect(route('about.index'));
     }
 
 }; ?>
@@ -68,7 +70,7 @@ new class extends Component {
         <x-input-error :messages="$errors->get('name')" class="mt-2" />
         <x-input-error :messages="$errors->get('title')" class="mt-2" />
         <x-input-error :messages="$errors->get('position')" class="mt-2" />
-        <x-input-error :messages="$errors->get('description')" class="mt-2" />        
+        <x-input-error :messages="$errors->get('description')" class="mt-2" />
         <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
 
     </form>
