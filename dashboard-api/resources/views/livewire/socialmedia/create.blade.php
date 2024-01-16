@@ -25,7 +25,8 @@ new class extends Component {
         $validated['about_id'] = $about[0]->id;
         SocialMedia::create($validated);
 
-        redirect('socialmedia');
+        // redirect('socialmedia');
+        $this->dispatch('socialmedia-created');
     }
 }; ?>
 
