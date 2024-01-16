@@ -24,6 +24,8 @@ new class extends Component {
         $about = auth()->user()->about()->get();
         $validated['about_id'] = $about[0]->id;
         SocialMedia::create($validated);
+
+        redirect('socialmedia');
     }
 }; ?>
 

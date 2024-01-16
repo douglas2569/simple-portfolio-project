@@ -7,9 +7,6 @@ use Livewire\Volt\Component;
 new class extends Component {
     public About $about;
 
-    // #[Validate('required|string|unique')]
-    // public string $about_id;
-
     #[Validate('required|string|min:10')]
     public string $cover_photo;
     #[Validate('required|string|min:10')]
@@ -21,9 +18,9 @@ new class extends Component {
     #[Validate('required|string|max:100')]
     public string $title;
     #[Validate('required|string|min:20')]
-    public string $description; 
-    
-    public function mount():void    {   
+    public string $description;
+
+    public function mount():void    {
         $this->about = (auth()->user()->about()->get())[0];
         $this->cover_photo = $this->about->cover_photo;
         $this->profile_photo = $this->about->profile_photo;
@@ -32,14 +29,14 @@ new class extends Component {
         $this->title = $this->about->title;
         $this->description = $this->about->description;
     }
-    
+
 
     public function update():void
     {
         $this->authorize('update',$this->about);
-        $validated = $this->validate();       
-        $this->about->update($validated);         
-        
+        $validated = $this->validate();
+        $this->about->update($validated);
+
     }
 
 }; ?>
@@ -90,7 +87,7 @@ new class extends Component {
         <x-input-error :messages="$errors->get('name')" class="mt-2" />
         <x-input-error :messages="$errors->get('title')" class="mt-2" />
         <x-input-error :messages="$errors->get('position')" class="mt-2" />
-        <x-input-error :messages="$errors->get('description')" class="mt-2" />        
+        <x-input-error :messages="$errors->get('description')" class="mt-2" />
         <x-primary-button class="mt-4">{{ __('Update') }}</x-primary-button>
 
     </form>

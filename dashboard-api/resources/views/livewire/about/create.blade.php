@@ -2,7 +2,6 @@
 
 use Livewire\Volt\Component;
 use Livewire\Attributes\Rule;
-use Illuminate\Http\RedirectResponse;
 
 new class extends Component {
     #[Rule('required|string|min:10')]
@@ -18,13 +17,13 @@ new class extends Component {
     #[Rule('required|string|min:20')]
     public string $description;
 
-    public function store():RedirectResponse
+    public function store():void
     {
         $validated = $this->validate();
         auth()->user()->about()->create($validated);
-        echo "<script>alert('Cadastrado com sucesso')</script>";
 
-        return redirect(route('about.index'));
+        redirect('about');
+
     }
 
 }; ?>
