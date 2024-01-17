@@ -6,9 +6,11 @@
         <h1 class="text-center font-semibold text-lg">{{ name }} | {{ position }}</h1>
         <h2 class="text-base">{{ title }}</h2>
         <p class="text-sm">{{description}}</p>
-        <ul class="flex gap-2 mt-2 text-sm">
+        <ul class="flex gap-2 mt-6 text-sm flex-wrap">
           <li *ngFor="let media of socialMedia" >
-            <img [src]="media.icon" [alt]="media.name" srcset="">
+            <a [href]="media.url" target="_blank" [title]="media.name">
+              <img class="h-6 w-6" [src]="media.icon" [alt]="media.name" srcset="">
+            </a>
           </li>
         </ul>
       </div>

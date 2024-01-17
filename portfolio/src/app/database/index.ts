@@ -14,20 +14,16 @@ const dataBase:Database =
           socialMedia:[
               {
                 id:"1",
-                name:"Facebook",
-                icon: ""
+                name:"Linkedin",
+                icon: "../../assets/images/linkedin.png",
+                url:'https://www.linkedin.com/in/carlos-douglas-79746927a',
               },
               {
                 id:"2",
-                name:"Instagram",
-                icon: ""
+                name:"Github",
+                icon: "../../assets/images/github.png",
+                url:'https://github.com/douglas2569',
               },
-              {
-                id:"3",
-                name:"Linkedin",
-                icon: ""
-              },
-
           ],
       },
     skills:
