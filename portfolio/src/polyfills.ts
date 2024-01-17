@@ -55,8 +55,9 @@ import 'zone.js';  // Included with Angular CLI.
 function addClasssCrolling():void{
 
   document.addEventListener('scroll', ()=>{
+    if (!document.querySelector('#navbar-button')) return
     const navbar:any = document.querySelector('#navbar-button')
-    
+
     if(window.scrollY >= 204)
         navbar.classList.add('bg-gray-900')
     else
@@ -64,8 +65,21 @@ function addClasssCrolling():void{
   })
 }
 
+
+function addResponsivenessYoutube():void{
+  const iframe:any = document.querySelector('#widget2')
+  // const div:any = document.querySelector('footer')
+  if (!iframe) return
+
+  window.addEventListener('load',()=>{
+    iframe.style = "width:100%"
+  })
+
+}
+
 function main():void{
   addClasssCrolling()
+  addResponsivenessYoutube()
 }
 
 main()

@@ -16,6 +16,8 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { CoverComponent } from './components/cover/cover.component';
+import { MyYoutubePlayerComponent } from './components/my-youtube-player/my-youtube-player.component';
+
 
 @NgModule({
   declarations: [
@@ -29,13 +31,14 @@ import { CoverComponent } from './components/cover/cover.component';
     ProjectContentComponent,
     ContactComponent,
     PageNotFoundComponent,
-    CoverComponent, 
+    CoverComponent,
+    MyYoutubePlayerComponent
   ],
-  imports: [    
+  imports: [
     BrowserModule,
     AppRoutingModule,
     YouTubePlayerModule,
-    FormsModule,    
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
