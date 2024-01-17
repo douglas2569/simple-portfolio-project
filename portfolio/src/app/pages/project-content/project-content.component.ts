@@ -3,26 +3,25 @@ import { ActivatedRoute} from '@angular/router';
 import {dataBase} from '../../database'
 import { Project } from '../../models/database';
 
-@Component({   
+@Component({
   selector: 'app-project-content',
   templateUrl: './project-content.component.html',
-  styleUrls: ['./project-content.component.css'],  
+  styleUrls: ['./project-content.component.css'],
 })
 
-export class ProjectContentComponent implements OnInit {  
-  project!:Project  
+export class ProjectContentComponent implements OnInit {
+  project!:Project
   apiLoaded:boolean = false
 
   constructor(private route:ActivatedRoute) { }
 
-  ngOnInit(): void {    
+  ngOnInit(): void {
     let id!:string | null
-    this.route.paramMap.subscribe(value=> id = value.get('id')) 
-    this.mount(id) 
-    this.apiYoutubeLoaded()  
-   
+    this.route.paramMap.subscribe(value=> id = value.get('id'))
+    this.mount(id)
+    this.apiYoutubeLoaded()
   }
-  
+
   mount(id:string|null):void{
     this.project = dataBase.projects.filter((project)=>project.id == id)[0]
   }

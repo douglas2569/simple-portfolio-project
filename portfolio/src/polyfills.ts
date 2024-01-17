@@ -52,8 +52,7 @@ import 'zone.js';  // Included with Angular CLI.
  * APPLICATION IMPORTS
  */
 
-function addClasssCrolling():void{
-
+function addClassByScrolling():void{
   document.addEventListener('scroll', ()=>{
     if (!document.querySelector('#navbar-button')) return
     const navbar:any = document.querySelector('#navbar-button')
@@ -67,7 +66,7 @@ function addClasssCrolling():void{
 
 
 function addResponsivenessYoutube():void{
-  window.onload= ()=>{
+  window.onresize = ()=>{
     const iframe:any = document.querySelector('#widget2')
     if (!iframe) return
     iframe.style = "width:100%"
@@ -77,8 +76,9 @@ function addResponsivenessYoutube():void{
 }
 
 function main():void{
-  addClasssCrolling()
+  addClassByScrolling()
   addResponsivenessYoutube()
+
 }
 
 main()
