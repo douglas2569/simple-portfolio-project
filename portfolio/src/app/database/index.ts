@@ -6,7 +6,7 @@ const dataBase:Database =
       {
           id:"1",
           photoCover:"https://img.freepik.com/fotos-gratis/paisagem-de-nevoeiro-matinal-e-montanhas-com-baloes-de-ar-quente-ao-nascer-do-sol_335224-794.jpg",
-          photoProfile:"https://upload.wikimedia.org/wikipedia/commons/3/34/PICA.jpg",
+          photoProfile:"https://media.licdn.com/dms/image/D5603AQHCq5GnqDijoA/profile-displayphoto-shrink_800_800/0/1696607204245?e=1710979200&v=beta&t=yOOwCEQcdLpPKtHQMSzuHmUbcTCfaxYjM7XTntZLlyc",
           name: "Carlos Douglas",
           position: "Desenvolvedor Web Full Stack",
           title: "Olá meu povo.",

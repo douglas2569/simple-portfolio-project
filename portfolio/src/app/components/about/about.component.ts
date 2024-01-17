@@ -8,7 +8,7 @@ import { Database, SocialMedia } from '../../models/database';
   styleUrls: ['./about.component.css']
 })
 
-export class AboutComponent implements OnInit { 
+export class AboutComponent implements OnInit {
   photoProfile!:string
   name!:string
   position!:string
@@ -24,7 +24,11 @@ export class AboutComponent implements OnInit {
   }
 
   mount(dataBase:Database):void{
-    this.photoProfile = dataBase.about.photoProfile
+    if(dataBase.about.photoProfile)
+      this.photoProfile = dataBase.about.photoProfile
+    else
+      this.photoProfile = '../../../assets/images/profile-default.png'
+
     this.name = dataBase.about.name
     this.position = dataBase.about.position
     this.title = dataBase.about.title
