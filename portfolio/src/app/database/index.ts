@@ -78,8 +78,8 @@ const dataBase:Database =
 
         ],
         description:'Projeto desenvolvido para gerenciar os achados e perdidos do bloco do SMD da UFC',
-        repository:'',
-        documentation:'',
+        repository:'https://github.com/douglas2569/',
+        documentation:'https://github.com/douglas2569/',
         videoId:'bhix5Nzoj3I',
       },
       {
