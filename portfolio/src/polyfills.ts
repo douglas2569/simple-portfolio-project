@@ -66,20 +66,8 @@ function addClasssCrolling():void{
 }
 
 
-function addResponsivenessYoutube():void{
-  const iframe:any = document.querySelector('#widget2')
-  // const div:any = document.querySelector('footer')
-  if (!iframe) return
-
-  window.addEventListener('load',()=>{
-    iframe.style = "width:100%"
-  })
-
-}
-
 function main():void{
   addClasssCrolling()
-  addResponsivenessYoutube()
 }
 
 main()
