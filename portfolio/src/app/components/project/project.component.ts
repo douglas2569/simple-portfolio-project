@@ -19,7 +19,9 @@ export class ProjectComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    
+  }
 
 
 

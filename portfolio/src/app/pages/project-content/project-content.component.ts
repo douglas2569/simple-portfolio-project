@@ -20,6 +20,8 @@ export class ProjectContentComponent implements OnInit {
     this.route.paramMap.subscribe(value=> id = value.get('id'))
     this.mount(id)
     this.apiYoutubeLoaded()
+
+    window.scroll(0,0)
   }
 
   mount(id:string|null):void{
