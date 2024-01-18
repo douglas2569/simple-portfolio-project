@@ -60,7 +60,7 @@ new class extends Component {
                 </div>
 
                 @if ($socialMediaItem->is($editing))
-                    <livewire:chirps.edit :socialMedia="$socialMediaItem" :key="$socialMediaItem->id" />
+                    <livewire:socialmedia.edit :socialMedia="$socialMediaItem" :key="$socialMediaItem->id" />
                 @else
                     <img src="{{ $socialMediaItem->icon }}" alt="{{ $socialMediaItem->name }}" srcset="">
                     <p class="mt-4 text-lg text-gray-900">{{ $socialMediaItem->name }}</p>
