@@ -3,7 +3,7 @@ type Database =
   about:
   {
     id:string,
-    photoCover:string,
+    photoCover:Array<Covers>
     photoProfile:string,
     name: string,
     position: string,
@@ -57,5 +57,13 @@ type Settings =
     color:string,
   }
 
+  type Covers =
+  {
+    id:string,
+    name:string,
+    url:string,
+  }
 
-export {Database, SocialMedia, Settings, Skill, Project, Tag}
+
+
+export {Database, SocialMedia, Settings, Skill, Project, Tag, Covers}

@@ -5,7 +5,18 @@ const dataBase:Database =
     about :
       {
           id:"1",
-          photoCover:"https://img.freepik.com/fotos-gratis/paisagem-de-nevoeiro-matinal-e-montanhas-com-baloes-de-ar-quente-ao-nascer-do-sol_335224-794.jpg",
+          photoCover:[
+            {
+              id:"1",
+              name:"balloons",
+              url:"../assets/images/cover-sm.jpg"
+            },
+            {
+              id:"2",
+              name:"balloons",
+              url:"../assets/images/cover-md.jpg"
+            }
+          ],
           photoProfile:"https://media.licdn.com/dms/image/D5603AQHCq5GnqDijoA/profile-displayphoto-shrink_800_800/0/1696607204245?e=1710979200&v=beta&t=yOOwCEQcdLpPKtHQMSzuHmUbcTCfaxYjM7XTntZLlyc",
           name: "Carlos Douglas",
           position: "Desenvolvedor Web Full Stack",

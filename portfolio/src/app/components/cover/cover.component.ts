@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { dataBase } from 'src/app/database';
-import { Database } from '../../models/database';
+import { Database, Covers } from '../../models/database';
 
 @Component({
   selector: 'app-cover',
@@ -8,7 +8,7 @@ import { Database } from '../../models/database';
   styleUrls: ['./cover.component.css']
 })
 export class CoverComponent implements OnInit {
-  photoCover!:string
+  photoCover!:Array<Covers>
 
   constructor() { }
 
@@ -17,7 +17,7 @@ export class CoverComponent implements OnInit {
   }
 
   mount(dataBase:Database):void{
-    this.photoCover = dataBase.about.photoCover    
+    this.photoCover = dataBase.about.photoCover
   }
 
 }

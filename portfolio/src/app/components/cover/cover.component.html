@@ -1,1 +1,8 @@
-<img [src]="photoCover" class="h-auto w-screen" alt="">
+<div class="cover ">
+    <picture>
+      <source media="(max-width: 640px)" [srcset]="photoCover[0].url" />
+      <source media="(max-width: 1024px)" [srcset]="photoCover[1].url" />
+      <img [src]="photoCover[1].url" [alt]="photoCover[0].name" />
+    </picture> 
+
+</div>
