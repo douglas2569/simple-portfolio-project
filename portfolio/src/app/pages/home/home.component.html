@@ -1,11 +1,11 @@
 <app-cover></app-cover>
 <app-navigation-menu></app-navigation-menu>
 <app-about></app-about>
-<div id="skills" class="mb-4 py-4 bg-gray-50">
+<div id="skills" class="mb-4 py-4 bg-gray-50 md:w-[48rem] mx-auto">
   <div class="mb-6">
     <h2 class="text-lg  text-center font-semibold">Habilidades</h2>
   </div>
-  <div class="grid grid-cols-2 gap-4 p-4">
+  <div class="grid grid-cols-2 md:grid-cols-3 gap-4 p-4">
     <app-skill *ngFor="let skill of skills"
     [icon]="skill.icon"
     [name]="skill.name"
@@ -14,11 +14,11 @@
     ></app-skill>
   </div>
 </div>
-<div id="works" class="p-4 mb-4 bg-gray-50">
+<div id="works" class="p-4 mb-4 bg-gray-50 md:w-[48rem] mx-auto">
     <div class="mb-6">
       <h2 class="text-lg text-center font-semibold">Projetos</h2>
     </div>
-    <div class="grid grid-cols-1 gap-4">
+    <div class="grid grid-cols-1 md:grid-cols-3 sm:grid-cols-2 gap-4">
       <app-project *ngFor="let project of projects"
       [id]="project.id"
       [thumbnail]="project.thumbnail"

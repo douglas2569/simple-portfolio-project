@@ -116,6 +116,34 @@ const dataBase:Database =
         documentation:'',
         videoId:'',
       },
+      {
+        id:'2',
+        thumbnail:'',
+        name:'Sindicato',
+        tags:[
+          {
+            id:'1',
+            name:'html',
+            color:'gray'
+          },
+          {
+            id:'2',
+            name:'css',
+            color:'purple'
+          },
+          {
+            id:'3',
+            name:'js',
+            color:'yellow'
+          }
+
+        ],
+        description:'',
+        repository:'',
+        documentation:'',
+        videoId:'',
+      },
+      
     ],
 
     settings:

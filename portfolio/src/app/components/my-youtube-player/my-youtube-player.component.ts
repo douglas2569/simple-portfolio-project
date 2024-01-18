@@ -10,11 +10,16 @@ export class MyYoutubePlayerComponent implements OnInit {
   @Input()
   videoId!:string
   width!:number
+  style:string = "width:100px"
 
   constructor() { }
 
   ngOnInit(): void {
-    this.width = window.innerWidth - 32
+    if(window.innerWidth >= 768){
+
+    }else{
+      this.width = window.innerWidth - 32
+    }
   }
 
 }
