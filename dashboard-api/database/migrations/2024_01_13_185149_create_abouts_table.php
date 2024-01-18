@@ -13,12 +13,12 @@ return new class extends Migration
     {
         Schema::create('abouts', function (Blueprint $table) {
             $table->id();
-            $table->string('cover_photo');
             $table->string('profile_photo');
             $table->string('name');
             $table->string('position');
             $table->string('title');
-            $table->text('description');            
+            $table->text('description');
+
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });
