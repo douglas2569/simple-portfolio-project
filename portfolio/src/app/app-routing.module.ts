@@ -7,11 +7,13 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 const routes: Routes = [
   {
     path:'',
-    component:HomeComponent
+    component:HomeComponent,
+	pathMatch:'full'
   },
   {
     path:'project/:id',
-    component:ProjectContentComponent
+    component:ProjectContentComponent,
+	pathMatch:'prefix'
   },
   {
     path:'**',
