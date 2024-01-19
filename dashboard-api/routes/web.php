@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CoverPhotoController;
 use App\Http\Controllers\SocialMediaController;
+use App\Http\Middleware\CheckSocialMediaRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -31,7 +32,10 @@ Route::get('about',[AboutController::class, 'index'])
     ->name('about');
 
 Route::get('socialmedia',[SocialMediaController::class, 'index'])
+// Route::get('socialmedia/{about_id}',[SocialMediaController::class, 'index'])
+
     ->middleware(['auth', 'verified'])
+    // ->middleware(CheckSocialMediaRequest::class)
     ->name('socialmedia');
 
 Route::get('coverphoto',[CoverPhotoController::class, 'index'])

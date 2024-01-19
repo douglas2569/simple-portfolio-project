@@ -7,9 +7,10 @@ use Illuminate\View\View;
 
 class SocialMediaController extends Controller
 {
-   
-    public function index():View
+
+    public function index(Request $request):View
     {
+        echo $request;
         return view('socialmedia',[]);
     }
 }

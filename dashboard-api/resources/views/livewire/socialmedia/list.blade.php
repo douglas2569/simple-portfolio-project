@@ -3,6 +3,7 @@ use App\Models\SocialMedia;
 use Livewire\Volt\Component;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\On;
+use Illuminate\Foundation\Bootstrap\HandleExceptions;
 
 new class extends Component {
     public Collection $socialMedia;
@@ -10,7 +11,7 @@ new class extends Component {
 
 
     public function mount() : void {
-        $this->getSocialMedia();
+            $this->getSocialMedia();
     }
 
     #[On('socialmedia-created')]
@@ -27,7 +28,6 @@ new class extends Component {
 }; ?>
 
 <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
-
     @foreach ($socialMedia as $socialMediaItem)
 
         <div class="p-6 flex space-x-2" wire:key="{{ $socialMediaItem->id }}">
