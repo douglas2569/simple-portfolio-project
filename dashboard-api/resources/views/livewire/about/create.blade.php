@@ -1,26 +1,38 @@
 <?php
 
 use Livewire\Volt\Component;
-use Livewire\Attributes\Rule;
+use Livewire\Attributes\Validate;
+use App\Models\CoverPhoto;
 
 new class extends Component {
-    #[Rule('required|string|min:10')]
-    public string $cover_photo;
-    #[Rule('required|string|min:10')]
+    #[Validate('required|string|min:10')]
+    public string $large_cover_photo;
+    #[Validate('required|string|min:10')]
+    public string $medium_cover_photo;
+
+    #[Validate('required|string|min:10')]
     public string $profile_photo;
-    #[Rule('required|string|max:255')]
+    #[Validate('required|string|max:255')]
     public string $name;
-    #[Rule('required|string|max:100')]
+    #[Validate('required|string|max:100')]
     public string $position;
-    #[Rule('required|string|max:100')]
+    #[Validate('required|string|max:100')]
     public string $title;
-    #[Rule('required|string|min:20')]
+    #[Validate('required|string|min:20')]
     public string $description;
 
     public function store():void
     {
-        $validated = $this->validate();
-        auth()->user()->about()->create($validated);
+        $validated_about = $this->validate();
+        $validated_cover = array_splice($validated_about, 0, 2);
+        auth()->user()->about()->create($validated_about);
+
+        $about = auth()->user()->about()->get();
+        print_r($validated_about);
+
+        foreach($validated_cover as $cover){
+            CoverPhoto::create(array('url'=>$cover, 'about_id'=>$about[0]->id));
+        }
 
         redirect('about');
 
@@ -31,8 +43,14 @@ new class extends Component {
 <div>
     <form wire:submit="store">
         <input
-            wire:model="cover_photo"
-            placeholder="{{ __('Cover Photo') }}"
+            wire:model="large_cover_photo"
+            placeholder="{{ __('Cover Photo Large') }}"
+            class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+        />
+
+        <input
+            wire:model="medium_cover_photo"
+            placeholder="{{ __('Cover Photo Medium') }}"
             class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
         />
         <input
