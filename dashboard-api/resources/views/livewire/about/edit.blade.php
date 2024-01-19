@@ -1,14 +1,19 @@
 <?php
 
 use App\Models\About;
+use App\Models\CoverPhoto;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 
 new class extends Component {
     public About $about;
+    // public $cover_photos;
 
     #[Validate('required|string|min:10')]
-    public string $cover_photo;
+    public string $large_cover_photo;
+    #[Validate('required|string|min:10')]
+    public string $medium_cover_photo;
+
     #[Validate('required|string|min:10')]
     public string $profile_photo;
     #[Validate('required|string|max:255')]
@@ -22,7 +27,12 @@ new class extends Component {
 
     public function mount():void    {
         $this->about = (auth()->user()->about()->get())[0];
-        $this->cover_photo = $this->about->cover_photo;
+
+        $this->cover_photos = CoverPhoto::where('about_id', $this->about->id)->get();
+        // print_r($this->cover_photos); die();
+
+        // $this->large_cover_photo = $this->cover_photo->large_cover_photo;
+        // $this->medium_cover_photo = $this->cover_photo->medium_cover_photo;
         $this->profile_photo = $this->about->profile_photo;
         $this->name = $this->about->name;
         $this->position = $this->about->position;
@@ -44,13 +54,14 @@ new class extends Component {
 <div>
     <form wire:submit="update">
         <input
-            wire:model="cover_photo"
-            placeholder="{{ __('Cover Photo') }}"
+            wire:model="large_cover_photo"
+            placeholder="{{ __('Cover Photo Large') }}"
             class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
         />
+
         <input
-            wire:model="cover_photo"
-            placeholder="{{ __('Cover Photo') }}"
+            wire:model="medium_cover_photo"
+            placeholder="{{ __('Cover Photo Medium') }}"
             class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
         />
         <input

@@ -5,10 +5,10 @@ use Livewire\Attributes\Validate;
 use App\Models\CoverPhoto;
 
 new class extends Component {
-    #[Validate('required|string|min:10')]
-    public string $large_cover_photo;
-    #[Validate('required|string|min:10')]
-    public string $medium_cover_photo;
+    // #[Validate('required|string|min:10')]
+    // public string $large_cover_photo;
+    // #[Validate('required|string|min:10')]
+    // public string $medium_cover_photo;
 
     #[Validate('required|string|min:10')]
     public string $profile_photo;
@@ -24,15 +24,15 @@ new class extends Component {
     public function store():void
     {
         $validated_about = $this->validate();
-        $validated_cover = array_splice($validated_about, 0, 2);
+        // $validated_cover = array_splice($validated_about, 0, 2);
         auth()->user()->about()->create($validated_about);
 
-        $about = auth()->user()->about()->get();
-        print_r($validated_about);
+        // $about = auth()->user()->about()->get();
+        // print_r($validated_about);
 
-        foreach($validated_cover as $cover){
-            CoverPhoto::create(array('url'=>$cover, 'about_id'=>$about[0]->id));
-        }
+        // foreach($validated_cover as $cover){
+        //     CoverPhoto::create(array('url'=>$cover, 'about_id'=>$about[0]->id));
+        // }
 
         redirect('about');
 
@@ -42,7 +42,7 @@ new class extends Component {
 
 <div>
     <form wire:submit="store">
-        <input
+        <!-- <input  Photo cover é um component componente com nome, about_id, tamanho (large, medium ou 0,1)
             wire:model="large_cover_photo"
             placeholder="{{ __('Cover Photo Large') }}"
             class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
@@ -52,7 +52,7 @@ new class extends Component {
             wire:model="medium_cover_photo"
             placeholder="{{ __('Cover Photo Medium') }}"
             class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-        />
+        /> -->
         <input
             wire:model="profile_photo"
             placeholder="{{ __('Profile Photo') }}"
