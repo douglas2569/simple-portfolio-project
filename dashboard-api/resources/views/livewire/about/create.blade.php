@@ -5,11 +5,7 @@ use Livewire\Attributes\Validate;
 use App\Models\CoverPhoto;
 
 new class extends Component {
-    // #[Validate('required|string|min:10')]
-    // public string $large_cover_photo;
-    // #[Validate('required|string|min:10')]
-    // public string $medium_cover_photo;
-
+    
     #[Validate('required|string|min:10')]
     public string $profile_photo;
     #[Validate('required|string|max:255')]
