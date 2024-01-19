@@ -42,6 +42,10 @@ new class extends Component
                           {{ __('Social Media') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('coverphoto')" :active="request()->routeIs('coverphoto')" wire:navigate>
+                          {{ __('Fotos da capa') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -100,6 +104,10 @@ new class extends Component
 
             <x-responsive-nav-link :href="route('socialmedia')" :active="request()->routeIs('socialmedia')" wire:navigate>
                 {{ __('Social Media') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('coverphoto')" :active="request()->routeIs('coverphoto')" wire:navigate>
+                {{ __('Fotos da Capa') }}
             </x-responsive-nav-link>
 
         </div>

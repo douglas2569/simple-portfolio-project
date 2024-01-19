@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\CoverPhotoController;
 use App\Http\Controllers\SocialMediaController;
 
 /*
@@ -26,11 +27,15 @@ Route::view('profile', 'profile')
     ->name('profile');
 
 Route::get('about',[AboutController::class, 'index'])
-    ->middleware(['auth', 'verified']) 
+    ->middleware(['auth', 'verified'])
     ->name('about');
 
 Route::get('socialmedia',[SocialMediaController::class, 'index'])
-->middleware(['auth', 'verified']) 
-->name('socialmedia');
+    ->middleware(['auth', 'verified'])
+    ->name('socialmedia');
+
+Route::get('coverphoto',[CoverPhotoController::class, 'index'])
+    ->middleware(['auth','verified'])
+    ->name('coverphoto');
 
 require __DIR__.'/auth.php';

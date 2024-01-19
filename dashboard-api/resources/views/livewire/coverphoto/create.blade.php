@@ -5,17 +5,17 @@ use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 
 new class extends Component {
-    #[Validate('required|string|min:10')]
+    #[Validate('required|string|min:4')]
     public string $name;
     #[Validate('required|string|min:10')]
     public string $url;
-    #[Validate('required|string|min:10')]
+    #[Validate('required|string|min:2')]
     public string $size;
 
-    public function create(){
+    public function store(){
         $validated = $this->validate();
         $validated['about_id'] = (auth()->user()->about()->get()[0])->id;
-        CoverPhoto::created($validated);
+        CoverPhoto::create($validated);
      }
 
 }; ?>
