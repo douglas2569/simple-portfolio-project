@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CoverPhotoController;
 use App\Http\Controllers\SocialMediaController;
-use App\Http\Middleware\CheckSocialMediaRequest;
+use App\Http\Middleware\CheckingAboutExists;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,14 +32,13 @@ Route::get('about',[AboutController::class, 'index'])
     ->name('about');
 
 Route::get('socialmedia',[SocialMediaController::class, 'index'])
-// Route::get('socialmedia/{about_id}',[SocialMediaController::class, 'index'])
-
     ->middleware(['auth', 'verified'])
-    // ->middleware(CheckSocialMediaRequest::class)
+    ->middleware(CheckingAboutExists::class)
     ->name('socialmedia');
 
 Route::get('coverphoto',[CoverPhotoController::class, 'index'])
     ->middleware(['auth','verified'])
+    ->middleware(CheckingAboutExists::class)
     ->name('coverphoto');
 
 require __DIR__.'/auth.php';

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class CheckSocialMediaRequest
+class CheckingAboutExists
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,8 @@ class CheckSocialMediaRequest
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if($request->input('about_id') == ''){
-            return redirect('about');
+        if(!count(auth()->user()->about()->get()) > 0){
+            return redirect()->route('about');
         }
 
         return $next($request);

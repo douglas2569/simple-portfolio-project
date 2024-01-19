@@ -10,7 +10,6 @@ class SocialMediaController extends Controller
 
     public function index(Request $request):View
     {
-        echo $request;
         return view('socialmedia',[]);
     }
 }
