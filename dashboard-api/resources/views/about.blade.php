@@ -7,6 +7,7 @@
         @if(count($about) > 0)
             <livewire:about.edit />
         @else
+            <livewire:coverphoto.create />
             <livewire:about.create />
         @endif
 
