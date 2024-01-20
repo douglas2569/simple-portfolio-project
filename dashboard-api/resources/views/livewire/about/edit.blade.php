@@ -6,10 +6,11 @@ use Livewire\Volt\Component;
 use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
+
     public About $about;
 
-    #[Validate('required|string|min:10')]
-    public string $profile_photo;
+    #[Validate('image|max:100')]
+    public $profile_photo;
     #[Validate('required|string|max:255')]
     public string $name;
     #[Validate('required|string|max:100')]
@@ -21,10 +22,7 @@ new class extends Component {
 
     public function mount():void    {
         $this->about = (auth()->user()->about()->get())[0];
-
-        // $this->profile_photo =   $this->about->profile_photo;
-        $this->profile_photo =  Storage::get("../../../../storage/app/images/".$this->about->profile_photo);
-
+        $this->profile_photo = asset(Storage::url('images/'.$this->about->profile_photo));
         $this->name = $this->about->name;
         $this->position = $this->about->position;
         $this->title = $this->about->title;
@@ -47,7 +45,7 @@ new class extends Component {
 <div>
     <form wire:submit="update">
         @if($profile_photo)
-            <img src="{{ $profile_photo->temporaryUrl() }}">
+            <img src="{{$profile_photo}}">
         @endif
 
         <input
