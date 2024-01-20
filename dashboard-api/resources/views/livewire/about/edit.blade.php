@@ -1,9 +1,9 @@
 <?php
 
 use App\Models\About;
-use App\Models\CoverPhoto;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
+use Illuminate\Support\Facades\Storage;
 
 new class extends Component {
     public About $about;
@@ -22,8 +22,9 @@ new class extends Component {
     public function mount():void    {
         $this->about = (auth()->user()->about()->get())[0];
 
-        $this->cover_photos = CoverPhoto::where('about_id', $this->about->id)->get();
-        $this->profile_photo = $this->about->profile_photo;
+        // $this->profile_photo =   $this->about->profile_photo;
+        $this->profile_photo =  Storage::get("../../../../storage/app/images/".$this->about->profile_photo);
+
         $this->name = $this->about->name;
         $this->position = $this->about->position;
         $this->title = $this->about->title;
@@ -35,6 +36,8 @@ new class extends Component {
     {
         $this->authorize('update',$this->about);
         $validated = $this->validate();
+        $this->profile_photo->store('images');
+        $validated_about['profile_photo'] =  $this->profile_photo->hashName();
         $this->about->update($validated);
 
     }
@@ -43,8 +46,12 @@ new class extends Component {
 
 <div>
     <form wire:submit="update">
-        
+        @if($profile_photo)
+            <img src="{{ $profile_photo->temporaryUrl() }}">
+        @endif
+
         <input
+            type="file"
             wire:model="profile_photo"
             placeholder="{{ __('Profile Photo') }}"
             class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
