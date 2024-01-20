@@ -2,11 +2,13 @@
 
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
+use Livewire\WithFileUploads;
 
 new class extends Component {
+    use WithFileUploads;
 
-    #[Validate('required|string|min:10')]
-    public string $profile_photo;
+    #[Validate('image|max:100')]
+    public $profile_photo;
     #[Validate('required|string|max:255')]
     public string $name;
     #[Validate('required|string|max:100')]
@@ -19,6 +21,8 @@ new class extends Component {
     public function store():void
     {
         $validated_about = $this->validate();
+        $this->profile_photo->store('images');
+        $validated_about['profile_photo'] =  $this->profile_photo->hashName();
         auth()->user()->about()->create($validated_about);
 
         redirect('about');
@@ -31,12 +35,13 @@ new class extends Component {
     <form wire:submit="store">
         <input
             wire:model="profile_photo"
-            placeholder="{{ __('Profile Photo') }}"
+            type="file"
             class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
         />
+
         <input
             wire:model="name"
-            placeholder="{{ __('Name') }}"
+            placeholder="{{ __('Nome') }}"
             class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
         />
 
