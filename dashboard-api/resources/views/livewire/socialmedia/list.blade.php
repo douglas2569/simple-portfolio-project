@@ -3,7 +3,6 @@ use App\Models\SocialMedia;
 use Livewire\Volt\Component;
 use Illuminate\Database\Eloquent\Collection;
 use Livewire\Attributes\On;
-use Illuminate\Foundation\Bootstrap\HandleExceptions;
 
 new class extends Component {
     public Collection $socialMedia;
@@ -14,7 +13,7 @@ new class extends Component {
             $this->getSocialMedia();
     }
 
-    #[On('socialmedia-created')]
+    #[On('social-media-created')]
     public function getSocialMedia():void{
         $about = auth()->user()->about()->get();
         $this->socialMedia = SocialMedia::where('about_id', $about[0]->id)->get();

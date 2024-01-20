@@ -15,7 +15,7 @@ new class extends Component
         $this->redirect('/', navigate: true);
     }
 
-    
+
 }; ?>
 
 <nav x-data="{ open: false }" class="bg-white border-b border-gray-100">
@@ -40,12 +40,12 @@ new class extends Component
                           {{ __('About') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('socialmedia')" :active="request()->routeIs('socialmedia')" wire:navigate>
-                          {{ __('Social Media') }}
-                    </x-nav-link>
-
                     <x-nav-link :href="route('coverphoto')" :active="request()->routeIs('coverphoto')" wire:navigate>
                           {{ __('Fotos da capa') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('socialmedia')" :active="request()->routeIs('socialmedia')" wire:navigate>
+                          {{ __('Social Media') }}
                     </x-nav-link>
 
                 </div>
@@ -102,16 +102,13 @@ new class extends Component
 
             <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')" wire:navigate>
                 {{ __('About') }}
+            </x-responsive-nav-link>            <x-responsive-nav-link :href="route('coverphoto')" :active="request()->routeIs('coverphoto')" wire:navigate>
+                {{ __('Fotos da Capa') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('socialmedia')" :active="request()->routeIs('socialmedia')" wire:navigate>
                 {{ __('Social Media') }}
             </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('coverphoto')" :active="request()->routeIs('coverphoto')" wire:navigate>
-                {{ __('Fotos da Capa') }}
-            </x-responsive-nav-link>
-
         </div>
 
         <!-- Responsive Settings Options -->

@@ -3,7 +3,6 @@
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 use App\Models\SocialMedia;
-use App\Models\About;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,8 +24,7 @@ new class extends Component {
         $validated['about_id'] = $about[0]->id;
         SocialMedia::create($validated);
 
-        // redirect('socialmedia');
-        $this->dispatch('socialmedia-created');
+        $this->dispatch('social-media-created');
     }
 }; ?>
 
