@@ -35,14 +35,16 @@ new class extends Component {
 
     public function update():void
     {
+        $imageName = explode('/', $this->about->profile_photo);
+
         $this->authorize('update',$this->about);
-        Storage::delete(Storage::url('images/'.$this->about->profile_photo));
         $validated_about = $this->validate();
         $this->profile_photo->store('public/images');
+        Storage::delete('public/images/'.$imageName[0]);
         $validated_about['profile_photo'] =  $this->profile_photo->hashName();
         $this->about->update($validated_about);
 
-        // redirect('about');
+        redirect('about');
 
     }
 

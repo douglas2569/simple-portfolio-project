@@ -21,7 +21,7 @@ new class extends Component {
     public function store():void
     {
         $validated_about = $this->validate();
-        $this->profile_photo->store('public/images');
+        $this->profile_photo->store('images');
         $validated_about['profile_photo'] =  $this->profile_photo->hashName();
         auth()->user()->about()->create($validated_about);
 
