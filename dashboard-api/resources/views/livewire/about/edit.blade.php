@@ -4,13 +4,16 @@ use App\Models\About;
 use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 use Illuminate\Support\Facades\Storage;
+use Livewire\WithFileUploads;
 
 new class extends Component {
+    use WithFileUploads;
 
     public About $about;
 
     #[Validate('image|max:100')]
     public $profile_photo;
+
     #[Validate('required|string|max:255')]
     public string $name;
     #[Validate('required|string|max:100')]
@@ -33,10 +36,13 @@ new class extends Component {
     public function update():void
     {
         $this->authorize('update',$this->about);
-        $validated = $this->validate();
-        $this->profile_photo->store('images');
+        Storage::delete(Storage::url('images/'.$this->about->profile_photo));
+        $validated_about = $this->validate();
+        $this->profile_photo->store('public/images');
         $validated_about['profile_photo'] =  $this->profile_photo->hashName();
-        $this->about->update($validated);
+        $this->about->update($validated_about);
+
+        // redirect('about');
 
     }
 
@@ -44,16 +50,31 @@ new class extends Component {
 
 <div>
     <form wire:submit="update">
-        @if($profile_photo)
-            <img src="{{$profile_photo}}">
-        @endif
 
-        <input
-            type="file"
-            wire:model="profile_photo"
-            placeholder="{{ __('Profile Photo') }}"
-            class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-        />
+        <div class="flex items-center space-x-6">
+            @if($profile_photo)
+                <div class="shrink-0">
+                    <img
+                        class="h-16 w-16 object-cover rounded-full"
+                        src="{{$profile_photo}}" />
+                </div>
+            @endif
+
+            <label class="block">
+                <span class="sr-only">Choose profile photo</span>
+                <input
+                    wire:model="profile_photo"
+                    type="file"
+                    class="block w-full text-sm text-slate-500
+                    file:mr-4 file:py-2 file:px-4
+                    file:rounded-full file:border-0
+                    file:text-sm file:font-semibold
+                    file:bg-violet-50 file:text-violet-700
+                    hover:file:bg-violet-100
+                "/>
+            </label>
+        </div>
+
         <input
             wire:model="name"
             placeholder="{{ __('Name') }}"
