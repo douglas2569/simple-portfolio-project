@@ -5,13 +5,14 @@ use Livewire\Attributes\Validate;
 use Livewire\Volt\Component;
 use Illuminate\Support\Facades\Storage;
 use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Validator;
 
 new class extends Component {
     use WithFileUploads;
 
     public About $about;
 
-    #[Validate('image|max:100')]
+    // #[Validate('image|max:100', onUpdate:false)]
     public $profile_photo;
 
     #[Validate('required|string|max:255')]
@@ -35,13 +36,23 @@ new class extends Component {
 
     public function update():void
     {
-        $imageName = explode('/', $this->about->profile_photo);
+        $validated_about = $this->validate();
+
+        if(gettype($this->profile_photo) == 'object'){
+            $this->profile_photo = Validator::make(
+                ['profile_photo' => $this->profile_photo],
+                ['profile_photo' => 'image|max:100'],
+                ['required' => 'The :attribute field is required'],
+             )->validate();
+
+             $this->profile_photo['profile_photo']->store('public/images');
+             $validated_about['profile_photo'] =  $this->profile_photo['profile_photo']->hashName();
+             $imageName = explode('/', $this->about->profile_photo);
+             Storage::delete('public/images/'.$imageName[0]);
+        }
+
 
         $this->authorize('update',$this->about);
-        $validated_about = $this->validate();
-        $this->profile_photo->store('public/images');
-        Storage::delete('public/images/'.$imageName[0]);
-        $validated_about['profile_photo'] =  $this->profile_photo->hashName();
         $this->about->update($validated_about);
 
         redirect('about');
