@@ -21,6 +21,12 @@ new class extends Component {
 
     }
 
+    public function edit(CoverPhoto $cover_photo):void
+    {
+        $this->editing = $cover_photo;
+        $this->getCoverPhotos();
+    }
+
 
 }; ?>
 
@@ -63,7 +69,7 @@ new class extends Component {
                 @endphp
 
                 @if ($cover_photo->is($editing))
-                    <livewire:socialmedia.edit :socialMedia="$cover_photo" :key="$cover_photo->id" />
+                    <livewire:coverphoto.edit :socialMedia="$cover_photo" :key="$cover_photo->id" />
                 @else
                     <img src="{{ $url }}" alt="{{ $cover_photo->name }}" srcset="">
                     <p class="mt-4 text-lg text-gray-900">{{ $size }}</p>
