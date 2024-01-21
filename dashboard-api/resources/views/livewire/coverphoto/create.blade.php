@@ -32,7 +32,7 @@ new class extends Component {
 <div>
     <form wire:submit="store">
         <label class="block" for="">
-            <span class="sr-only">Chose cover photo</span>
+            <span class="sr-only">Choose cover photo</span>
             <input
                 type="file"
                 wire:model="url"

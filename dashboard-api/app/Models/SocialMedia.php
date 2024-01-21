@@ -9,10 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class SocialMedia extends Model
 {
     use HasFactory;
-    protected $fillable = [        
-        'icon',  
+    protected $fillable = [
+        'icon',
         'name',
         'about_id',
+        'url',
     ];
 
     public function about():BelongsTo

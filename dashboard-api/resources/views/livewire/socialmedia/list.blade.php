@@ -58,12 +58,16 @@ new class extends Component {
 
                     </x-dropdown>
                 </div>
+                @php
+                    $icon =  asset(Storage::url("images/$socialMediaItem->icon"));
+                @endphp
 
                 @if ($socialMediaItem->is($editing))
                     <livewire:socialmedia.edit :socialMedia="$socialMediaItem" :key="$socialMediaItem->id" />
                 @else
-                    <img src="{{ $socialMediaItem->icon }}" alt="{{ $socialMediaItem->name }}" srcset="">
+                    <img src="{{ $icon }}" alt="{{ $socialMediaItem->name }}" srcset="" class="w-10 h-10">
                     <p class="mt-4 text-lg text-gray-900">{{ $socialMediaItem->name }}</p>
+                    <p class="mt-4 text-lg text-gray-900">{{ $socialMediaItem->url }}</p>
                 @endif
 
             </div>
