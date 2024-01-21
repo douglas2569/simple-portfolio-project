@@ -15,6 +15,7 @@ new class extends Component {
         $this->getCoverPhotos();
     }
 
+
     #[On('cover-photo-created')]
     public function getCoverPhotos():void
     {

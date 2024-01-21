@@ -37,8 +37,7 @@ class CoverPhotoPolicy
      */
     public function update(User $user, CoverPhoto $coverPhoto): bool
     {
-        // return $coverPhoto->user()->is($user);
-        return true;
+        return $coverPhoto->user()->is($user);
     }
 
     /**

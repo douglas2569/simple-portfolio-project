@@ -20,13 +20,11 @@ new class extends Component {
     public function store(){
         if(count(CoverPhoto::select()->get()) >= 2)
             return;
-
         $validated = $this->validate();
         $this->url->store('public/images');
         $validated['url'] = $this->url->hashName();
         $validated['about_id'] = (auth()->user()->about()->get()[0])->id;
         auth()->user()->coverPhoto()->create($validated);
-        // CoverPhoto::create($validated);
 
         $this->dispatch('cover-photo-created');
      }
