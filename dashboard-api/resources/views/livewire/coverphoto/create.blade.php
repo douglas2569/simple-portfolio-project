@@ -3,9 +3,12 @@ use App\Models\CoverPhoto;
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\On;
 
 new class extends Component {
     use WithFileUploads;
+
+    public string $display = '';
 
     #[Validate('image|max:1024')]
     public $url;
@@ -22,14 +25,27 @@ new class extends Component {
         $this->url->store('public/images');
         $validated['url'] = $this->url->hashName();
         $validated['about_id'] = (auth()->user()->about()->get()[0])->id;
-        CoverPhoto::create($validated);
+        auth()->user()->coverPhoto()->create($validated);
+        // CoverPhoto::create($validated);
 
         $this->dispatch('cover-photo-created');
      }
 
+     #[On('hidden-create-cover-photo')]
+     public function hiddenCreateCoverPhoto():void
+     {
+        $this->display = 'hidden';
+     }
+
+     #[On('show-create-cover-photo')]
+     public function showCreateCoverPhoto():void
+     {
+        $this->display = '';
+     }
+
 }; ?>
 
-<div>
+<div class="{{$this->display}}" >
     <form wire:submit="store">
         <label class="block" for="">
             <span class="sr-only">Choose cover photo</span>

@@ -11,14 +11,19 @@ class About extends Model
 {
     use HasFactory;
 
-    protected $fillable = [        
-        'cover_photo',        
+    protected $fillable = [
+        'cover_photo',
         'profile_photo',
         'name',
         'position',
         'title',
         'description',
     ];
+
+    public function coverPhoto():HasMany
+    {
+        return $this->hasMany(CoverPhoto::class);
+    }
 
     public function socialMedia():HasMany
     {

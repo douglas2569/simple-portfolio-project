@@ -2,11 +2,11 @@
 
 namespace App\Policies;
 
-use App\Models\About;
+use App\Models\CoverPhoto;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
-class AboutPolicy
+class CoverPhotoPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -19,7 +19,7 @@ class AboutPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, About $about): bool
+    public function view(User $user, CoverPhoto $coverPhoto): bool
     {
         //
     }
@@ -35,16 +35,16 @@ class AboutPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, About $about): bool
+    public function update(User $user, CoverPhoto $coverPhoto): bool
     {
-        return $about->user()->is($user);
+        // return $coverPhoto->user()->is($user);
+        return true;
     }
-
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, About $about): bool
+    public function delete(User $user, CoverPhoto $coverPhoto): bool
     {
         //
     }
@@ -52,7 +52,7 @@ class AboutPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, About $about): bool
+    public function restore(User $user, CoverPhoto $coverPhoto): bool
     {
         //
     }
@@ -60,7 +60,7 @@ class AboutPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, About $about): bool
+    public function forceDelete(User $user, CoverPhoto $coverPhoto): bool
     {
         //
     }

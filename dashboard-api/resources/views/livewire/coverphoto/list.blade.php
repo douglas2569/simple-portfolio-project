@@ -3,6 +3,7 @@
 use App\Models\CoverPhoto;
 use Livewire\Volt\Component;
 use Illuminate\Database\Eloquent\Collection;
+use Livewire\Attributes\On;
 
 new class extends Component {
 
@@ -14,6 +15,7 @@ new class extends Component {
         $this->getCoverPhotos();
     }
 
+    #[On('cover-photo-created')]
     public function getCoverPhotos():void
     {
         $about = auth()->user()->about()->get()[0];
@@ -25,10 +27,21 @@ new class extends Component {
     {
         $this->editing = $cover_photo;
         $this->getCoverPhotos();
+        $this->dispatch('hidden-create-cover-photo');
+    }
+
+    #[On('cover-photo-canceled')]
+    #[On('cover-photo-updated')]
+    public function disableEditing(): void
+
+    {
+        $this->editing = null;
+        $this->getCoverPhotos();
     }
 
 
 }; ?>
+
 
 <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
     @foreach ($cover_photos as $cover_photo)
@@ -69,7 +82,7 @@ new class extends Component {
                 @endphp
 
                 @if ($cover_photo->is($editing))
-                    <livewire:coverphoto.edit :socialMedia="$cover_photo" :key="$cover_photo->id" />
+                    <livewire:coverphoto.edit :cover_photo="$cover_photo" :key="$cover_photo->id" />
                 @else
                     <img src="{{ $url }}" alt="{{ $cover_photo->name }}" srcset="">
                     <p class="mt-4 text-lg text-gray-900">{{ $size }}</p>
