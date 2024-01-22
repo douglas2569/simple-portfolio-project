@@ -26,7 +26,7 @@ new class extends Component {
         $validated['about_id'] = (auth()->user()->about()->get()[0])->id;
         auth()->user()->coverPhoto()->create($validated);
 
-        $this->dispatch('cover-photo-created');
+        redirect('coverphoto');
      }
 
      #[On('hidden-create-cover-photo')]

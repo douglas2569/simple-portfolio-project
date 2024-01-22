@@ -31,7 +31,7 @@ new class extends Component {
         $this->dispatch('hidden-create-cover-photo');
     }
 
-    #[On('cover-photo-canceled')]
+    // #[On('cover-photo-edit-canceled')]
     #[On('cover-photo-updated')]
     public function disableEditing(): void
 

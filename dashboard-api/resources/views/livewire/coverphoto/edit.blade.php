@@ -52,7 +52,8 @@ new class extends Component {
 
     public function cancel(): void
     {
-        $this->dispatch('chirp-edit-canceled');
+        // $this->dispatch('cover-photo-edit-canceled');
+        redirect('coverphoto');
     }
 
 }; ?>
@@ -60,29 +61,29 @@ new class extends Component {
 
 <div >
     <form wire:submit="update">
-    <div class="flex items-center space-x-6">
-            @if($url)
-                <div class="shrink-0">
-                    <img
-                        class="h-16 object-cover rounded-sm"
-                        src="{{$url}}" />
-                </div>
-            @endif
+        <div class="flex items-center space-x-6">
+                @if($url)
+                    <div class="shrink-0">
+                        <img
+                            class="h-16 object-cover rounded-sm"
+                            src="{{$url}}" />
+                    </div>
+                @endif
 
-            <label class="block">
-                <span class="sr-only">Choose cover photo</span>
-                <input
-                    wire:model="url"
-                    type="file"
-                    class="block w-full text-sm text-slate-500
-                    file:mr-4 file:py-2 file:px-4
-                    file:rounded-full file:border-0
-                    file:text-sm file:font-semibold
-                    file:bg-violet-50 file:text-violet-700
-                    hover:file:bg-violet-100
-                "/>
-            </label>
-        </div>
+                <label class="block">
+                    <span class="sr-only">Choose cover photo</span>
+                    <input
+                        wire:model="url"
+                        type="file"
+                        class="block w-full text-sm text-slate-500
+                        file:mr-4 file:py-2 file:px-4
+                        file:rounded-full file:border-0
+                        file:text-sm file:font-semibold
+                        file:bg-violet-50 file:text-violet-700
+                        hover:file:bg-violet-100
+                    "/>
+                </label>
+            </div>
 
         <input
             wire:model="name"
@@ -101,6 +102,7 @@ new class extends Component {
         <x-input-error :messages="$errors->get('url')" class="mt-2" />
         <x-input-error :messages="$errors->get('size')" class="mt-2" />
         <x-primary-button class="mt-4">{{ __('Update') }}</x-primary-button>
+        <button class="mt-4 ml-4" wire:click.prevent="cancel">{{ __('Cancel') }}</button>
 
     </form>
 </div>
