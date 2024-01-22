@@ -5,8 +5,11 @@ use Livewire\Attributes\Validate;
 use App\Models\SocialMedia;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Livewire\WithFileUploads;
 
 new class extends Component {
+    use WithFileUploads;
+
     public SocialMedia $socialMedia;
 
     public $icon;
@@ -36,11 +39,12 @@ new class extends Component {
 
              $this->icon['icon']->store('public/images');
              $validated['icon'] =  $this->icon['icon']->hashName();
-             $imageName = explode('/', $this->socialMedia->url);
+             $imageName = explode('/', $this->socialMedia->icon);
              Storage::delete('public/images/'.$imageName[0]);
             }
 
             $this->authorize('update',$this->socialMedia);
+
             $this->socialMedia->update($validated);
             $this->dispatch('social-media-updated');
             $this->dispatch('show-create-social-media');
