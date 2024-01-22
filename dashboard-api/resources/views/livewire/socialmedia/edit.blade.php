@@ -13,9 +13,9 @@ new class extends Component {
     public SocialMedia $socialMedia;
 
     public $icon;
-    #[Validate('string|required|min:4|max:50')]
+    #[Validate('required|string|max:50')]
     public string $name;
-    #[Validate('string|required|min:5|max:255')]
+    #[Validate('required|string|max:255')]
     public string $url;
 
 

@@ -23,6 +23,7 @@ new class extends Component {
     public function edit(SocialMedia $socialMedia):void{
         $this->editing = $socialMedia;
         $this->getSocialMedia();
+        $this->dispatch('hidden-create-social-media');
     }
 
     #[On('social-media-updated')]

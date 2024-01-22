@@ -4,10 +4,13 @@ use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 use App\Models\SocialMedia;
 use Livewire\WithFileUploads;
+use Livewire\Attributes\On;
 
 
 new class extends Component {
     use WithFileUploads;
+
+    public string $display = '';
 
     #[Validate('image|max:50')]
     public $icon;
@@ -27,9 +30,22 @@ new class extends Component {
 
         $this->dispatch('social-media-created');
     }
+
+    #[On('hidden-create-social-media')]
+    public function hiddenCreateSocialMedia():void
+    {
+       $this->display = 'hidden';
+    }
+
+    #[On('show-create-social-media')]
+    public function showCreateSocialMedia():void
+    {
+       $this->display = '';
+    }
+
 }; ?>
 
-<div>
+<div class="{{$this->display}}">
     <form wire:submit="store">
 
         <label class="block" for="">
