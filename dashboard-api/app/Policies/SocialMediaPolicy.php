@@ -2,13 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\About;
-use App\Models\CoverPhoto;
+use App\Models\SocialMedia;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
+use App\Models\About;
 
-
-class CoverPhotoPolicy
+class SocialMediaPolicy
 {
     /**
      * Determine whether the user can view any models.
@@ -21,7 +20,7 @@ class CoverPhotoPolicy
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, CoverPhoto $coverPhoto): bool
+    public function view(User $user, SocialMedia $socialMedia): bool
     {
         //
     }
@@ -37,16 +36,16 @@ class CoverPhotoPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, CoverPhoto $coverPhoto): bool
-    {
-        $about = About::where('id', $coverPhoto->about_id)->get();
+    public function update(User $user, SocialMedia $socialMedia): bool    {
+
+        $about = About::where('id', $socialMedia->about_id)->get();
         return $about[0]->user()->is($user);
     }
 
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, CoverPhoto $coverPhoto): bool
+    public function delete(User $user, SocialMedia $socialMedia): bool
     {
         //
     }
@@ -54,7 +53,7 @@ class CoverPhotoPolicy
     /**
      * Determine whether the user can restore the model.
      */
-    public function restore(User $user, CoverPhoto $coverPhoto): bool
+    public function restore(User $user, SocialMedia $socialMedia): bool
     {
         //
     }
@@ -62,7 +61,7 @@ class CoverPhotoPolicy
     /**
      * Determine whether the user can permanently delete the model.
      */
-    public function forceDelete(User $user, CoverPhoto $coverPhoto): bool
+    public function forceDelete(User $user, SocialMedia $socialMedia): bool
     {
         //
     }

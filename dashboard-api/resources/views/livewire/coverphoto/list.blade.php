@@ -7,7 +7,7 @@ use Livewire\Attributes\On;
 
 new class extends Component {
 
-    public Collection $cover_photos;
+    public Collection $coverPhotos;
     public ?CoverPhoto $editing = null;
 
     public function mount():void
@@ -20,18 +20,17 @@ new class extends Component {
     public function getCoverPhotos():void
     {
         $about = auth()->user()->about()->get()[0];
-        $this->cover_photos = CoverPhoto::where('about_id',$about->id)->get();
+        $this->coverPhotos = CoverPhoto::where('about_id',$about->id)->get();
 
     }
 
-    public function edit(CoverPhoto $cover_photo):void
+    public function edit(CoverPhoto $coverPhoto):void
     {
-        $this->editing = $cover_photo;
+        $this->editing = $coverPhoto;
         $this->getCoverPhotos();
         $this->dispatch('hidden-create-cover-photo');
     }
 
-    // #[On('cover-photo-edit-canceled')]
     #[On('cover-photo-updated')]
     public function disableEditing(): void
 
@@ -40,21 +39,28 @@ new class extends Component {
         $this->getCoverPhotos();
     }
 
+    #[On('cover-photo-updated')]
+    #[On('cover-photo-created')]
+    #[On('cover-photo-canceled')]
+    public function selfdirectCoverPhoto():void{
+        redirect('coverphoto');
+    }
+
 
 }; ?>
 
 
 <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
-    @foreach ($cover_photos as $cover_photo)
+    @foreach ($coverPhotos as $coverPhoto)
 
-        <div class="p-6 flex space-x-2" wire:key="{{ $cover_photo->id }}">
+        <div class="p-6 flex space-x-2" wire:key="{{ $coverPhoto->id }}">
 
             <div class="flex-1">
                 <div class="flex justify-between items-center">
 
                     <div>
-                        <small class="ml-2 text-sm text-gray-600">{{ $cover_photo->created_at->format('j M Y, g:i a') }}</small>
-                        @unless ($cover_photo->created_at->eq($cover_photo->updated_at))
+                        <small class="ml-2 text-sm text-gray-600">{{ $coverPhoto->created_at->format('j M Y, g:i a') }}</small>
+                        @unless ($coverPhoto->created_at->eq($coverPhoto->updated_at))
                             <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                         @endunless
                     </div>
@@ -68,7 +74,7 @@ new class extends Component {
                             </button>
                         </x-slot>
                         <x-slot name="content">
-                            <x-dropdown-link wire:click="edit({{ $cover_photo->id }})">
+                            <x-dropdown-link wire:click="edit({{ $coverPhoto->id }})">
                                 {{ __('Edit') }}
                             </x-dropdown-link>
 
@@ -78,16 +84,16 @@ new class extends Component {
                 </div>
 
                 @php
-                    $url = asset(Storage::url('images/'.$cover_photo->url));
-                    $size =  ($cover_photo->size == "sm")? "Pequena":"Média";
+                    $url = asset(Storage::url('images/'.$coverPhoto->url));
+                    $size =  ($coverPhoto->size == "sm")? "Pequena":"Média";
                 @endphp
 
-                @if ($cover_photo->is($editing))
-                    <livewire:coverphoto.edit :cover_photo="$cover_photo" :key="$cover_photo->id" />
+                @if ($coverPhoto->is($editing))
+                    <livewire:coverphoto.edit :coverPhoto="$coverPhoto" :key="$coverPhoto->id" />
                 @else
-                    <img src="{{ $url }}" alt="{{ $cover_photo->name }}" srcset="">
+                    <img src="{{ $url }}" alt="{{ $coverPhoto->name }}" srcset="">
                     <p class="mt-4 text-lg text-gray-900">{{ $size }}</p>
-                    <p class="mt-4 text-lg text-gray-900">{{ $cover_photo->name }}</p>
+                    <p class="mt-4 text-lg text-gray-900">{{ $coverPhoto->name }}</p>
                 @endif
 
             </div>

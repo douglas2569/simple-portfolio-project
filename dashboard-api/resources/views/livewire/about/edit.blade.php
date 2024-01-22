@@ -13,7 +13,7 @@ new class extends Component {
     public About $about;
 
     // #[Validate('image|max:100', onUpdate:false)]
-    public $profile_photo;
+    public $profilePhoto;
 
     #[Validate('required|string|max:255')]
     public string $name;
@@ -26,7 +26,7 @@ new class extends Component {
 
     public function mount():void    {
         $this->about = (auth()->user()->about()->get())[0];
-        $this->profile_photo = asset(Storage::url('images/'.$this->about->profile_photo));
+        $this->profilePhoto = asset(Storage::url('images/'.$this->about->profile_photo));
         $this->name = $this->about->name;
         $this->position = $this->about->position;
         $this->title = $this->about->title;
@@ -38,16 +38,16 @@ new class extends Component {
     {
         $validated_about = $this->validate();
 
-        if(gettype($this->profile_photo) == 'object'){
-            $this->profile_photo = Validator::make(
-                ['profile_photo' => $this->profile_photo],
+        if(gettype($this->profilePhoto) == 'object'){
+            $this->profilePhoto = Validator::make(
+                ['profile_photo' => $this->profilePhoto],
                 ['profile_photo' => 'image|max:100'],
                 ['required' => 'The :attribute field is required'],
              )->validate();
 
-             $this->profile_photo['profile_photo']->store('public/images');
-             $validated_about['profile_photo'] =  $this->profile_photo['profile_photo']->hashName();
-             $imageName = explode('/', $this->about->profile_photo);
+             $this->profilePhoto['profile_photo']->store('public/images');
+             $validated_about['profile_photo'] =  $this->profilePhoto['profile_photo']->hashName();
+             $imageName = explode('/', $this->about->profilePhoto);
              Storage::delete('public/images/'.$imageName[0]);
         }
 
@@ -65,18 +65,18 @@ new class extends Component {
     <form wire:submit="update">
 
         <div class="flex items-center space-x-6">
-            @if($profile_photo)
+            @if($profilePhoto)
                 <div class="shrink-0">
                     <img
                         class="h-16 w-16 object-cover rounded-full"
-                        src="{{$profile_photo}}" />
+                        src="{{$profilePhoto}}" />
                 </div>
             @endif
 
             <label class="block">
                 <span class="sr-only">Choose profile photo</span>
                 <input
-                    wire:model="profile_photo"
+                    wire:model="profilePhoto"
                     type="file"
                     class="block w-full text-sm text-slate-500
                     file:mr-4 file:py-2 file:px-4
@@ -112,8 +112,7 @@ new class extends Component {
             class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
         />
 
-        <x-input-error :messages="$errors->get('cover_photo')" class="mt-2" />
-        <x-input-error :messages="$errors->get('profile_photo')" class="mt-2" />
+        <x-input-error :messages="$errors->get('profilePhoto')" class="mt-2" />
         <x-input-error :messages="$errors->get('name')" class="mt-2" />
         <x-input-error :messages="$errors->get('title')" class="mt-2" />
         <x-input-error :messages="$errors->get('position')" class="mt-2" />

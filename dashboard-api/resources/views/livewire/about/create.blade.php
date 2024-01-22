@@ -8,7 +8,7 @@ new class extends Component {
     use WithFileUploads;
 
     #[Validate('image|max:100')]
-    public $profile_photo;
+    public $profilePhoto;
     #[Validate('required|string|max:255')]
     public string $name;
     #[Validate('required|string|max:100')]
@@ -21,8 +21,8 @@ new class extends Component {
     public function store():void
     {
         $validated_about = $this->validate();
-        $this->profile_photo->store('public/images');
-        $validated_about['profile_photo'] =  $this->profile_photo->hashName();
+        $this->profilePhoto->store('public/images');
+        $validated_about['profile_photo'] =  $this->profilePhoto->hashName();
         auth()->user()->about()->create($validated_about);
 
         redirect('about');
@@ -34,7 +34,7 @@ new class extends Component {
 <div>
     <form wire:submit="store">
         <input
-            wire:model="profile_photo"
+            wire:model="profilePhoto"
             type="file"
         />
 
@@ -62,7 +62,7 @@ new class extends Component {
             class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
         />
 
-        <x-input-error :messages="$errors->get('profile_photo')" class="mt-2" />
+        <x-input-error :messages="$errors->get('profilePhoto')" class="mt-2" />
         <x-input-error :messages="$errors->get('name')" class="mt-2" />
         <x-input-error :messages="$errors->get('title')" class="mt-2" />
         <x-input-error :messages="$errors->get('position')" class="mt-2" />

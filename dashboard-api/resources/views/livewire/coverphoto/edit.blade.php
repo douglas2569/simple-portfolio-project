@@ -10,7 +10,7 @@ use Livewire\WithFileUploads;
 new class extends Component {
     use WithFileUploads;
 
-    public CoverPhoto $cover_photo;
+    public CoverPhoto $coverPhoto;
 
     public $url;
     #[Validate('required|string|max:50')]
@@ -21,9 +21,9 @@ new class extends Component {
 
     public function mount():void
     {
-        $this->url = asset(Storage::url('images/'.$this->cover_photo->url));
-        $this->name = $this->cover_photo->name;
-        $this->size = $this->cover_photo->size;
+        $this->url = asset(Storage::url('images/'.$this->coverPhoto->url));
+        $this->name = $this->coverPhoto->name;
+        $this->size = $this->coverPhoto->size;
     }
 
     public function update():void
@@ -39,12 +39,12 @@ new class extends Component {
 
              $this->url['url']->store('public/images');
              $validated['url'] =  $this->url['url']->hashName();
-             $imageName = explode('/', $this->cover_photo->url);
+             $imageName = explode('/', $this->coverPhoto->url);
              Storage::delete('public/images/'.$imageName[0]);
             }
 
-            $this->authorize('update',$this->cover_photo);
-            $this->cover_photo->update($validated);
+            $this->authorize('update',$this->coverPhoto);
+            $this->coverPhoto->update($validated);
             $this->dispatch('cover-photo-updated');
             $this->dispatch('show-create-cover-photo');
 
@@ -52,8 +52,8 @@ new class extends Component {
 
     public function cancel(): void
     {
-        // $this->dispatch('cover-photo-edit-canceled');
-        redirect('coverphoto');
+        $this->dispatch('cover-photo-edit-canceled');
+
     }
 
 }; ?>

@@ -13,15 +13,23 @@ new class extends Component {
             $this->getSocialMedia();
     }
 
-    #[On('social-media-created')]
+
     public function getSocialMedia():void{
         $about = auth()->user()->about()->get();
         $this->socialMedia = SocialMedia::where('about_id', $about[0]->id)->get();
     }
 
+
     public function edit(SocialMedia $socialMedia):void{
         $this->editing = $socialMedia;
         $this->getSocialMedia();
+    }
+
+    #[On('social-media-updated')]
+    #[On('social-media-created')]
+    #[On('social-media-canceled')]
+    public function selfdirectSocialmedia():void{
+        redirect('socialmedia');
     }
 
 }; ?>
