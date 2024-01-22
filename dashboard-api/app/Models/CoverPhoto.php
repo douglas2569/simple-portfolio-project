@@ -21,9 +21,4 @@ class CoverPhoto extends Model
     {
         return $this->belongsTo(About::class);
     }
-
-    public function user():BelongsTo
-    {
-        return $this->belongsTo(User::class);
-    }
 }
