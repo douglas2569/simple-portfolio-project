@@ -31,17 +31,6 @@ new class extends Component {
         $this->dispatch('social-media-created');
     }
 
-    #[On('hidden-create-social-media')]
-    public function hiddenCreateSocialMedia():void
-    {
-       $this->display = 'hidden';
-    }
-
-    #[On('show-create-social-media')]
-    public function showCreateSocialMedia():void
-    {
-       $this->display = '';
-    }
 
 }; ?>
 

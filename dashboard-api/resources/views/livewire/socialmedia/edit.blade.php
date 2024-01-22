@@ -1,5 +1,4 @@
 <?php
-
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 use App\Models\SocialMedia;
@@ -7,7 +6,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Livewire\WithFileUploads;
 
-new class extends Component {
+new class extends Component{
     use WithFileUploads;
 
     public SocialMedia $socialMedia;
@@ -17,7 +16,6 @@ new class extends Component {
     public string $name;
     #[Validate('required|string|max:255')]
     public string $url;
-
 
     public function mount():void
     {
@@ -46,18 +44,17 @@ new class extends Component {
             $this->authorize('update',$this->socialMedia);
 
             $this->socialMedia->update($validated);
-            $this->dispatch('social-media-updated');
-            $this->dispatch('show-create-social-media');
 
+            redirect('socialmedia');
     }
 
-    public function cancel(){
+    public function cancel():void
+    {
         $this->dispatch('social-media-canceled');
     }
 
 
-}; ?>
-
+} ?>
 
 <div>
     <form wire:submit="update">

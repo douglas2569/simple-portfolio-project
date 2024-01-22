@@ -45,8 +45,7 @@ new class extends Component {
 
             $this->authorize('update',$this->coverPhoto);
             $this->coverPhoto->update($validated);
-            $this->dispatch('cover-photo-updated');
-            $this->dispatch('show-create-cover-photo');
+            redirect('coverphoto');
 
     }
 

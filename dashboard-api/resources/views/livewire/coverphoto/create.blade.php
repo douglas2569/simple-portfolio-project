@@ -29,17 +29,6 @@ new class extends Component {
         $this->dispatch('cover-photo-created');
      }
 
-     #[On('hidden-create-cover-photo')]
-     public function hiddenCreateCoverPhoto():void
-     {
-        $this->display = 'hidden';
-     }
-
-     #[On('show-create-cover-photo')]
-     public function showCreateCoverPhoto():void
-     {
-        $this->display = '';
-     }
 
 }; ?>
 

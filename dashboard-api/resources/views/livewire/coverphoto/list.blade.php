@@ -39,9 +39,8 @@ new class extends Component {
         $this->getCoverPhotos();
     }
 
-    #[On('cover-photo-updated')]
     #[On('cover-photo-created')]
-    #[On('cover-photo-canceled')]
+    #[On('cover-photo-edit-canceled')]
     public function selfdirectCoverPhoto():void{
         redirect('coverphoto');
     }

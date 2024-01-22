@@ -14,6 +14,7 @@ new class extends Component {
     }
 
 
+
     public function getSocialMedia():void{
         $about = auth()->user()->about()->get();
         $this->socialMedia = SocialMedia::where('about_id', $about[0]->id)->get();
@@ -26,10 +27,9 @@ new class extends Component {
         $this->dispatch('hidden-create-social-media');
     }
 
-    #[On('social-media-updated')]
     #[On('social-media-created')]
     #[On('social-media-canceled')]
-    public function selfdirectSocialmedia():void{
+    public function selfdirectSocialmed():void{
         redirect('socialmedia');
     }
 
