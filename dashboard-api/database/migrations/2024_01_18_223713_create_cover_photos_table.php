@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('cover_photos', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->string('url');
+            $table->string('image');
             $table->string('size');
 
             $table->foreignId('about_id')->constrained()->onDelete('cascade');

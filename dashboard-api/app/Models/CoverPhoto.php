@@ -12,7 +12,7 @@ class CoverPhoto extends Model
 
     protected $fillable = [
         'name',
-        'url',
+        'image',
         'size',
         'about_id'
     ];

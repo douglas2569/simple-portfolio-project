@@ -11,7 +11,7 @@ new class extends Component {
     public string $display = '';
 
     #[Validate('image|max:1024')]
-    public $url;
+    public $image;
     #[Validate('required|string|min:4')]
     public string $name;
     #[Validate('required|string|min:2')]
@@ -21,8 +21,8 @@ new class extends Component {
         if(count(CoverPhoto::select()->get()) >= 2)
             return;
         $validated = $this->validate();
-        $this->url->store('public/images');
-        $validated['url'] = $this->url->hashName();
+        $this->image->store('public/images');
+        $validated['image'] = $this->image->hashName();
         $validated['about_id'] = (auth()->user()->about()->get()[0])->id;
         CoverPhoto::create($validated);
 
@@ -43,7 +43,7 @@ new class extends Component {
             <span class="sr-only">Choose cover photo</span>
             <input
                 type="file"
-                wire:model="url"
+                wire:model="image"
                 class="block w-full text-sm text-slate-500
                     file:mr-4 file:py-2 file:px-4
                     file:rounded-full file:border-0
@@ -67,7 +67,7 @@ new class extends Component {
 
 
         <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        <x-input-error :messages="$errors->get('url')" class="mt-2" />
+        <x-input-error :messages="$errors->get('image')" class="mt-2" />
         <x-input-error :messages="$errors->get('size')" class="mt-2" />
         <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
 

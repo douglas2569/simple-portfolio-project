@@ -95,14 +95,14 @@ new class extends Component {
                 </div>
 
                 @php
-                    $url = asset(Storage::url('images/'.$coverPhoto->url));
+                    $image = asset(Storage::url('images/'.$coverPhoto->image));
                     $size =  ($coverPhoto->size == "sm")? "Pequena":"Média";
                 @endphp
 
                 @if ($coverPhoto->is($editing))
                     <livewire:coverphoto.edit :coverPhoto="$coverPhoto" :key="$coverPhoto->id" />
                 @else
-                    <img src="{{ $url }}" alt="{{ $coverPhoto->name }}" srcset="">
+                    <img src="{{ $image }}" alt="{{ $coverPhoto->name }}" srcset="">
                     <p class="mt-4 text-lg text-gray-900">{{ $size }}</p>
                     <p class="mt-4 text-lg text-gray-900">{{ $coverPhoto->name }}</p>
                 @endif

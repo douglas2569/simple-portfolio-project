@@ -12,7 +12,7 @@ new class extends Component {
 
     public CoverPhoto $coverPhoto;
 
-    public $url;
+    public $image;
     #[Validate('required|string|max:50')]
     public string $name;
     #[Validate('required|string|max:2')]
@@ -21,7 +21,7 @@ new class extends Component {
 
     public function mount():void
     {
-        $this->url = asset(Storage::url('images/'.$this->coverPhoto->url));
+        $this->image = asset(Storage::url('images/'.$this->coverPhoto->image));
         $this->name = $this->coverPhoto->name;
         $this->size = $this->coverPhoto->size;
     }
@@ -30,16 +30,16 @@ new class extends Component {
     {
         $validated= $this->validate();
 
-        if(gettype($this->url) == 'object'){
-            $this->url = Validator::make(
-                ['url' => $this->url],
-                ['url' => 'image|max:1024'],
+        if(gettype($this->image) == 'object'){
+            $this->image = Validator::make(
+                ['image' => $this->image],
+                ['image' => 'image|max:1024'],
                 ['required' => 'The :attribute field is required'],
              )->validate();
 
-             $this->url['url']->store('public/images');
-             $validated['url'] =  $this->url['url']->hashName();
-             $imageName = explode('/', $this->coverPhoto->url);
+             $this->image['image']->store('public/images');
+             $validated['image'] =  $this->image['image']->hashName();
+             $imageName = explode('/', $this->coverPhoto->image);
              Storage::delete('public/images/'.$imageName[0]);
             }
 
@@ -61,18 +61,18 @@ new class extends Component {
 <div >
     <form wire:submit="update">
         <div class="flex items-center space-x-6">
-                @if($url)
+                @if($image)
                     <div class="shrink-0">
                         <img
                             class="h-16 object-cover rounded-sm"
-                            src="{{$url}}" />
+                            src="{{$image}}" />
                     </div>
                 @endif
 
                 <label class="block">
                     <span class="sr-only">Choose cover photo</span>
                     <input
-                        wire:model="url"
+                        wire:model="image"
                         type="file"
                         class="block w-full text-sm text-slate-500
                         file:mr-4 file:py-2 file:px-4
@@ -98,7 +98,7 @@ new class extends Component {
 
 
         <x-input-error :messages="$errors->get('name')" class="mt-2" />
-        <x-input-error :messages="$errors->get('url')" class="mt-2" />
+        <x-input-error :messages="$errors->get('image')" class="mt-2" />
         <x-input-error :messages="$errors->get('size')" class="mt-2" />
         <x-primary-button class="mt-4">{{ __('Update') }}</x-primary-button>
         <button class="mt-4 ml-4" wire:click.prevent="cancel">{{ __('Cancel') }}</button>
