@@ -3,7 +3,7 @@
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
-use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\On;
 
 new class extends Component {
     use WithFileUploads;
@@ -22,6 +22,12 @@ new class extends Component {
         $validated['icon'] =  $this->icon->hashName();
         auth()->user()->skill()->create($validated);
         $this->dispatch('skill-created');
+    }
+
+    #[On('hidden-create-skill')]
+    public function hiddenCreateSkill():void
+    {
+        $this->display = 'hidden';
     }
 
 

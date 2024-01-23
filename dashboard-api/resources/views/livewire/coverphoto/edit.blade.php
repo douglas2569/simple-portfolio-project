@@ -21,7 +21,7 @@ new class extends Component {
 
     public function mount():void
     {
-        $this->image = asset(Storage::url('images/'.$this->coverPhoto->image));
+        $this->image = asset('storage/images/'.$this->coverPhoto->image);
         $this->name = $this->coverPhoto->name;
         $this->size = $this->coverPhoto->size;
     }

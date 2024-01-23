@@ -32,7 +32,7 @@ new class extends Component {
     }
 
     #[On('hidden-create-social-media-photo')]
-     public function hiddenSocialMediaPhoto():void
+     public function hiddenCreateSocialMediaPhoto():void
      {
         $this->display = 'hidden';
      }

@@ -26,7 +26,7 @@ new class extends Component {
 
     public function mount():void    {
         $this->about = (auth()->user()->about()->get())[0];
-        $this->profilePhoto = asset(Storage::url('images/'.$this->about->profile_photo));
+        $this->profilePhoto = asset('storage/images/'.$this->about->profile_photo);
         $this->name = $this->about->name;
         $this->position = $this->about->position;
         $this->title = $this->about->title;

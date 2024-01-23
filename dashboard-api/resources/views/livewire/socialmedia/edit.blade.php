@@ -19,7 +19,7 @@ new class extends Component{
 
     public function mount():void
     {
-        $this->icon = asset(Storage::url('images/'.$this->socialMedia->icon));
+        $this->icon = asset('storage/images/'.$this->socialMedia->icon);
         $this->name = $this->socialMedia->name;
         $this->url = $this->socialMedia->url;
     }
