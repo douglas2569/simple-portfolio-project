@@ -56,6 +56,10 @@ new class extends Component
                           {{ __('Technologies') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('project')" :active="request()->routeIs('project')" wire:navigate>
+                          {{ __('Projects') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -126,6 +130,10 @@ new class extends Component
 
             <x-responsive-nav-link :href="route('technology')" :active="request()->routeIs('technology')" wire:navigate>
                 {{ __('Technologies') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('project')" :active="request()->routeIs('project')" wire:navigate>
+                {{ __('Projects') }}
             </x-responsive-nav-link>
 
 

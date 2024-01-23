@@ -66,4 +66,9 @@ class User extends Authenticatable
         return $this->hasMany(Technology::class);
     }
 
+    public function project():HasMany
+    {
+        return $this->hasMany(Project::class);
+    }
+
 }
