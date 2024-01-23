@@ -46,7 +46,7 @@ Route::get('coverphoto',[CoverPhotoController::class, 'index'])
 
 Route::get('skill',[SkillController::class, 'index'])
     ->middleware(['auth', 'verified'])
-    ->name('socialmedia');
+    ->name('skill');
 
 Route::get('technology',[TechnologyController::class, 'index'])
     ->middleware('auth','verified')
