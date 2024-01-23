@@ -21,4 +21,9 @@ class Technology extends Model
         return $this->belongsToMany(Skill::class);
     }
 
+    public function user():BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

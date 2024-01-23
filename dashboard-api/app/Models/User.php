@@ -61,4 +61,9 @@ class User extends Authenticatable
         return $this->hasMany(Skill::class);
     }
 
+    public function technology():HasMany
+    {
+        return $this->hasMany(Technology::class);
+    }
+
 }

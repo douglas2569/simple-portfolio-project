@@ -29,6 +29,7 @@ new class extends Component {
     public function delete(Skill $skill):void
     {   $this->authorize('delete', $skill);
         $skill->delete();
+        $this->getSkills();
     }
 
 
