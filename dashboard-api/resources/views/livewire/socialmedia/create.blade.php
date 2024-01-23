@@ -14,7 +14,7 @@ new class extends Component {
 
     #[Validate('image|max:50')]
     public $icon;
-    #[Validate('required|string|max:255')]
+    #[Validate('required|string|max:100')]
     public string $name;
     #[Validate('required|string|max:255')]
     public string $url;
