@@ -31,6 +31,13 @@ new class extends Component {
         $this->dispatch('hidden-create-cover-photo');
     }
 
+    public function delete(CoverPhoto $coverPhoto):void
+    {
+        $this->authorize('delete', $coverPhoto);
+        $coverPhoto->delete();
+        $this->getCoverPhotos();
+    }
+
     #[On('cover-photo-updated')]
     public function disableEditing(): void
 
@@ -72,11 +79,15 @@ new class extends Component {
                                 </svg>
                             </button>
                         </x-slot>
+
                         <x-slot name="content">
                             <x-dropdown-link wire:click="edit({{ $coverPhoto->id }})">
                                 {{ __('Edit') }}
                             </x-dropdown-link>
 
+                            <x-dropdown-link wire:click="delete({{ $coverPhoto->id }})" wire:confirm="{{__('Tem certeza que deseja apagar?')}}">
+                                {{ __('Delete') }}
+                            </x-dropdown-link>
                         </x-slot>
 
                     </x-dropdown>
