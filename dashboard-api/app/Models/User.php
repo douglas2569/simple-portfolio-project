@@ -56,4 +56,9 @@ class User extends Authenticatable
         return $this->hasMany(CoverPhoto::class);
     }
 
+    public function skill():HasMany
+    {
+        return $this->hasMany(Skill::class);
+    }
+
 }
