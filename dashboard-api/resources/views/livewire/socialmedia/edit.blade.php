@@ -48,6 +48,7 @@ new class extends Component{
             redirect('socialmedia');
     }
 
+
     public function cancel():void
     {
         $this->dispatch('social-media-canceled');
