@@ -27,6 +27,13 @@ new class extends Component {
         $this->dispatch('hidden-create-social-media-photo');
     }
 
+    public function delete(SocialMedia $socialMedia):void
+    {
+        $this->authorize('delete', $socialMedia);
+        $socialMedia->delete();
+        $this->getSocialMedia();
+    }
+
     #[On('social-media-created')]
     #[On('social-media-canceled')]
     public function selfdirectSocialmed():void{
@@ -61,6 +68,10 @@ new class extends Component {
                         <x-slot name="content">
                             <x-dropdown-link wire:click="edit({{ $socialMediaItem->id }})">
                                 {{ __('Edit') }}
+                            </x-dropdown-link>
+
+                            <x-dropdown-link wire:click="delete({{ $socialMediaItem->id }})" wire:confirm="{{ __('Realmente deseja apagar?')}} ">
+                                {{ __('Delete') }}
                             </x-dropdown-link>
 
                         </x-slot>

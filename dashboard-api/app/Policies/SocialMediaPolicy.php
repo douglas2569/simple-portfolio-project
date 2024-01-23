@@ -47,7 +47,8 @@ class SocialMediaPolicy
      */
     public function delete(User $user, SocialMedia $socialMedia): bool
     {
-        //
+        $about = About::where('id', $socialMedia->about_id)->get();
+        return $about[0]->user()->is($user);
     }
 
     /**
