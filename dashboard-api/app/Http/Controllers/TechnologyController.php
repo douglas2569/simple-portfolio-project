@@ -9,6 +9,6 @@ class TechnologyController extends Controller
 {
     public function index():View
     {
-        return view('tecnology',[]);
+        return view('technology',[]);
     }
 }

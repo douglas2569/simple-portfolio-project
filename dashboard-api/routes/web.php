@@ -5,6 +5,8 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CoverPhotoController;
 use App\Http\Controllers\SocialMediaController;
 use App\Http\Middleware\CheckingAboutExists;
+use App\Http\Controllers\SkillController;
+use App\Http\Controllers\TechnologyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,5 +42,14 @@ Route::get('coverphoto',[CoverPhotoController::class, 'index'])
     ->middleware(['auth','verified'])
     ->middleware(CheckingAboutExists::class)
     ->name('coverphoto');
+
+
+Route::get('skill',[SkillController::class, 'index'])
+    ->middleware(['auth', 'verified'])
+    ->name('socialmedia');
+
+Route::get('technology',[TechnologyController::class, 'index'])
+    ->middleware('auth','verified')
+    ->name('technology');
 
 require __DIR__.'/auth.php';
