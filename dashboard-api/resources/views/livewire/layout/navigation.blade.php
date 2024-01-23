@@ -41,11 +41,19 @@ new class extends Component
                     </x-nav-link>
 
                     <x-nav-link :href="route('coverphoto')" :active="request()->routeIs('coverphoto')" wire:navigate>
-                          {{ __('Fotos da capa') }}
+                          {{ __('Cover Photos') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('socialmedia')" :active="request()->routeIs('socialmedia')" wire:navigate>
                           {{ __('Social Media') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('skill')" :active="request()->routeIs('skill')" wire:navigate>
+                          {{ __('Skills') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('technology')" :active="request()->routeIs('technology')" wire:navigate>
+                          {{ __('Technologies') }}
                     </x-nav-link>
 
                 </div>
@@ -102,13 +110,25 @@ new class extends Component
 
             <x-responsive-nav-link :href="route('about')" :active="request()->routeIs('about')" wire:navigate>
                 {{ __('About') }}
-            </x-responsive-nav-link>            <x-responsive-nav-link :href="route('coverphoto')" :active="request()->routeIs('coverphoto')" wire:navigate>
-                {{ __('Fotos da Capa') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('coverphoto')" :active="request()->routeIs('coverphoto')" wire:navigate>
+                {{ __('CoverPhoto') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('socialmedia')" :active="request()->routeIs('socialmedia')" wire:navigate>
                 {{ __('Social Media') }}
             </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('skill')" :active="request()->routeIs('skill')" wire:navigate>
+                {{ __('Skills') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('technology')" :active="request()->routeIs('technology')" wire:navigate>
+                {{ __('Technologies') }}
+            </x-responsive-nav-link>
+
+
         </div>
 
         <!-- Responsive Settings Options -->
