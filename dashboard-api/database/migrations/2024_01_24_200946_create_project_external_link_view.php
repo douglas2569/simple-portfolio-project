@@ -28,10 +28,11 @@ return new class extends Migration
         return "
             CREATE VIEW view_projects_external_links
             AS
-            SELECT projects.id AS project_id, projects.name AS project_name, projects.thumbnail, projects.video_youtube_id, projects.description, projects.user_id,
-            external_links.id AS external_link_id, external_links.name AS external_link_name, external_links.url
-            FROM projects
-            INNER JOIN external_links
+            SELECT external_links.id AS external_link_id, external_links.name AS external_link_name, external_links.url,
+                   external_links.created_at, external_links.updated_at,
+                   projects.id AS project_id, projects.name AS project_name, projects.thumbnail, projects.video_youtube_id, projects.description, projects.user_id
+            FROM external_links
+            INNER JOIN projects
             ON projects.id = external_links.project_id";
     }
 

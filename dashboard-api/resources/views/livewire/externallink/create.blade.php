@@ -26,7 +26,8 @@ new class extends Component {
         $validated['project_id'] = $validated['projectId'];
         ExternalLink::create($validated);
 
-        $this->dispatch('external-link-created');
+
+        redirect('externallink');
     }
 
     public function mount():void
