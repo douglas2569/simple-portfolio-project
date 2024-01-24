@@ -14,8 +14,8 @@ new class extends Component {
     public $thumbnail;
     #[Validate('string|required|max:100')]
     public string $name;
-    #[Validate('required|string|max:100')]
-    public string $videoYoutubeId;
+    #[Validate('string|max:100')]
+    public string $videoYoutubeId = '';
     #[Validate('required|string|min:10')]
     public string $description;
 

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CoverPhotoController;
+use App\Http\Controllers\ExternalLinkController;
 use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\SocialMediaController;
 use App\Http\Middleware\CheckingAboutExists;
@@ -56,5 +57,9 @@ Route::get('technology',[TechnologyController::class, 'index'])
 Route::get('project',[ProjectController::class, 'index'])
     ->middleware('auth','verified')
     ->name('project');
+
+Route::get('externallink',[ExternalLinkController::class, 'index'])
+    ->middleware('auth','verified')
+    ->name('externallink');
 
 require __DIR__.'/auth.php';

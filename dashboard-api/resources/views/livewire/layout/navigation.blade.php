@@ -60,6 +60,10 @@ new class extends Component
                           {{ __('Projects') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('externallink')" :active="request()->routeIs('externallink')" wire:navigate>
+                          {{ __('External Links') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -134,6 +138,10 @@ new class extends Component
 
             <x-responsive-nav-link :href="route('project')" :active="request()->routeIs('project')" wire:navigate>
                 {{ __('Projects') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('externallink')" :active="request()->routeIs('externallink')" wire:navigate>
+                {{ __('External Links') }}
             </x-responsive-nav-link>
 
 
