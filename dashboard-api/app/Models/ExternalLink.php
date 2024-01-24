@@ -12,7 +12,8 @@ class ExternalLink extends Model
 
     protected $fillable = [
         'name',
-        'url'
+        'url',
+        'project_id'
     ];
 
     public function project():BelongsTo
