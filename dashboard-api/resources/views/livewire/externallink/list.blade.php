@@ -48,8 +48,22 @@ new class extends Component {
             <h4>{{$externalLinksProjects[$key][0]->project_name}}</h4>
             @foreach ($externalLinkProject as $externalLinkProjectItem)
                 <div class="flex justify-between items-center">
-                    @if ($externalLinkProjectItem->is($editing))
+                    <div>
+                        @php
+                            date_default_timezone_set('America/Fortaleza');
+                            $dateCreated = new DateTime( $externalLinkProjectItem->external_link_created_at);
+                            $dateUpdated = new DateTime( $externalLinkProjectItem->external_link_updated_at);
+                        @endphp
 
+                        <small class="ml-2 text-sm text-gray-600">{{ $dateCreated->format("j M Y, g:i a") }}</small>
+                        @unless ($dateCreated == $dateUpdated)
+                            <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
+                        @endunless
+
+                    </div>
+
+                    @if ($externalLinkProjectItem->is($editing))
+                    <livewire:externallink.edit :externalLinkProject="$externalLinkProjectItem" :key="$externalLinkProject->external_link_id" />
                     @else
                         <div class="flex flex-col" >
                             <p class="text-lg text-gray-900">{{ $externalLinkProjectItem->external_link_name }}</p>
