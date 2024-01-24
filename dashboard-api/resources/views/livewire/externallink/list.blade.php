@@ -17,6 +17,7 @@ new class extends Component {
 
         foreach($this->projects as $project){
             array_push($this->externalLinksProjects, ViewProjectExternalLink::where('project_id', $project->id)->get());
+
         }
 
     }
@@ -42,20 +43,22 @@ new class extends Component {
 }; ?>
 
 <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
-    @foreach ($externalLinksProjects as $externalLinkProject)
-        @foreach ($externalLinkProject as $externalLinkProjectItem)
-            @php
-                echo "$externalLinkProjectItem->project_id | $externalLinkProjectItem->project_name";
-                echo "</br>";
-                echo "$externalLinkProjectItem->external_link_name";
-                echo "</br>";
-                echo "$externalLinkProjectItem->external_link_url";
-                echo "</br>";
-            @endphp
-        @endforeach
-            @php
-                echo "</br>"; echo "</br>";
-            @endphp
+    @foreach ($externalLinksProjects as $key => $externalLinkProject)
+        <div class="flex-1 mb-4">
+            <h4>{{$externalLinksProjects[$key][0]->project_name}}</h4>
+            @foreach ($externalLinkProject as $externalLinkProjectItem)
+                <div class="flex justify-between items-center">
+                    @if ($externalLinkProjectItem->is($editing))
+
+                    @else
+                        <div class="flex flex-col" >
+                            <p class="text-lg text-gray-900">{{ $externalLinkProjectItem->external_link_name }}</p>
+                            <p class="text-lg text-gray-900">{{ $externalLinkProjectItem->external_link_url }}</p>
+                        </div>
+                    @endif
+                </div>
+            @endforeach
+        </div>
     @endforeach
 </div>
 
