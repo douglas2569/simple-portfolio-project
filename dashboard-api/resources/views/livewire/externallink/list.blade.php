@@ -49,7 +49,7 @@ new class extends Component {
                 echo "</br>";
                 echo "$externalLinkProjectItem->external_link_name";
                 echo "</br>";
-                echo "$externalLinkProjectItem->url";
+                echo "$externalLinkProjectItem->external_link_url";
                 echo "</br>";
             @endphp
         @endforeach
