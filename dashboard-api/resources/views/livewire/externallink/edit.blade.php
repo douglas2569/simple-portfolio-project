@@ -2,10 +2,13 @@
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 use App\Models\ExternalLink;
+use App\Models\ViewProjectExternalLink;
 
 new class extends Component{
 
-    public ExternalLink $externalLinkProjectItem;
+    public ViewProjectExternalLink $externalLink;
+
+    public $projects;
 
     #[Validate('required|string|max:50')]
     public string $name;
@@ -13,22 +16,31 @@ new class extends Component{
     public string $url;
     #[Validate('required|string|max:50')]
     public string $projectId;
+    #[Validate('required|string|max:50')]
+    public string $externalLinkId;
 
     public function mount():void
     {
         $this->projects = auth()->user()->project()->get();
-        // $this->name = $this->externalLink->name;
-        // $this->url = $this->externalLink->url;
-        // $this->projectId = $this->externalLink->project_id;
+        $this->name = $this->externalLink->external_link_name;
+        $this->url = $this->externalLink->external_link_url;
+        $this->projectId = $this->externalLink->project_id;
+        $this->externalLinkId = $this->externalLink->id;
     }
 
     public function update():void
     {
-        $validated= $this->validate();
-        $this->authorize('update', $this->externalLink);
-        $validated['project_id'] = $this->projectId;
-        $this->externalLink->update($validated);
-        redirect('externalLink');
+        $validated = $this->validate();
+
+        $externalLink = ExternalLink::find($this->externalLinkId);
+        $this->authorize('update', $externalLink);
+        $externalLink->name = $validated['name'];
+        $externalLink->url = $validated['url'];
+        $externalLink->project_id = $validated['projectId'];
+
+        $externalLink->save();
+
+        redirect('externallink');
     }
 
 

@@ -35,7 +35,7 @@ new class extends Component {
         $this->projects = auth()->user()->project()->get();
     }
 
-    #[On('hidden-create-external-link-photo')]
+    #[On('hidden-create-external-link')]
      public function hiddenCreateExternalLink():void
      {
         $this->display = 'hidden';
