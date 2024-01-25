@@ -5,9 +5,9 @@ use Illuminate\Database\Eloquent\Collection;
 use Livewire\Volt\Component;
 use Livewire\Attributes\On;
 
-
 new class extends Component {
     public Collection $skills;
+
     public ?Skill $editing = null;
 
     public function mount():void
@@ -90,6 +90,14 @@ new class extends Component {
                     <img src="{{ $icon }}" alt="{{ $skill->name }}" srcset="" class="w-10 h-10">
                     <p class="mt-4 text-lg text-gray-900">{{ $skill->name }}</p>
                     <p class="mt-4 text-lg text-gray-900">{{ $skill->url }}</p>
+                    <ul>
+                        @php
+                            $technologies = App\Models\SkillTechnology::where('skill_id', $skill->id)->get();
+                        @endphp
+                        @foreach($technologies as $technology)
+                            <li>{{$technology->technology_id}}</li>
+                        @endforeach
+                    </ul>
                 @endif
 
             </div>
