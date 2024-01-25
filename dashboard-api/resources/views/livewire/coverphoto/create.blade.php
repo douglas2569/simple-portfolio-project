@@ -32,7 +32,8 @@ new class extends Component {
      #[On('hidden-create-cover-photo')]
      public function hiddenCreateCoverPhoto():void
      {
-        $this->display = 'hidden';
+        // $this->display = 'hidden';
+        $this->display = '';
      }
 
 }; ?>

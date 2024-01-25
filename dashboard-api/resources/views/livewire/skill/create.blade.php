@@ -27,7 +27,8 @@ new class extends Component {
     #[On('hidden-create-skill')]
     public function hiddenCreateSkill():void
     {
-        $this->display = 'hidden';
+        // $this->display = 'hidden';
+        $this->display = '';
     }
 
 

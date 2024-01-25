@@ -24,7 +24,8 @@ new class extends Component {
     #[On('hidden-create-technology')]
     public function hiddenCreateTechnology():void
     {
-        $this->display = 'hidden';
+        // $this->display = 'hidden';
+        $this->display = '';
     }
 
 

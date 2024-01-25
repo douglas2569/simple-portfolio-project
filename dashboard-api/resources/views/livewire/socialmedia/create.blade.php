@@ -34,7 +34,8 @@ new class extends Component {
     #[On('hidden-create-social-media-photo')]
      public function hiddenCreateSocialMediaPhoto():void
      {
-        $this->display = 'hidden';
+        // $this->display = 'hidden';
+        $this->display = '';
      }
 
 

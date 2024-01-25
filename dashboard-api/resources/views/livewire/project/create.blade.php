@@ -32,7 +32,8 @@ new class extends Component {
     #[On('hidden-create-project')]
     public function hiddenCreateproject():void
     {
-        $this->display = 'hidden';
+        // $this->display = 'hidden';
+        $this->display = '';
     }
 
 
