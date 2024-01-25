@@ -1,10 +1,12 @@
 <?php
 
+use App\Models\SkillTecnology;
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\DB;
 
 new class extends Component {
     use WithFileUploads;
@@ -25,8 +27,22 @@ new class extends Component {
         $validated = $this->validate();
         $this->icon->store('public/images');
         $validated['icon'] =  $this->icon->hashName();
+        try {
+            DB::beginTransaction();
 
-        auth()->user()->skill()->create($validated);
+            auth()->user()->skill()->create($validated);
+            $lastSkillId = (auth()->user()->skill()->latest()->get())[0]->id;
+
+            foreach($this->technologiesIds as $technologyId){
+                SkillTecnology::create(['skill_id'=>$lastSkillId, 'technology_id'=>$technologyId]);
+            }
+
+            DB::commit();
+        } catch (Exception $th) {
+           echo $th->getMessage();
+            DB::rollBack();
+        }
+
 
         $this->dispatch('skill-created');
     }

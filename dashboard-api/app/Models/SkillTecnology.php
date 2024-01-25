@@ -15,6 +15,8 @@ class SkillTecnology extends Model
         'technology_id',
     ];
 
+    public $table = "skill_technology";
+
     public function skill():HasMany
     {
         return $this->hasMany(Skill::class);
