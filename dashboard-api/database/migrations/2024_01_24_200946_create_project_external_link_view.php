@@ -28,7 +28,7 @@ return new class extends Migration
         return "
             CREATE VIEW view_projects_external_links
             AS
-            SELECT external_links.id AS external_link_id, external_links.name AS external_link_name, external_links.url AS external_link_url,
+            SELECT external_links.id, external_links.id AS external_link_id, external_links.name AS external_link_name, external_links.url AS external_link_url,
                    external_links.created_at AS external_link_created_at, external_links.updated_at AS external_link_updated_at,
                    projects.id AS project_id, projects.name AS project_name, projects.thumbnail, projects.video_youtube_id, projects.description, projects.user_id, projects.created_at AS project_created_at, projects.updated_at AS project_updated_at
             FROM external_links

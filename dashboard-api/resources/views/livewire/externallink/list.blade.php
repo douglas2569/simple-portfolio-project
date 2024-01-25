@@ -6,15 +6,16 @@ use Livewire\Attributes\On;
 use App\Models\ViewProjectExternalLink;
 new class extends Component {
     public $externalLinksProjects = array();
-    public ?ExternalLink $editing = null;
+    public ?ViewProjectExternalLink $editing = null;
 
-    public function mount() : void {
+    public function mount() : void
+    {
             $this->getAllExternalLinksByProjects();
     }
 
-    public function getAllExternalLinksByProjects():void{
+    public function getAllExternalLinksByProjects():void
+    {
         $this->projects = auth()->user()->project()->get();
-
         foreach($this->projects as $project){
             array_push($this->externalLinksProjects, ViewProjectExternalLink::where('project_id', $project->id)->get());
 
@@ -22,13 +23,14 @@ new class extends Component {
 
     }
 
-    public function edit(ExternalLink $externalLink):void{
+    public function edit(ViewProjectExternalLink $externalLink):void
+    {
         $this->editing = $externalLink;
-        $this->getAllExternalLinksByProjects();
-        $this->dispatch('hidden-create-external-link-photo');
+        // $this->getAllExternalLinksByProjects();
+        // $this->dispatch('hidden-create-external-link');
     }
 
-    public function delete(externalLink $externalLink):void
+    public function delete(ExternalLink $externalLink):void
     {
         $this->authorize('delete', $externalLink);
         $externalLink->delete();
@@ -36,7 +38,8 @@ new class extends Component {
     }
 
     #[On('external-link-canceled')]
-    public function selfdirectExternalLink():void{
+    public function selfdirectExternalLink():void
+    {
         redirect('externallink');
     }
 
@@ -45,7 +48,10 @@ new class extends Component {
 <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
     @foreach ($externalLinksProjects as $key => $externalLinkProject)
         <div class="flex-1 mb-4">
-            <h4>{{$externalLinksProjects[$key][0]->project_name}}</h4>
+            @if(count($externalLinksProjects[$key]) > 0)
+                <h4>{{$externalLinksProjects[$key][0]->project_name}}</h4>
+            @endif
+
             @foreach ($externalLinkProject as $externalLinkProjectItem)
                 <div class="flex justify-between items-center">
                     <div>
@@ -62,8 +68,31 @@ new class extends Component {
 
                     </div>
 
+                    @if(!$editing)
+                        <x-dropdown>
+                            <x-slot name="trigger">
+                                <button>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                        <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                    </svg>
+                                </button>
+                            </x-slot>
+                            <x-slot name="content">
+                                <x-dropdown-link wire:click="edit({{ $externalLinkProjectItem }})">
+                                    {{ __('Edit') }}
+                                </x-dropdown-link>
+
+                                <x-dropdown-link wire:click="delete({{ $externalLinkProjectItem }})" wire:confirm="{{ __('Realmente deseja apagar?')}} ">
+                                    {{ __('Delete') }}
+                                </x-dropdown-link>
+
+                            </x-slot>
+                        </x-dropdown>
+                    @endif
+
+
                     @if ($externalLinkProjectItem->is($editing))
-                    <livewire:externallink.edit :externalLinkProject="$externalLinkProjectItem" :key="$externalLinkProject->external_link_id" />
+                        <livewire:externallink.edit :externalLinkProjectItem="$externalLinkProjectItem" :key="$externalLinkProject->external_link_id" />
                     @else
                         <div class="flex flex-col" >
                             <p class="text-lg text-gray-900">{{ $externalLinkProjectItem->external_link_name }}</p>
