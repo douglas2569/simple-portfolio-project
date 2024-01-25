@@ -31,6 +31,14 @@ new class extends Component {
         $this->dispatch('hidden-create-external-link');
     }
 
+    public function delete(ViewProjectExternalLink $externalLink):void
+    {
+        $externalLink = ExternalLink::find($externalLink->id);
+        $this->authorize('delete', $externalLink);
+        $externalLink->delete();
+        $this->selfdirectExternalLink();
+    }
+
 
     #[On('external-link-canceled')]
     public function selfdirectExternalLink():void
@@ -78,6 +86,10 @@ new class extends Component {
                             <x-slot name="content">
                                 <x-dropdown-link wire:click="edit({{ $externalLinkProjectItem }})">
                                     {{ __('Edit') }}
+                                </x-dropdown-link>
+
+                                <x-dropdown-link wire:click="delete({{ $externalLinkProjectItem }})" wire:confirm="{{ __('Realmente deseja apagar?')}} ">
+                                    {{ __('Delete') }}
                                 </x-dropdown-link>
 
                             </x-slot>
