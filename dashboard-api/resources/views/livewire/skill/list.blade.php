@@ -92,10 +92,11 @@ new class extends Component {
                     <p class="mt-4 text-lg text-gray-900">{{ $skill->url }}</p>
                     <ul>
                         @php
-                            $technologies = App\Models\SkillTechnology::where('skill_id', $skill->id)->get();
+                            $technologies = App\Models\ViewSkillTechnology::where('skill_id', $skill->id)->get();
+
                         @endphp
                         @foreach($technologies as $technology)
-                            <li>{{$technology->technology_id}}</li>
+                            <li>{{$technology->technology_name}}</li>
                         @endforeach
                     </ul>
                 @endif

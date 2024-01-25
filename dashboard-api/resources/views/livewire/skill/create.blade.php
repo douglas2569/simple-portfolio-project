@@ -1,6 +1,6 @@
 <?php
 
-use App\Models\SkillTecnology;
+use App\Models\SkillTechnology;
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
@@ -34,7 +34,7 @@ new class extends Component {
             $lastSkillId = (auth()->user()->skill()->latest()->get())[0]->id;
 
             foreach($this->technologiesIds as $technologyId){
-                SkillTecnology::create(['skill_id'=>$lastSkillId, 'technology_id'=>$technologyId]);
+                SkillTechnology::create(['skill_id'=>$lastSkillId, 'technology_id'=>$technologyId]);
             }
 
             DB::commit();
