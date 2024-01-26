@@ -22,6 +22,11 @@ new class extends Component {
 
     public Collection $technologies;
 
+    public function mount():void
+    {
+        $this->technologies = auth()->user()->technology()->get();
+    }
+
     public function store():void
     {
         $validated = $this->validate();
@@ -47,10 +52,7 @@ new class extends Component {
         $this->dispatch('skill-created');
     }
 
-    public function mount():void
-    {
-        $this->technologies = auth()->user()->technology()->get();
-    }
+
 
     #[On('hidden-create-skill')]
     public function hiddenCreateSkill():void
@@ -86,7 +88,7 @@ new class extends Component {
         />
 
     <div>
-        <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Technology</h3>
+        <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">Technologies</h3>
         <ul class="grid sm:grid-cols-5 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
             @foreach($technologies as $technology)
                 <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
