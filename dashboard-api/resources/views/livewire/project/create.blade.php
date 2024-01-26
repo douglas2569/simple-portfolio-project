@@ -50,9 +50,7 @@ new class extends Component {
         }catch (Exception $th) {
             echo $th->getMessage();
              DB::rollBack();
-         }
-
-
+        }
 
 
         $this->dispatch('project-created');

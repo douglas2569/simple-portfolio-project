@@ -21,14 +21,13 @@ class Skill extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function technology():BelongsToMany
+    public function skillTechnology():BelongsTo
+    {
+        return $this->belongsTo(skillTechnology::class);
+    }
+
+    public function technologies():BelongsToMany
     {
         return $this->belongsToMany(Technology::class);
     }
-
-    public function skillTechnology():BelongsTo
-    {
-        return $this->belongsTo(SkillTecnology::class);
-    }
-
 }

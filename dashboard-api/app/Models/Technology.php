@@ -16,9 +16,14 @@ class Technology extends Model
         'color'
     ];
 
-    public function skill():BelongsToMany
+    public function skills():BelongsToMany
     {
         return $this->belongsToMany(Skill::class);
+    }
+
+    public function projects():BelongsToMany
+    {
+        return $this->belongsToMany(Project::class);
     }
 
     public function user():BelongsTo
@@ -28,7 +33,7 @@ class Technology extends Model
 
     public function skillTechnology():BelongsTo
     {
-        return $this->belongsTo(SkillTecnology::class);
+        return $this->belongsTo(skillTechnology::class);
     }
 
 }

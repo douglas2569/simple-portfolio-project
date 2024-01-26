@@ -6,20 +6,18 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class SkillTechnology extends Model
+class ProjectTechnology extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'skill_id',
+        'project_id',
         'technology_id',
     ];
 
-    public $table = "skill_technology";
-
-    public function skill():BelongsTo
+    public function project():BelongsTo
     {
-        return $this->belongsTo(Skill::class);
+        return $this->belongsTo(Project::class);
     }
 
     public function technology():BelongsTo
