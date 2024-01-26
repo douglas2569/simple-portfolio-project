@@ -7,6 +7,7 @@ use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
+use App\Models\ProjectTechnology;
 
 new class extends Component {
     use WithFileUploads;
@@ -44,7 +45,7 @@ new class extends Component {
             $lastProjectId = (auth()->user()->technology()->latest()->get())[0]->id;
 
             foreach($this->technologiesIds as $technologyId){
-                SkillTechnology::create(['project_id'=>$lastProjectId, 'technology_id'=>$technologyId]);
+                ProjectTechnology::create(['project_id'=>$lastProjectId, 'technology_id'=>$technologyId]);
             }
 
         }catch (Exception $th) {
