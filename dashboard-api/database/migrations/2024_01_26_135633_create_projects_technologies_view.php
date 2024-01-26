@@ -27,7 +27,7 @@ return new class extends Migration
             CREATE VIEW view_projects_technologies
             AS
             SELECT technologies.id, technologies.id AS technology_id, technologies.name AS technology_name, technologies.color AS technology_color, technologies.id AS technology_id, technologies.created_at AS technology_created_at, technologies.updated_at AS technology_updated_at,
-            project.id AS project_id, projects.thumbnail AS project_thumbnail, projects.name AS project_name, projects.created_at AS project_created_at, projects.updated_at AS project_updated_at, project.video_youtube_id AS project_video_youtube_id, project.description AS project_description
+            projects.id AS project_id, projects.thumbnail AS project_thumbnail, projects.name AS project_name, projects.created_at AS project_created_at, projects.updated_at AS project_updated_at, projects.video_youtube_id AS project_video_youtube_id, projects.description AS project_description
             FROM project_technology
             INNER JOIN projects
             ON projects.id = project_technology.project_id
