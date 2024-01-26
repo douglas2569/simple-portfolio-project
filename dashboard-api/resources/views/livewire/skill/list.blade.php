@@ -82,19 +82,16 @@ new class extends Component {
                 </div>
                 @php
                     $icon =  asset(Storage::url("images/$skill->icon"));
+                    $technologies = App\Models\ViewSkillTechnology::where('skill_id', $skill->id)->get();
                 @endphp
 
                 @if ($skill->is($editing))
-                    <livewire:skill.edit :skill="$skill" :key="$skill->id" />
+                    <livewire:skill.edit :myTechnologies="$technologies" :skill="$skill" :key="$skill->id" />
                 @else
                     <img src="{{ $icon }}" alt="{{ $skill->name }}" srcset="" class="w-10 h-10">
                     <p class="mt-4 text-lg text-gray-900">{{ $skill->name }}</p>
                     <p class="mt-4 text-lg text-gray-900">{{ $skill->url }}</p>
                     <ul>
-                        @php
-                            $technologies = App\Models\ViewSkillTechnology::where('skill_id', $skill->id)->get();
-
-                        @endphp
                         @foreach($technologies as $technology)
                             <li>{{$technology->technology_name}}</li>
                         @endforeach
