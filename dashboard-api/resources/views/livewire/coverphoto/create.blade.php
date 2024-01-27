@@ -18,13 +18,14 @@ new class extends Component {
     public string $size;
 
     public function store(){
-        if(count(CoverPhoto::select()->get()) >= 2)
+        if(count(auth()->user()->about()->get()[0]->coverPhoto()->get()) >= 2)
             return;
         $validated = $this->validate();
         $this->image->store('public/images');
         $validated['image'] = $this->image->hashName();
         $validated['about_id'] = (auth()->user()->about()->get()[0])->id;
-        CoverPhoto::create($validated);
+        auth()->user()->about()->get()[0]->coverPhoto()->create($validated);
+        // CoverPhoto::create($validated);
 
         $this->dispatch('cover-photo-created');
      }

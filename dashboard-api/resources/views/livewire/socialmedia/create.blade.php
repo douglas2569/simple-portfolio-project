@@ -2,7 +2,6 @@
 
 use Livewire\Volt\Component;
 use Livewire\Attributes\Validate;
-use App\Models\SocialMedia;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\On;
 
@@ -26,7 +25,8 @@ new class extends Component {
         $validated['icon'] = $this->icon->hashName();
         $about = auth()->user()->about()->get();
         $validated['about_id'] = $about[0]->id;
-        SocialMedia::create($validated);
+        auth()->user()->about()->get()[0]->socialMedia()->create($validated);
+        // SocialMedia::create($validated);
 
         $this->dispatch('social-media-created');
     }
