@@ -3,22 +3,27 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\About;
 use App\Models\User;
-use Illuminate\Http\Request;
-
 
 class AboutController extends Controller
 {
-    public function about(Request $request, string $email)
-    {
-        if($request->filled('email'))
-            $email = $request->input('email');
+    public $response = [
+        'error'=>'',
+        'data'=> ''
+    ];
 
-        $user = User::where('email', $email)->get()[0];
-        $about = About::where('user_id',$user->id)->get();
+    public function about(string $email){
 
-        return response()->json($about);
+        try {
+            $user = User::where('email', $email)->get()[0];
+            $about = $user->about()->get();
+            $this->response['data'] = response()->json($about);
+
+        } catch (\ErrorException $th) {
+            $this->response['error'] = $th->getMessage();
+        }
+
+        return $this->response;
 
     }
 }
