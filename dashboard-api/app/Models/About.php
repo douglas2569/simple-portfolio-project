@@ -12,7 +12,6 @@ class About extends Model
     use HasFactory;
 
     protected $fillable = [
-        'cover_photo',
         'profile_photo',
         'name',
         'position',
