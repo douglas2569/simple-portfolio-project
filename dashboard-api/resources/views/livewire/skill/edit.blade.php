@@ -17,16 +17,18 @@ new class extends Component {
     public Collection $myTechnologies;
     public Collection $allTechnologies;
 
+    public $technologiesIds = [];
+
     public $icon;
     #[Validate('string|max:50|required')]
     public string $name;
     // #[Validate('required')]
-    public $technologiesIds = [];
 
     public function mount():void
     {
         $this->name = $this->skill->name;
         $this->icon = asset('storage/images/'.$this->skill->icon);
+
         $this->allTechnologies = auth()->user()->technology()->get();
 
     }

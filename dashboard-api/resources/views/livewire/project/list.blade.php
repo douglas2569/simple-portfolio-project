@@ -78,14 +78,14 @@ new class extends Component {
                             </x-slot>
                         </x-dropdown>
                     @endif
-
                 </div>
                 @php
                     $thumbnail =  asset(Storage::url("images/$project->thumbnail"));
+                    $technologies = App\Models\ViewProjectTechnology::where('project_id', $project->id)->get();
                 @endphp
 
                 @if ($project->is($editing))
-                    <livewire:project.edit :project="$project" :key="$project->id" />
+                    <livewire:project.edit :myTechnologies="$technologies" :project="$project" :key="$project->id" />
                 @else
                     <img src="{{ $thumbnail }}" alt="{{ $project->name }}" srcset="" class="w-30">
                     <p class="mt-4 text-lg text-gray-900">{{ $project->name }}</p>
