@@ -9,6 +9,7 @@ use App\Http\Controllers\SocialMediaController;
 use App\Http\Middleware\CheckingAboutExists;
 use App\Http\Controllers\SkillController;
 use App\Http\Controllers\TechnologyController;
+use Illuminate\Http\Request;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,7 @@ use App\Http\Controllers\TechnologyController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 
 Route::view('/', 'welcome');
 
