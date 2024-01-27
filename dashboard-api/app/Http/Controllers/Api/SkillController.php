@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Technology;
 use App\Models\User;
 use ArrayObject;
 use Illuminate\Support\Facades\DB;

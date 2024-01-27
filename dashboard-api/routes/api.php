@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AboutController;
 use App\Http\Controllers\Api\SkillController;
+use App\Http\Controllers\Api\ProjectController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('about/{email}', [AboutController::class, 'about'])->name('about');
 Route::get('skill/{email}',[SkillController::class, 'skill'])->name('skill');
+Route::get('project/{email}',[ProjectController::class, 'project'])->name('project');
 

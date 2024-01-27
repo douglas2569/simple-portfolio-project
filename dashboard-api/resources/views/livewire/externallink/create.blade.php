@@ -24,8 +24,8 @@ new class extends Component {
     {
         $validated = $this->validate();
         $validated['project_id'] = $validated['projectId'];
-        auth()->user()->project()->get()[0]->externalLink()->create($validated);
-        // ExternalLink::create($validated);
+
+        ExternalLink::create($validated);
 
 
         redirect('externallink');
