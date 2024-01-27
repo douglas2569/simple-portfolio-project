@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AboutController;
+use App\Http\Controllers\Api\SkillController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('about/{email}', [AboutController::class, 'about'])->name("about");
+Route::get('about/{email}', [AboutController::class, 'about'])->name('about');
+Route::get('skill/{email}',[SkillController::class, 'skill'])->name('skill');
 
