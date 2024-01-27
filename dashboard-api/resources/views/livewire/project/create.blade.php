@@ -42,11 +42,13 @@ new class extends Component {
         try {
             DB::beginTransaction();
             auth()->user()->project()->create($validated);
-            $lastProjectId = (auth()->user()->technology()->latest()->get())[0]->id;
+            $lastProjectId = (auth()->user()->project()->latest()->get())[0]->id;
 
             foreach($this->technologiesIds as $technologyId){
                 ProjectTechnology::create(['project_id'=>$lastProjectId, 'technology_id'=>$technologyId]);
             }
+
+            DB::commit();
 
         }catch (Exception $th) {
             echo $th->getMessage();

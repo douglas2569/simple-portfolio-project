@@ -10,6 +10,8 @@ class ProjectTechnology extends Model
 {
     use HasFactory;
 
+    public $table = "project_technology";
+
     protected $fillable = [
         'project_id',
         'technology_id',
