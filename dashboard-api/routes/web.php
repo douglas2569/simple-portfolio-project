@@ -1,15 +1,14 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\CoverPhotoController;
 use App\Http\Controllers\ExternalLinkController;
 use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\SocialMediaController;
-use App\Http\Middleware\CheckingAboutExists;
 use App\Http\Controllers\SkillController;
+use App\Http\Controllers\SocialMediaController;
 use App\Http\Controllers\TechnologyController;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,46 +21,31 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::view('/', 'welcome');
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::view('dashboard', 'dashboard')
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
 
-Route::view('profile', 'profile')
-    ->middleware(['auth'])
-    ->name('profile');
+Route::resource('about',AboutController::class)
+        ->only(['index','create','store','show','edit','update','destroy'])
+        ->middleware(['auth', 'verified']);
 
-Route::get('about',[AboutController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('about');
+Route::resource('project',ProjectController::class)
+        ->only(['index','create','store','show','edit','update','destroy'])
+        ->middleware(['auth', 'verified']);
 
-Route::get('socialmedia',[SocialMediaController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->middleware(CheckingAboutExists::class)
-    ->name('socialmedia');
+Route::resource('skill', SkillController::class)
+        ->only(['index','create','store','show','edit','update','destroy'])
+        ->middleware(['auth', 'verified']);
 
-Route::get('coverphoto',[CoverPhotoController::class, 'index'])
-    ->middleware(['auth','verified'])
-    ->middleware(CheckingAboutExists::class)
-    ->name('coverphoto');
-
-
-Route::get('skill',[SkillController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('skill');
-
-Route::get('technology',[TechnologyController::class, 'index'])
-    ->middleware('auth','verified')
-    ->name('technology');
-
-Route::get('project',[ProjectController::class, 'index'])
-    ->middleware('auth','verified')
-    ->name('project');
-
-Route::get('externallink',[ExternalLinkController::class, 'index'])
-    ->middleware('auth','verified')
-    ->name('externallink');
 
 require __DIR__.'/auth.php';
