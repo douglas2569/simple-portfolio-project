@@ -36,15 +36,15 @@
             <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
         </form>
 
-        @foreach ($coverPhotos as $coverPhoto)
+        @foreach ($coverphotos as $coverphoto)
 
             <div class="p-6 flex space-x-2">
                 <div class="flex-1">
                     <div class="flex justify-between items-center">
 
                         <div>
-                            <small class="ml-2 text-sm text-gray-600">{{ $coverPhoto->created_at->format('j M Y, g:i a') }}</small>
-                            @unless ($coverPhoto->created_at->eq($coverPhoto->updated_at))
+                            <small class="ml-2 text-sm text-gray-600">{{ $coverphoto->created_at->format('j M Y, g:i a') }}</small>
+                            @unless ($coverphoto->created_at->eq($coverphoto->updated_at))
                                 <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                             @endunless
                         </div>
@@ -58,11 +58,11 @@
                                     </button>
                                 </x-slot>
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('coverphoto.edit', $coverPhoto)">
+                                    <x-dropdown-link :href="route('coverphoto.edit', $coverphoto)">
                                         {{ __('Edit') }}
                                     </x-dropdown-link>
 
-                                    <x-dropdown-link :href="route('coverphoto.destroy', $coverPhoto)">
+                                    <x-dropdown-link :href="route('coverphoto.destroy', $coverphoto)">
                                         {{ __('Delete') }}
                                     </x-dropdown-link>
                                 </x-slot>
@@ -72,14 +72,14 @@
                     </div>
 
                     @php
-                        $image = asset(Storage::url('images/'.$coverPhoto->image));
-                        $size =  ($coverPhoto->size == "sm")? "Pequena":"Média";
+                        $image = asset(Storage::url('images/'.$coverphoto->image));
+                        $size =  ($coverphoto->size == "sm")? "Pequena":"Média";
                     @endphp
 
                     <div>
-                        <img src="{{ $image }}" alt="{{ $coverPhoto->name }}" srcset="">
+                        <img src="{{ $image }}" alt="{{ $coverphoto->name }}" srcset="">
                         <p class="mt-4 text-lg text-gray-900">{{ $size }}</p>
-                        <p class="mt-4 text-lg text-gray-900">{{ $coverPhoto->name }}</p>
+                        <p class="mt-4 text-lg text-gray-900">{{ $coverphoto->name }}</p>
                     </div>
 
                 </div>

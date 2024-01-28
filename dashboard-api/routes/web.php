@@ -40,7 +40,7 @@ Route::resource('about',AboutController::class)
         ->middleware(['auth', 'verified']);
 
 Route::resource('coverphoto',CoverPhotoController::class)
-        ->only(['index','store','show','edit','update','destroy'])
+        ->only(['index','store','edit','update','destroy'])
         ->middleware(['auth','verified']);
 
 

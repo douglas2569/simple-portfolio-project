@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\CoverPhoto;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 
 class CoverPhotoController extends Controller
@@ -15,7 +17,7 @@ class CoverPhotoController extends Controller
     public function index():View
     {
         return view('coverphoto.index',
-        [ 'coverPhotos'=> auth()->user()->about()->get()[0]->coverPhoto()->latest()->get()]
+        [ 'coverphotos'=> auth()->user()->about()->get()[0]->coverPhoto()->latest()->get()]
         );
     }
 
@@ -54,21 +56,41 @@ class CoverPhotoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(CoverPhoto $coverPhoto):View
+    public function edit(CoverPhoto $coverphoto):View
        {
-        $this->authorize('update', $coverPhoto);
+        $this->authorize('update', $coverphoto);
 
         return view('coverphoto.edit',[
-           'coverPhoto' => $coverPhoto
+           'coverphoto' => $coverphoto
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, CoverPhoto $coverPhoto):RedirectResponse
+    public function update(Request $request, CoverPhoto $coverphoto):RedirectResponse
     {
+        $validated = $request->validate([
+            'name' => 'required|string|min:4',
+            'size' => 'required|string|min:2',
+        ]);
 
+        if($request->hasFile('image')){
+
+            $validated = Validator::make(
+                ['image' => $request->file('image')],
+                ['image' => 'image|required|max:1024'],
+                ['required' => 'The :attribute field is required'],
+                )->validate();
+
+                $validated['image']->store('public/images');
+                $validated['image'] =  $validated['image']->hashName();
+                Storage::delete('public/images/'.$coverphoto->image);
+
+        }
+
+        $this->authorize('update', $coverphoto);
+        $coverphoto->update($validated);
         return redirect(route('coverphoto.index'));
     }
 
@@ -76,11 +98,12 @@ class CoverPhotoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CoverPhoto $coverPhoto): RedirectResponse
+    public function destroy(CoverPhoto $coverphoto)/*: RedirectResponse*/
     {
-        $this->authorize('delete', $coverPhoto);
+        echo "asdasdasd";
+        // $this->authorize('delete', $coverphoto);
 
-        $coverPhoto->delete();
-        return redirect(route('coverPhoto.index'));
+        // $coverphoto->delete();
+        // return redirect(route('coverphoto.index'));
     }
 }

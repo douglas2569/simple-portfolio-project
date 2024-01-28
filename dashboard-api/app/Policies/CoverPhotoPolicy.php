@@ -46,10 +46,11 @@ class CoverPhotoPolicy
     /**
      * Determine whether the user can delete the model.
      */
-    public function delete(User $user, CoverPhoto $coverPhoto): bool
-    {
+    public function delete(User $user, CoverPhoto $coverPhoto): bool    {
+
         $about = About::where('id', $coverPhoto->about_id)->get();
-        return $about[0]->user()->is($user);
+        return $this->update($user, $about);
+
     }
 
     /**
