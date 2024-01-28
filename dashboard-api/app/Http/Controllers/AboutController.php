@@ -14,9 +14,9 @@ class AboutController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index():RedirectResponse
+    public function index()
     {
-        return redirect(route('about.create'));
+
     }
 
     /**
@@ -49,8 +49,8 @@ class AboutController extends Controller
             'description' => 'required|string|min:20',
         ]);
 
-        $validated['profile_photo'] =  $request->file('profilePhoto')->store('public/images');
-        $validated['profile_photo'] =  $validated['profilePhoto']?->hashName();
+        $request->file('profilePhoto')->store('public/images');
+        $validated['profile_photo'] =  $validated['profilePhoto']->hashName();
 
         $about = $request->user()->about()->create($validated);
 

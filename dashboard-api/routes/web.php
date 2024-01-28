@@ -39,6 +39,10 @@ Route::resource('about',AboutController::class)
         ->only(['index','create','store','edit','update'])
         ->middleware(['auth', 'verified']);
 
+Route::resource('coverphoto',CoverPhotoController::class)
+        ->only(['index', 'store','show','edit','update','destroy'])
+        ->middleware(['auth', 'verified']);
+
 Route::resource('project',ProjectController::class)
         ->only(['index','create','store','show','edit','update','destroy'])
         ->middleware(['auth', 'verified']);

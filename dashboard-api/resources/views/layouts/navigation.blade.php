@@ -16,8 +16,12 @@
                             {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('about.index')" :active="request()->routeIs('about.index')">
+                    <x-nav-link :href="route('about.create')" :active="request()->routeIs('about.create')">
                           {{ __('About') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('coverphoto.index')" :active="request()->routeIs('coverphoto.index')">
+                          {{ __('Cover Photo') }}
                     </x-nav-link>
 
                     <x-nav-link :href="route('skill.index')" :active="request()->routeIs('skill.index')">
