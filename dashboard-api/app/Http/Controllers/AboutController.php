@@ -22,12 +22,12 @@ class AboutController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create():View
+    public function create():View | RedirectResponse
     {
         $about = auth()->user()->about()->get();
 
         if(count($about) > 0)
-            return view('about.edit', ['about'=> $about[0]]);
+            return redirect(route('about.edit',$about[0]));
         else
             return view('about.create');
     }
@@ -52,9 +52,10 @@ class AboutController extends Controller
         $validated['profile_photo'] =  $request->file('profilePhoto')->store('public/images');
         $validated['profile_photo'] =  $validated['profilePhoto']?->hashName();
 
-        $request->user()->about()->create($validated);
+        $about = $request->user()->about()->create($validated);
 
-        return redirect(route('about.edit'));
+        return redirect(route('about.edit',['about'=> $about]));
+
     }
 
     /**
