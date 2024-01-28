@@ -49,8 +49,6 @@
                             @endunless
                         </div>
 
-
-                        @if ($coverPhoto->about->user->is(auth()->user()))
                             <x-dropdown>
                                 <x-slot name="trigger">
                                     <button>
@@ -59,17 +57,18 @@
                                         </svg>
                                     </button>
                                 </x-slot>
-
                                 <x-slot name="content">
                                     <x-dropdown-link :href="route('coverphoto.edit', $coverPhoto)">
                                         {{ __('Edit') }}
                                     </x-dropdown-link>
+
                                     <x-dropdown-link :href="route('coverphoto.destroy', $coverPhoto)">
                                         {{ __('Delete') }}
                                     </x-dropdown-link>
                                 </x-slot>
+
                             </x-dropdown>
-                        @endif
+
                     </div>
 
                     @php

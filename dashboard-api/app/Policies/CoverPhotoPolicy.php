@@ -37,8 +37,8 @@ class CoverPhotoPolicy
     /**
      * Determine whether the user can update the model.
      */
-    public function update(User $user, CoverPhoto $coverPhoto): bool
-    {
+    public function update(User $user, CoverPhoto $coverPhoto): bool    {
+
         $about = About::where('id', $coverPhoto->about_id)->get();
         return $about[0]->user()->is($user);
     }

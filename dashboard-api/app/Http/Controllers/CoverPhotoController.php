@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CoverPhoto;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
@@ -53,24 +54,33 @@ class CoverPhotoController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
-    {
-        //
+    public function edit(CoverPhoto $coverPhoto):View
+       {
+        $this->authorize('update', $coverPhoto);
+
+        return view('coverphoto.edit',[
+           'coverPhoto' => $coverPhoto
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, CoverPhoto $coverPhoto):RedirectResponse
     {
-        //
+
+        return redirect(route('coverphoto.index'));
     }
+
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(CoverPhoto $coverPhoto): RedirectResponse
     {
-        //
+        $this->authorize('delete', $coverPhoto);
+
+        $coverPhoto->delete();
+        return redirect(route('coverPhoto.index'));
     }
 }
