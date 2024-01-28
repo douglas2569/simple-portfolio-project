@@ -25,7 +25,7 @@ class CoverPhotoController extends Controller
     {
         if(count(auth()->user()->about()->get()[0]->coverPhoto()->get()) >= 2
             || !$request->hasFile('image'))
-            return redirect('coverphoto.index');
+            return redirect(route('coverphoto.index'));
 
             $validated = $request->validate([
                 'image' => 'image|required|max:1024',
