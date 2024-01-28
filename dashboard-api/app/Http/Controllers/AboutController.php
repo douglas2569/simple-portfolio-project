@@ -49,20 +49,12 @@ class AboutController extends Controller
             'description' => 'required|string|min:20',
         ]);
 
-        $validated['profile_photo'] =  $request->file('profilePhoto')?->store('public/images');
+        $validated['profile_photo'] =  $request->file('profilePhoto')->store('public/images');
         $validated['profile_photo'] =  $validated['profilePhoto']?->hashName();
 
         $request->user()->about()->create($validated);
 
         return redirect(route('about.edit'));
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
     }
 
     /**
@@ -80,7 +72,6 @@ class AboutController extends Controller
      */
     public function update(Request $request, About $about):RedirectResponse
     {
-
         $validated = $request->validate([
             'name' => 'required|string|max:255',
             'position' => 'required|string|max:100',
@@ -89,7 +80,7 @@ class AboutController extends Controller
         ]);
 
         if ($request->hasFile('profilePhoto')) {
-            $validated['profile_photo']  = Validator::make(
+            $validated = Validator::make(
                 ['profile_photo' => $request->file('profilePhoto')],
                 ['profile_photo' => 'image|max:100'],
                 ['required' => 'The :attribute field is required'],
@@ -97,8 +88,7 @@ class AboutController extends Controller
 
                 $validated['profile_photo']->store('public/images');
                 $validated['profile_photo'] =  $validated['profile_photo']->hashName();
-                $imageName = explode('/', $about->profilePhoto);
-                Storage::delete('public/images/'.$imageName[0]);
+                Storage::delete('public/images/'.$about->profile_photo);
             }
 
             $this->authorize('update', $about);
@@ -107,11 +97,4 @@ class AboutController extends Controller
         return redirect(route('about.index'));
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

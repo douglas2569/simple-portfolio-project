@@ -36,7 +36,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::resource('about',AboutController::class)
-        ->only(['index','create','store','show','edit','update','destroy'])
+        ->only(['index','create','store','edit','update'])
         ->middleware(['auth', 'verified']);
 
 Route::resource('project',ProjectController::class)
