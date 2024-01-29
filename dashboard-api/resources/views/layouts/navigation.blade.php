@@ -48,9 +48,15 @@
                         </x-nav-link>
                     @endif
 
-                    <x-nav-link :href="route('project.index')" :active="request()->routeIs('project.index')">
-                          {{ __('Projects') }}
-                    </x-nav-link>
+                    @if(request()->routeIs('project.index'))
+                        <x-nav-link :href="route('project.index')" :active="request()->routeIs('project.index')">
+                            {{ __('Projects') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('project.index')" :active="request()->routeIs('project.edit')">
+                            {{ __('Projects') }}
+                        </x-nav-link>
+                    @endif
 
                     <x-nav-link :href="route('externallink.index')" :active="request()->routeIs('externallink.index')">
                           {{ __('External Link') }}                    </x-nav-link>
