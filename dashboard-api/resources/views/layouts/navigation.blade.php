@@ -58,8 +58,15 @@
                         </x-nav-link>
                     @endif
 
-                    <x-nav-link :href="route('externallink.index')" :active="request()->routeIs('externallink.index')">
-                          {{ __('External Link') }}                    </x-nav-link>
+                    @if(request()->routeIs('project.index'))
+                        <x-nav-link :href="route('externallink.index')" :active="request()->routeIs('externallink.index')">
+                            {{ __('External Link') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('externallink.index')" :active="request()->routeIs('externallink.edit')">
+                            {{ __('External Link') }}
+                        </x-nav-link>
+                    @endif
 
                     <x-nav-link :href="route('socialmedia.index')" :active="request()->routeIs('socialmedia.index')">
                           {{ __('Social Media') }}
