@@ -38,9 +38,15 @@
                         </x-nav-link>
                     @endif
 
-                    <x-nav-link :href="route('skill.index')" :active="request()->routeIs('skill.index') ">
-                          {{ __('Skills') }}
-                    </x-nav-link>
+                    @if(request()->routeIs('skill.index'))
+                        <x-nav-link :href="route('skill.index')" :active="request()->routeIs('skill.index') ">
+                            {{ __('Skills') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('skill.index')" :active="request()->routeIs('skill.edit') ">
+                            {{ __('Skills') }}
+                        </x-nav-link>
+                    @endif
 
                     <x-nav-link :href="route('project.index')" :active="request()->routeIs('project.index')">
                           {{ __('Projects') }}
