@@ -43,12 +43,23 @@ Route::resource('coverphoto',CoverPhotoController::class)
         ->only(['index','store','edit','update','destroy'])
         ->middleware(['auth','verified']);
 
-
 Route::resource('project',ProjectController::class)
         ->only(['index','create','store','show','edit','update','destroy'])
         ->middleware(['auth', 'verified']);
 
 Route::resource('skill', SkillController::class)
+        ->only(['index','create','store','show','edit','update','destroy'])
+        ->middleware(['auth', 'verified']);
+
+Route::resource('externallink',ExternalLinkController::class)
+        ->only(['index','store','edit','update','destroy'])
+        ->middleware(['auth','verified']);
+
+Route::resource('socialmedia',SocialMediaController::class)
+        ->only(['index','create','store','show','edit','update','destroy'])
+        ->middleware(['auth', 'verified']);
+
+Route::resource('technology', TechnologyController::class)
         ->only(['index','create','store','show','edit','update','destroy'])
         ->middleware(['auth', 'verified']);
 

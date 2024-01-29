@@ -32,6 +32,17 @@
                           {{ __('Projects') }}
                     </x-nav-link>
 
+                    <x-nav-link :href="route('externallink.index')" :active="request()->routeIs('externallink.index')">
+                          {{ __('External Link') }}                    </x-nav-link>
+
+                    <x-nav-link :href="route('socialmedia.index')" :active="request()->routeIs('socialmedia.index')">
+                          {{ __('Social Media') }}
+                    </x-nav-link>
+
+                    <x-nav-link :href="route('technology.index')" :active="request()->routeIs('technology.index')">
+                          {{ __('Technology') }}
+                    </x-nav-link>
+
                 </div>
             </div>
 
@@ -98,6 +109,18 @@
 
             <x-responsive-nav-link :href="route('project.index')" :active="request()->routeIs('project.index')">
                 {{ __('Projects') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('externallink.index')" :active="request()->routeIs('externallink.index')">
+                {{ __('External Link') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('socialmedia.index')" :active="request()->routeIs('socialmedia.index')">
+                {{ __('Social Media') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('technology.index')" :active="request()->routeIs('technology.index')">
+                {{ __('Technology') }}
             </x-responsive-nav-link>
 
 
