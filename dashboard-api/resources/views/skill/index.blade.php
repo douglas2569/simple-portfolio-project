@@ -76,7 +76,7 @@
                     @endphp
 
                     <div>
-                        <img src="{{ $icon }}" alt="{{ $skill->name }}" srcset="">
+                        <img class="w-20" src="{{ $icon }}" alt="{{ $skill->name }}" srcset="">
                         <p class="mt-4 text-lg text-gray-900">{{ $skill->name }}</p>
                     </div>
 
