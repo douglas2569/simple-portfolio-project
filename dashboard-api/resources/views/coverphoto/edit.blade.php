@@ -7,7 +7,7 @@
                     @if($coverphoto->image)
                             <div class="shrink-0">
                                 <img
-                                    class="h-16 w-16 object-cover rounded-full"
+                                    class="h-16 object-cover rounded-md"
                                     src="{{asset('storage/images/'.$coverphoto->image)}}" />
                             </div>
                     @endif
@@ -46,7 +46,10 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
             <x-input-error :messages="$errors->get('image')" class="mt-2" />
             <x-input-error :messages="$errors->get('size')" class="mt-2" />
-            <x-primary-button class="mt-4">{{ __('Update') }}</x-primary-button>
+            <div class="mt-4 space-x-2">
+                <x-primary-button>{{ __('Save') }}</x-primary-button>
+                <a href="{{ route('coverphoto.index') }}">{{ __('Cancel') }}</a>
+            </div>
         </form>
 
     </div>
