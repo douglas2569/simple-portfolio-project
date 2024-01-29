@@ -16,9 +16,20 @@ class CoverPhotoController extends Controller
      */
     public function index():View
     {
-        return view('coverphoto.index',
-        [ 'coverphotos'=> auth()->user()->about()->get()[0]->coverPhoto()->latest()->get()]
-        );
+        $data = [
+            'about' => array(),
+            'coverphotos' => array(),
+            'message' => ''
+        ];
+
+        try {
+            $data['about'] = auth()->user()->about()->get();
+            $data['coverphotos'] = auth()->user()->about()->get()[0]->coverPhoto()->latest()->get();
+        } catch (\ErrorException $th) {
+            $data['message'] = 'Você precisa, primeiramente, cadastrar o About';
+        }
+
+        return view('coverphoto.index', $data );
     }
 
     /**
