@@ -16,15 +16,23 @@
                             {{ __('Dashboard') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('about.create')" :active="request()->routeIs('about.create')">
-                          {{ __('About') }}
-                    </x-nav-link>
+                    @if(request()->routeIs('about.create'))
+                        <x-nav-link
+                            :href="route('about.create')" :active="request()->routeIs('about.create')">
+                            {{ __('About') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link
+                            :href="route('about.create')" :active="request()->routeIs('about.edit')">
+                            {{ __('About') }}
+                        </x-nav-link>
+                    @endif
 
                     <x-nav-link :href="route('coverphoto.index')" :active="request()->routeIs('coverphoto.index')">
                           {{ __('Cover Photo') }}
                     </x-nav-link>
 
-                    <x-nav-link :href="route('skill.index')" :active="request()->routeIs('skill.index')">
+                    <x-nav-link :href="route('skill.index')" :active="request()->routeIs('skill.index') ">
                           {{ __('Skills') }}
                     </x-nav-link>
 
