@@ -1,12 +1,12 @@
 <x-app-layout>
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
          @if(count($about) > 0)
-            <form method="POST" action="{{ route('coverphoto.store') }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('socialmedia.store') }}" enctype="multipart/form-data">
                 <label class="block" for="">
-                <span class="sr-only">{{__('Choose cover photo')}}</span>
+                <span class="sr-only">{{__('Choose social media')}}</span>
                 @csrf
                 <input
-                    name="image"
+                    name="icon"
                     type="file"
                     class="block w-full text-sm text-slate-500
                             file:mr-4 file:py-2 file:px-4
@@ -24,35 +24,34 @@
                     class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                 />
                 @csrf
-                <select name="size" id="photo-size" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected>Qual o tamanho da imagem?</option>
-                    <option value="sm">Pequena</option>
-                    <option value="md">Média</option>
-                </select>
-
+                <input
+                    name="url"
+                    placeholder="{{ __('URL') }}"
+                    class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                />
 
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                <x-input-error :messages="$errors->get('image')" class="mt-2" />
-                <x-input-error :messages="$errors->get('size')" class="mt-2" />
+                <x-input-error :messages="$errors->get('icon')" class="mt-2" />
+                <x-input-error :messages="$errors->get('url')" class="mt-2" />
                 <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
             </form>
         @else
             {{ $message['content'] }}
         @endif
 
-        @if(count($about) > 0 && count($coverphotos) <= 0)
+        @if(count($about) > 0 && count($socialmedia) <= 0)
             {{ $message['content'] }}
         @endif
 
-        @foreach ($coverphotos as $coverphoto)
+        @foreach ($socialmedia as $socialmediaitem)
 
             <div class="p-6 flex space-x-2">
                 <div class="flex-1">
                     <div class="flex justify-between items-center">
 
                         <div>
-                            <small class="ml-2 text-sm text-gray-600">{{ $coverphoto->created_at->format('j M Y, g:i a') }}</small>
-                            @unless ($coverphoto->created_at->eq($coverphoto->updated_at))
+                            <small class="ml-2 text-sm text-gray-600">{{ $socialmediaitem->created_at->format('j M Y, g:i a') }}</small>
+                            @unless ($socialmediaitem->created_at->eq($socialmediaitem->updated_at))
                                 <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                             @endunless
                         </div>
@@ -66,13 +65,13 @@
                                     </button>
                                 </x-slot>
                                 <x-slot name="content">
-                                    <x-dropdown-link :href="route('coverphoto.edit', $coverphoto)">
+                                    <x-dropdown-link :href="route('socialmedia.edit', $socialmediaitem)">
                                         {{ __('Edit') }}
                                     </x-dropdown-link>
-                                    <form method="POST" action="{{ route('coverphoto.destroy', $coverphoto) }}">
+                                    <form method="POST" action="{{ route('socialmedia.destroy', $socialmediaitem) }}">
                                         @csrf
                                         @method('delete')
-                                        <x-dropdown-link :href="route('coverphoto.destroy', $coverphoto)" onclick="event.preventDefault(); this.closest('form').submit();">
+                                        <x-dropdown-link :href="route('socialmedia.destroy', $socialmediaitem)" onclick="event.preventDefault(); this.closest('form').submit();">
                                             {{ __('Delete') }}
                                         </x-dropdown-link>
                                     </form>
@@ -83,14 +82,13 @@
                     </div>
 
                     @php
-                        $image = asset(Storage::url('images/'.$coverphoto->image));
-                        $size =  ($coverphoto->size == "sm")? "Pequena":"Média";
+                        $icon = asset(Storage::url('images/'.$socialmediaitem->icon));
                     @endphp
 
                     <div>
-                        <img src="{{ $image }}" alt="{{ $coverphoto->name }}" srcset="">
-                        <p class="mt-4 text-lg text-gray-900">{{ $size }}</p>
-                        <p class="mt-4 text-lg text-gray-900">{{ $coverphoto->name }}</p>
+                        <img class="w-10 h-10" src="{{ $icon }}" alt="{{ $socialmediaitem->name }}" srcset="">
+                        <p class="mt-4 text-lg text-gray-900">{{ $socialmediaitem->name }}</p>
+                        <p class="mt-4 text-lg text-gray-900">{{ $socialmediaitem->url }}</p>
                     </div>
 
                 </div>

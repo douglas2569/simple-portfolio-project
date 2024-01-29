@@ -38,7 +38,7 @@
                         </x-nav-link>
                     @endif
 
-                    @if(request()->routeIs('coverphoto.index'))
+                    @if(request()->routeIs('socialmedia.index'))
                         <x-nav-link :href="route('socialmedia.index')" :active="request()->routeIs('socialmedia.index')">
                             {{ __('Social Media') }}
                         </x-nav-link>

@@ -1,22 +1,22 @@
 <x-app-layout>
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-         <form method="POST" action="{{ route('coverphoto.update', $coverphoto) }}" enctype="multipart/form-data">
+         <form method="POST" action="{{ route('socialmedia.update', $socialmedia) }}" enctype="multipart/form-data">
             @method('patch')
 
                 <div class="flex items-center space-x-6">
-                    @if($coverphoto->image)
+                    @if($socialmedia->icon)
                             <div class="shrink-0">
                                 <img
-                                    class="h-16 object-cover rounded-sm"
-                                    src="{{asset('storage/images/'.$coverphoto->image)}}" />
+                                    class="w-10 h-10 object-cover rounded-md"
+                                    src="{{asset('storage/images/'.$socialmedia->icon)}}" />
                             </div>
                     @endif
 
                     <label class="block" for="">
-                    <span class="sr-only">{{__('Choose cover photo')}}</span>
+                    <span class="sr-only">{{__('Choose social media')}}</span>
                     @csrf
                     <input
-                        name="image"
+                        name="icon"
                         type="file"
                         class="block w-full text-sm text-slate-500
                                 file:mr-4 file:py-2 file:px-4
@@ -33,22 +33,23 @@
                 name="name"
                 placeholder="{{ __('Name') }}"
                 class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                value="{{$coverphoto->name}}"
+                value="{{$socialmedia->name}}"
             />
 
             @csrf
-            <select name="size" id="photo-size" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option>Qual o tamanho da imagem?</option>
-                <option {{ ($coverphoto->size == 'sm') ? 'selected' : '' }} value="sm">Pequena</option>
-                <option {{ ($coverphoto->size == 'md') ? 'selected' : '' }} value="md">Média</option>
-            </select>
+            <input
+                name="url"
+                placeholder="{{ __('URL') }}"
+                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                value="{{$socialmedia->name}}"
+            />
 
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
-            <x-input-error :messages="$errors->get('image')" class="mt-2" />
-            <x-input-error :messages="$errors->get('size')" class="mt-2" />
+            <x-input-error :messages="$errors->get('icon')" class="mt-2" />
+            <x-input-error :messages="$errors->get('url')" class="mt-2" />
             <div class="mt-4 space-x-2">
                 <x-primary-button>{{ __('Save') }}</x-primary-button>
-                <a href="{{ route('coverphoto.index') }}">{{ __('Cancel') }}</a>
+                <a href="{{ route('socialmedia.index') }}">{{ __('Cancel') }}</a>
             </div>
         </form>
 
