@@ -98,12 +98,12 @@ class CoverPhotoController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(CoverPhoto $coverphoto)/*: RedirectResponse*/
+    public function destroy(CoverPhoto $coverphoto): RedirectResponse
     {
-        echo "asdasdasd";
-        // $this->authorize('delete', $coverphoto);
 
-        // $coverphoto->delete();
-        // return redirect(route('coverphoto.index'));
+        $this->authorize('delete', $coverphoto);
+        Storage::delete('public/images/'.$coverphoto->image);
+        $coverphoto->delete();
+        return redirect(route('coverphoto.index'));
     }
 }

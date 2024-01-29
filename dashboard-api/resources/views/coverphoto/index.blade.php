@@ -61,10 +61,13 @@
                                     <x-dropdown-link :href="route('coverphoto.edit', $coverphoto)">
                                         {{ __('Edit') }}
                                     </x-dropdown-link>
-
-                                    <x-dropdown-link :href="route('coverphoto.destroy', $coverphoto)">
-                                        {{ __('Delete') }}
-                                    </x-dropdown-link>
+                                    <form method="POST" action="{{ route('coverphoto.destroy', $coverphoto) }}">
+                                        @csrf
+                                        @method('delete')
+                                        <x-dropdown-link :href="route('coverphoto.destroy', $coverphoto)" onclick="event.preventDefault(); this.closest('form').submit();">
+                                            {{ __('Delete') }}
+                                        </x-dropdown-link>
+                                    </form>
                                 </x-slot>
 
                             </x-dropdown>

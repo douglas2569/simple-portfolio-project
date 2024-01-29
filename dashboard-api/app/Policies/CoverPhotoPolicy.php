@@ -49,7 +49,7 @@ class CoverPhotoPolicy
     public function delete(User $user, CoverPhoto $coverPhoto): bool    {
 
         $about = About::where('id', $coverPhoto->about_id)->get();
-        return $this->update($user, $about);
+        return $about[0]->user()->is($user);
 
     }
 
