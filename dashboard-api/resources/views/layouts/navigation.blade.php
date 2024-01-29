@@ -28,9 +28,15 @@
                         </x-nav-link>
                     @endif
 
-                    <x-nav-link :href="route('coverphoto.index')" :active="request()->routeIs('coverphoto.index')">
-                          {{ __('Cover Photo') }}
-                    </x-nav-link>
+                    @if(request()->routeIs('coverphoto.index'))
+                        <x-nav-link :href="route('coverphoto.index')" :active="request()->routeIs('coverphoto.index')">
+                            {{ __('Cover Photo') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('coverphoto.index')" :active="request()->routeIs('coverphoto.edit')">
+                            {{ __('Cover Photo') }}
+                        </x-nav-link>
+                    @endif
 
                     <x-nav-link :href="route('skill.index')" :active="request()->routeIs('skill.index') ">
                           {{ __('Skills') }}
