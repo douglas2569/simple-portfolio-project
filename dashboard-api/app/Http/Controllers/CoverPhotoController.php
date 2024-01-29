@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
+use App\Helpers\Messages;
 
 class CoverPhotoController extends Controller
 {
@@ -19,17 +20,20 @@ class CoverPhotoController extends Controller
         $data = [
             'about' => array(),
             'coverphotos' => array(),
-            'message' => ''
+            'message' => array(),
         ];
 
         try {
             $data['about'] = auth()->user()->about()->get();
             $data['coverphotos'] = auth()->user()->about()->get()[0]->coverPhoto()->latest()->get();
+            $data['message'] = Messages::noElementsRegistered('images')['message'];
+
         } catch (\ErrorException $th) {
-            $data['message'] = 'Você precisa, primeiramente, cadastrar o About';
+            $data['message'] = Messages::parentElementIsMissing('About')['message'];
+
         }
 
-        return view('coverphoto.index', $data );
+        return view('coverphoto.index', $data);
     }
 
     /**

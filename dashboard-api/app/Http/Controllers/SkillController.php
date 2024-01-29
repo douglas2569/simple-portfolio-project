@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\Messages;
 use Illuminate\Http\Request;
 use Illuminate\View\View;
 
@@ -12,8 +13,15 @@ class SkillController extends Controller
      */
     public function index():View
     {
-        return view('skill.index',
-        ['skills' => '']);
+        $data = [
+            'skills' => array(),
+            'message' =>  array()
+        ];
+
+        $data['skills'] = auth()->user()->skill()->get();
+        $data['message'] = Messages::noElementsRegistered('Skill')['message'];
+
+        return view('skill.index', $data);
     }
 
     /**
