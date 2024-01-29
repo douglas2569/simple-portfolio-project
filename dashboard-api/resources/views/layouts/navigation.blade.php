@@ -38,6 +38,16 @@
                         </x-nav-link>
                     @endif
 
+                    @if(request()->routeIs('coverphoto.index'))
+                        <x-nav-link :href="route('socialmedia.index')" :active="request()->routeIs('socialmedia.index')">
+                            {{ __('Social Media') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('socialmedia.index')" :active="request()->routeIs('socialmedia.edit')">
+                            {{ __('Social Media') }}
+                        </x-nav-link>
+                    @endif
+
                     @if(request()->routeIs('skill.index'))
                         <x-nav-link :href="route('skill.index')" :active="request()->routeIs('skill.index') ">
                             {{ __('Skills') }}
@@ -67,10 +77,6 @@
                             {{ __('External Link') }}
                         </x-nav-link>
                     @endif
-
-                    <x-nav-link :href="route('socialmedia.index')" :active="request()->routeIs('socialmedia.index')">
-                          {{ __('Social Media') }}
-                    </x-nav-link>
 
                     <x-nav-link :href="route('technology.index')" :active="request()->routeIs('technology.index')">
                           {{ __('Technology') }}
@@ -136,6 +142,14 @@
                 {{ __('About') }}
             </x-responsive-nav-link>
 
+            <x-responsive-nav-link :href="route('coverphoto.index')" :active="request()->routeIs('coverphoto.index')">
+                {{ __('Cover Photo') }}
+            </x-responsive-nav-link>
+
+            <x-responsive-nav-link :href="route('socialmedia.index')" :active="request()->routeIs('socialmedia.index')">
+                {{ __('Social Media') }}
+            </x-responsive-nav-link>
+
             <x-responsive-nav-link :href="route('skill.index')" :active="request()->routeIs('skill.index')">
                 {{ __('Skills') }}
             </x-responsive-nav-link>
@@ -146,10 +160,6 @@
 
             <x-responsive-nav-link :href="route('externallink.index')" :active="request()->routeIs('externallink.index')">
                 {{ __('External Link') }}
-            </x-responsive-nav-link>
-
-            <x-responsive-nav-link :href="route('socialmedia.index')" :active="request()->routeIs('socialmedia.index')">
-                {{ __('Social Media') }}
             </x-responsive-nav-link>
 
             <x-responsive-nav-link :href="route('technology.index')" :active="request()->routeIs('technology.index')">

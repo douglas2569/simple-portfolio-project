@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Helpers\Messages;
 use App\Models\Skill;
+use App\Models\SkillTechnology;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
@@ -19,11 +21,22 @@ class SkillController extends Controller
     {
         $data = [
             'skills' => array(),
-            'message' =>  array()
+            'message' =>  array(),
+            'technologies'=> array(),
         ];
 
-        $data['skills'] = auth()->user()->skill()->get();
-        $data['message'] = Messages::noElementsRegistered('Skill')['message'];
+        try {
+            $data['projects'] = auth()->user()->technology()->get();
+            if(count($data['technologies']) <= 0){
+                throw new \ErrorException('');
+            }
+            $data['skills'] = auth()->user()->skill()->get();
+
+            $data['message'] = Messages::noElementsRegistered('Skill')['message'];
+        } catch (\ErrorException $th) {
+            $data['message'] = Messages::parentElementIsMissing('Technology')['message'];
+
+        }
 
         return view('skill.index', $data);
     }
@@ -42,7 +55,21 @@ class SkillController extends Controller
         $request->file('icon')->store('public/images');
         $validated['icon'] =  $validated['icon']->hashName();
 
-        auth()->user()->skill()->create($validated);
+        try {
+            DB::beginTransaction();
+
+            auth()->user()->skill()->create($validated);
+
+            $lastSkillId = (auth()->user()->skill()->latest()->get())[0]->id;
+            foreach($this->technologiesIds as $technologyId){
+                SkillTechnology::create(['skill_id'=>$lastSkillId, 'technology_id'=>$technologyId]);
+            }
+
+            DB::commit();
+        } catch (\Exception $th) {
+            echo $th->getMessage();
+            DB::rollBack();
+        }
 
         return redirect(route('skill.index'));
 

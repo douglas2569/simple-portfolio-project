@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\View\View;
 use App\Helpers\Messages;
+use App\Exceptions\NoElementsRegisteredException;
+use App\Exceptions\ParentElementIsMissingException;
 
 class CoverPhotoController extends Controller
 {
@@ -25,12 +27,15 @@ class CoverPhotoController extends Controller
 
         try {
             $data['about'] = auth()->user()->about()->get();
+
             $data['coverphotos'] = auth()->user()->about()->get()[0]->coverPhoto()->latest()->get();
-            $data['message'] = Messages::noElementsRegistered('images')['message'];
+            if(count($data['coverphotos']) <= 0)
+                throw new NoElementsRegisteredException();
 
         } catch (\ErrorException $th) {
             $data['message'] = Messages::parentElementIsMissing('About')['message'];
-
+        }catch (NoElementsRegisteredException $th) {
+            $data['message'] = Messages::noElementsRegistered('Cover Photo')['message'];
         }
 
         return view('coverphoto.index', $data);

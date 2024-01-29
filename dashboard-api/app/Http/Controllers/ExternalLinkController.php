@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\NoElementsRegisteredException;
+use App\Exceptions\ParentElementIsMissingException;
 use App\Helpers\Messages;
 use App\Models\ExternalLink;
 use App\Models\ViewProjectExternalLink;
@@ -24,21 +26,26 @@ class ExternalLinkController extends Controller
 
         try {
             $data['projects'] = auth()->user()->project()->get();
-            if(count($data['projects']) <= 0){
-                throw new \ErrorException('');
-            }
+            if(count($data['projects']) <= 0)
+                throw new ParentElementIsMissingException();
+
 
             foreach($data['projects'] as $project){
                 array_push($data['externalLinksProjects'], ViewProjectExternalLink::where('project_id', $project->id)->get());
             }
 
+            if(count($data['externalLinksProjects'][0]) <= 0)
+                throw new NoElementsRegisteredException();
 
-            $data['message'] = Messages::noElementsRegistered('External Link')['message'];
-        } catch (\ErrorException $th) {
+
+        } catch (ParentElementIsMissingException $th) {
             $data['message'] = Messages::parentElementIsMissing('Project')['message'];
 
-        }
+        }catch (NoElementsRegisteredException $th) {
+            $data['message'] = Messages::noElementsRegistered('External Link')['message'];
 
+        }
+        ;
         return view('externallink.index', $data);
     }
 

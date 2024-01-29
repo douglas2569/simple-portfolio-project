@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-
+        @if(count($technologies) > 0)
             <form method="POST" action="{{ route('skill.store') }}" enctype="multipart/form-data">
                 <label class="block" for="">
                 <span class="sr-only">{{__('Choose the thumbnail')}}</span>
@@ -24,12 +24,35 @@
                     class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                 />
 
+                <div>
+                    <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">{{__('Technologies')}}</h3>
+
+                    @if(count($technologies) <=0 )
+                        <p>{{$message['content']}}</p>
+                    @endif
+
+                    <ul class="grid sm:grid-cols-5 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        @foreach($technologies as $technology)
+                            <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                <div class="flex items-center ps-3">
+                                    <input  name="technologies_id" id="{{$technology->name}}-checkbox" type="checkbox" value="{{$technology->id}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="{{$technology->name}}-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$technology->name}}</label>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+                </div>
+
                 <x-input-error :messages="$errors->get('icon')" class="mt-2" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
             </form>
 
-        @if(count($skills) <= 0)
+        @else
+            {{ $message['content'] }}
+        @endif
+
+        @if(count($technologies) > 0 && count($skills) <= 0)
             {{ $message['content'] }}
         @endif
 
@@ -73,11 +96,18 @@
 
                     @php
                         $icon = asset(Storage::url('images/'.$skill->icon));
+                        $myTechnologies = App\Models\ViewSkillTechnology::where('skill_id', $skill->id)->get();
                     @endphp
 
                     <div>
                         <img class="w-20" src="{{ $icon }}" alt="{{ $skill->name }}" srcset="">
                         <p class="mt-4 text-lg text-gray-900">{{ $skill->name }}</p>
+                        <ul>
+                            @foreach($myTechnologies as $technology)
+                                <li>{{$technology->technology_name}}</li>
+                            @endforeach
+                        </ul>
+
                     </div>
 
                 </div>

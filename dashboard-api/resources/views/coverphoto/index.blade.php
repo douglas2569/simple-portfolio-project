@@ -40,7 +40,7 @@
             {{ $message['content'] }}
         @endif
 
-        @if(count($coverphotos) <= 0)
+        @if(count($about) > 0 && count($coverphotos) <= 0)
             {{ $message['content'] }}
         @endif
 
