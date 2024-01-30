@@ -78,9 +78,15 @@
                         </x-nav-link>
                     @endif
 
-                    <x-nav-link :href="route('technology.index')" :active="request()->routeIs('technology.index')">
-                          {{ __('Technology') }}
-                    </x-nav-link>
+                    @if(request()->routeIs('technology.index'))
+                        <x-nav-link :href="route('technology.index')" :active="request()->routeIs('technology.index')">
+                            {{ __('Technology') }}
+                        </x-nav-link>
+                    @else
+                        <x-nav-link :href="route('technology.index')" :active="request()->routeIs('edit.index')">
+                            {{ __('Technology') }}
+                        </x-nav-link>
+                    @endif
 
                 </div>
             </div>

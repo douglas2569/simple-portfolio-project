@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\NoElementsRegisteredException;
+use App\Exceptions\ParentElementIsMissingException;
 use App\Helpers\Messages;
 use App\Models\Project;
 use Illuminate\Http\RedirectResponse;
@@ -19,11 +21,24 @@ class ProjectController extends Controller
     {
         $data = [
             'projects' => array(),
-            'message' =>  array()
+            'message' =>  array(),
+            'technologies'=> array(),
         ];
 
-        $data['projects'] = auth()->user()->project()->get();
-        $data['message'] = Messages::noElementsRegistered('project')['message'];
+        try {
+            $data['technologies'] = auth()->user()->technology()->get();
+            if(count($data['technologies']) <= 0)
+                throw new ParentElementIsMissingException();
+
+            $data['project'] = auth()->user()->project()->get();
+            if(count($data['project']) <= 0)
+                throw new NoElementsRegisteredException();
+
+        } catch (ParentElementIsMissingException $th) {
+            $data['message'] = Messages::parentElementIsMissing('Technology')['message'];
+        }catch (NoElementsRegisteredException $th) {
+            $data['message'] = Messages::noElementsRegistered('Project')['message'];
+        }
 
         return view('project.index', $data);
     }

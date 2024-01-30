@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exceptions\NoElementsRegisteredException;
+use App\Exceptions\ParentElementIsMissingException;
 use App\Helpers\Messages;
 use App\Models\Skill;
 use App\Models\SkillTechnology;
@@ -26,16 +28,18 @@ class SkillController extends Controller
         ];
 
         try {
-            $data['projects'] = auth()->user()->technology()->get();
-            if(count($data['technologies']) <= 0){
-                throw new \ErrorException('');
-            }
+            $data['technologies'] = auth()->user()->technology()->get();
+            if(count($data['technologies']) <= 0)
+                throw new ParentElementIsMissingException();
+
             $data['skills'] = auth()->user()->skill()->get();
+            if(count($data['skills']) <= 0)
+                throw new NoElementsRegisteredException();
 
-            $data['message'] = Messages::noElementsRegistered('Skill')['message'];
-        } catch (\ErrorException $th) {
+        } catch (ParentElementIsMissingException $th) {
             $data['message'] = Messages::parentElementIsMissing('Technology')['message'];
-
+        }catch (NoElementsRegisteredException $th) {
+            $data['message'] = Messages::noElementsRegistered('Skill')['message'];
         }
 
         return view('skill.index', $data);

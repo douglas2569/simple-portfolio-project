@@ -1,6 +1,6 @@
 <x-app-layout>
     <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-
+        @if(count($technologies) > 0)
             <form method="POST" action="{{ route('project.store') }}" enctype="multipart/form-data">
                 <label class="block" for="">
                 <span class="sr-only">{{__('Choose the thumbnail')}}</span>
@@ -45,8 +45,11 @@
                 <x-input-error :messages="$errors->get('description')" class="mt-2" />
                 <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
             </form>
+        @else
+            {{ $message['content'] }}
+        @endif
 
-        @if(count($projects) <= 0)
+        @if(count($technologies) > 0 && count($projects) <= 0)
             {{ $message['content'] }}
         @endif
 
