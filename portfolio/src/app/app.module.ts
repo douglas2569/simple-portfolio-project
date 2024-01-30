@@ -16,7 +16,7 @@ import { ContactComponent } from './components/contact/contact.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 
 import { YouTubePlayerModule } from '@angular/youtube-player';
-import { CoverComponent } from './components/cover/cover.component';
+import { CoverPhotoComponent } from './components/coverphoto/coverphoto.component';
 import { MyYoutubePlayerComponent } from './components/my-youtube-player/my-youtube-player.component';
 import { UrlImagePipe } from './pipes/url-image.pipe';
 
@@ -33,7 +33,7 @@ import { UrlImagePipe } from './pipes/url-image.pipe';
     ProjectContentComponent,
     ContactComponent,
     PageNotFoundComponent,
-    CoverComponent,
+    CoverPhotoComponent,
     MyYoutubePlayerComponent,
     UrlImagePipe
   ],

@@ -3,11 +3,11 @@ import CoverPhoto from 'src/app/models/CoverPhoto';
 import { CoverPhotoService } from 'src/app/services/coverphoto.service';
 
 @Component({
-  selector: 'app-cover',
-  templateUrl: './cover.component.html',
-  styleUrls: ['./cover.component.css']
+  selector: 'app-coverphoto',
+  templateUrl: './coverphoto.component.html',
+  styleUrls: ['./coverphoto.component.css']
 })
-export class CoverComponent implements OnInit {
+export class CoverPhotoComponent implements OnInit {
   coverPhoto!:Array<CoverPhoto>
 
   constructor(private coverPhotoService:CoverPhotoService) { }
