@@ -68,7 +68,7 @@
                         </x-nav-link>
                     @endif
 
-                    @if(request()->routeIs('project.index'))
+                    @if(request()->routeIs('externallink.index'))
                         <x-nav-link :href="route('externallink.index')" :active="request()->routeIs('externallink.index')">
                             {{ __('External Link') }}
                         </x-nav-link>
