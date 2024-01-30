@@ -8,9 +8,9 @@ import { CoverPhotoService } from 'src/app/services/coverphoto.service';
   styleUrls: ['./cover.component.css']
 })
 export class CoverComponent implements OnInit {
-  photoCover!:Array<CoverPhoto>
+  coverPhoto!:Array<CoverPhoto>
 
-  constructor(private coverPhoto:CoverPhotoService) { }
+  constructor(private coverPhotoService:CoverPhotoService) { }
 
   ngOnInit(): void {
     this.mount()
@@ -18,8 +18,12 @@ export class CoverComponent implements OnInit {
 
   mount():void{
 
-    this.coverPhoto.getCoverPhoto().subscribe((data)=>{
-      console.log(data)
+    this.coverPhotoService.getCoverPhoto().subscribe((response)=>{
+      console.log(response)
+      console.log(response.error)
+      console.log(response.data)
+      console.log(typeof response.data)
+
     })
   }
 

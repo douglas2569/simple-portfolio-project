@@ -14,8 +14,8 @@ export class CoverPhotoService {
 
   constructor(private http:HttpClient) { }
 
-  getCoverPhoto():Observable<Response<CoverPhoto>>{
-    return this.http.get<Response<CoverPhoto>>(this.URL)
+  getCoverPhoto():Observable<Response<CoverPhoto[]>>{
+    return this.http.get<Response<CoverPhoto[]>>(this.URL)
   }
 
 }

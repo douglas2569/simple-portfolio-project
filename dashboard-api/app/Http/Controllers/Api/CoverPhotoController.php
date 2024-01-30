@@ -13,20 +13,17 @@ class CoverphotoController extends Controller
         'data'=> ''
     ];
 
-    public function about(string $email){
+    public function coverphoto(string $email){
 
         try {
             DB::beginTransaction();
             $user = User::where('email', $email)->get()[0];
             $about = $user->about()->get()[0];
             $coverPhoto = $about->coverPhoto()->get();
-            $socialMedia = $about->socialMedia()->get();
 
-            $this->response['data'] = response()->json([
-                'about' => $about,
-                'cover_photo' => $coverPhoto,
-                'social_media' => $socialMedia
-            ]);
+            $this->response['data'] = [
+                'cover_photo' => $coverPhoto
+            ];
 
 
             DB::commit();
@@ -35,7 +32,7 @@ class CoverphotoController extends Controller
             DB::rollBack();
         }
 
-        return $this->response;
+        return json_encode($this->response);
 
     }
 }
