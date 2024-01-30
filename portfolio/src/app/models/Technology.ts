@@ -1,4 +1,4 @@
-export default interface Tag{
+export default interface Technology{
   id:string,
   name:string,
   color:string,

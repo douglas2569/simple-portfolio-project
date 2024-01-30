@@ -9,13 +9,13 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class CoverPhotoService {
-  private userEmail:string = 'root@gmail.com'
-  private URL:string = `${environment.urlApi}/api/coverphoto/${this.userEmail}`
+
 
   constructor(private http:HttpClient) { }
 
   getCoverPhoto():Observable<Response<CoverPhoto[]>>{
-    return this.http.get<Response<CoverPhoto[]>>(this.URL)
+    const url:string = `${environment.urlApi}/api/coverphoto/${environment.userEmail}`
+    return this.http.get<Response<CoverPhoto[]>>(url)
   }
 
 }

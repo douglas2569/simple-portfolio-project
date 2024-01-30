@@ -1,4 +1,4 @@
-import Tag from './Tag'
+import Tag from './Technology'
 
 export default interface Project{
   id:string,

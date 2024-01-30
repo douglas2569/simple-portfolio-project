@@ -23,13 +23,20 @@ class SkillController extends Controller
             $user = User::where('email', $email)->get()[0];
             $skills = $user->skill()->get();
 
-            foreach($skills as $skill){
+            /*
+			foreach($skills as $skill){
                 $technologies = $skill->technologies()->get();
                 array_push($this->response['data'], $skill);
                 $skill['technologies'] =  new ArrayObject(array());
                 foreach($technologies as $technology){
                     $skill['technologies']->append($technology);
                 }
+            }
+			*/
+			
+			foreach($skills as $skill){                
+				$skill['technologies'] = $skill->technologies()->get();
+                array_push($this->response['data'], $skill);
             }
 
             DB::commit();
@@ -38,7 +45,7 @@ class SkillController extends Controller
             DB::rollBack();
         }
 
-        return $this->response;
+        return json_encode($this->response);
 
     }
 }

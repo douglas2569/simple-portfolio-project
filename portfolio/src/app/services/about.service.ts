@@ -9,13 +9,12 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class AboutService {
-  private userEmail:string = 'root@gmail.com'
-  private URL:string = `${environment.urlApi}/api/about/${this.userEmail}`
 
   constructor(private http:HttpClient) { }
 
   getAbout():Observable<Response<About>>{
-    return this.http.get<Response<About>>(this.URL)
+    const url:string = `${environment.urlApi}/api/about/${environment.userEmail}`
+    return this.http.get<Response<About>>(url)
   }
 
 }

@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import Technology from 'src/app/models/Technology';
 
 @Component({
   selector: 'app-skill',
@@ -11,7 +12,7 @@ export class SkillComponent implements OnInit {
   @Input()
   name!:string
   @Input()
-  tags!:Array<string>
+  technologies!:Array<Technology>
 
   constructor() { }
 

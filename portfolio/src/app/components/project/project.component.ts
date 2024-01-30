@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import Tag from '../../models/Tag';
+import Tag from '../../models/Technology';
 
 @Component({
   selector: 'app-project',
