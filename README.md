@@ -8,7 +8,7 @@ Esse projeto foi desenvolvido com o intuito de criar um espaço onde eu possa mo
     * Angular 14
     * Tailwindcss
     * Flowbite
-    * Livewire
+    
 * Back-end    
     * Laravel (Dashboard e API REST)
     * Breeze
