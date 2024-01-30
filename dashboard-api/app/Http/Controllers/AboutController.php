@@ -95,7 +95,7 @@ class AboutController extends Controller
             $this->authorize('update', $about);
             $about->update($validated);
 
-        return redirect(route('about.index'));
+        return redirect(route('about.create'));
     }
 
 }
