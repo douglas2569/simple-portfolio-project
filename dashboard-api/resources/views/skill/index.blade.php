@@ -27,10 +27,6 @@
                 <div>
                     <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">{{__('Technologies')}}</h3>
 
-                    @if(count($technologies) <=0 )
-                        <p>{{$message['content']}}</p>
-                    @endif
-
                     <ul class="grid sm:grid-cols-5 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
                         @foreach($technologies as $technology)
                             <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
@@ -47,7 +43,6 @@
                             </li>
                         @endforeach
                     </ul>
-
 
                 </div>
 
@@ -66,7 +61,6 @@
 
 
         @foreach ($skills as $skill)
-
 
             <div class="p-6 flex space-x-2">
                 <div class="flex-1">

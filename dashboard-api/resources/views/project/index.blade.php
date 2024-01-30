@@ -39,6 +39,28 @@
                     class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 ></textarea>
 
+                <div>
+                    <h3 class="mb-4 font-semibold text-gray-900 dark:text-white">{{__('Technologies')}}</h3>
+
+                    <ul class="grid sm:grid-cols-5 text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg dark:bg-gray-700 dark:border-gray-600 dark:text-white">
+                        @foreach($technologies as $technology)
+                            <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
+                                <div class="flex items-center ps-3">
+                                    @csrf
+                                    <input
+                                        name="technologiesIds[]"
+                                        id="{{$technology->name}}-checkbox"
+                                        type="checkbox"
+                                        value="{{$technology->id}}"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    <label for="{{$technology->name}}-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$technology->name}}</label>
+                                </div>
+                            </li>
+                        @endforeach
+                    </ul>
+
+                </div>
+
                 <x-input-error :messages="$errors->get('thumbnail')" class="mt-2" />
                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                 <x-input-error :messages="$errors->get('video_youtube_id')" class="mt-2" />
@@ -93,11 +115,17 @@
 
                     @php
                         $thumbnail = asset(Storage::url('images/'.$project->thumbnail));
+                        $myTechnologies = App\Models\ViewProjectTechnology::where('project_id', $project->id)->get();
                     @endphp
 
                     <div>
                         <img  src="{{ $thumbnail }}" alt="{{ $project->name }}" srcset="">
                         <p class="mt-4 text-lg text-gray-900">{{ $project->name }}</p>
+                        <ul class="grid sm:grid-cols-5">
+                            @foreach($myTechnologies as $technology)
+                                <li>{{$technology->technology_name}}</li>
+                            @endforeach
+                        </ul>
                     </div>
 
                 </div>
