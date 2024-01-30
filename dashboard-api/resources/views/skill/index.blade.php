@@ -3,7 +3,7 @@
         @if(count($technologies) > 0)
             <form method="POST" action="{{ route('skill.store') }}" enctype="multipart/form-data">
                 <label class="block" for="">
-                <span class="sr-only">{{__('Choose the thumbnail')}}</span>
+                <span class="sr-only">{{__('Choose the icon')}}</span>
                 @csrf
                 <input
                     name="icon"
@@ -35,12 +35,20 @@
                         @foreach($technologies as $technology)
                             <li class="w-full border-b border-gray-200 rounded-t-lg dark:border-gray-600">
                                 <div class="flex items-center ps-3">
-                                    <input  name="technologies_id" id="{{$technology->name}}-checkbox" type="checkbox" value="{{$technology->id}}" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                                    @csrf
+                                    <input
+                                        name="technologiesIds[]"
+                                        id="{{$technology->name}}-checkbox"
+                                        type="checkbox"
+                                        value="{{$technology->id}}"
+                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                                     <label for="{{$technology->name}}-checkbox" class="w-full py-3 ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$technology->name}}</label>
                                 </div>
                             </li>
                         @endforeach
                     </ul>
+
+
                 </div>
 
                 <x-input-error :messages="$errors->get('icon')" class="mt-2" />
@@ -56,7 +64,9 @@
             {{ $message['content'] }}
         @endif
 
+
         @foreach ($skills as $skill)
+
 
             <div class="p-6 flex space-x-2">
                 <div class="flex-1">
@@ -102,7 +112,7 @@
                     <div>
                         <img class="w-20" src="{{ $icon }}" alt="{{ $skill->name }}" srcset="">
                         <p class="mt-4 text-lg text-gray-900">{{ $skill->name }}</p>
-                        <ul>
+                        <ul class="grid sm:grid-cols-5">
                             @foreach($myTechnologies as $technology)
                                 <li>{{$technology->technology_name}}</li>
                             @endforeach

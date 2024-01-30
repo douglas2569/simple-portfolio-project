@@ -54,6 +54,7 @@ class SkillController extends Controller
         $validated = $request->validate([
             'icon' => 'image|required|max:50',
             'name' => 'required|string|min:4',
+            'technologiesIds' => 'required',
         ]);
 
         $request->file('icon')->store('public/images');
@@ -65,7 +66,7 @@ class SkillController extends Controller
             auth()->user()->skill()->create($validated);
 
             $lastSkillId = (auth()->user()->skill()->latest()->get())[0]->id;
-            foreach($this->technologiesIds as $technologyId){
+            foreach($validated['technologiesIds'] as $technologyId){
                 SkillTechnology::create(['skill_id'=>$lastSkillId, 'technology_id'=>$technologyId]);
             }
 
@@ -74,7 +75,6 @@ class SkillController extends Controller
             echo $th->getMessage();
             DB::rollBack();
         }
-
         return redirect(route('skill.index'));
 
     }
@@ -94,9 +94,19 @@ class SkillController extends Controller
        {
         $this->authorize('update', $skill);
 
-        return view('skill.edit',[
-           'skill' => $skill
-        ]);
+        $myTechnologies = SkillTechnology::where('skill_id', $skill->id)->get();
+        $myTechnologiesIds = array();
+        foreach($myTechnologies as $myTechnology){
+            array_push($myTechnologiesIds ,  $myTechnology->technology_id);
+        }
+
+        $data = [
+            'skill' => $skill,
+            'technologies'=> auth()->user()->technology()->get(),
+            'myTechnologies'=> $myTechnologiesIds,
+        ];
+
+        return view('skill.edit', $data);
     }
 
     /**
@@ -106,6 +116,7 @@ class SkillController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|min:4',
+            'technologiesIds' => 'required',
         ]);
 
         if($request->hasFile('icon')){
@@ -122,8 +133,26 @@ class SkillController extends Controller
 
         }
 
-        $this->authorize('update', $skill);
-        $skill->update($validated);
+        try {
+            DB::beginTransaction();
+
+            $this->authorize('update', $skill);
+            $skill->update($validated);
+            if(count($validated['technologiesIds']) > 0){
+                SkillTechnology::where(['skill_id'=>$skill->id])->delete();
+
+                foreach($validated['technologiesIds'] as $technologyId){
+                    SkillTechnology::create(['skill_id'=>$skill->id, 'technology_id'=>$technologyId]);
+                }
+            }
+
+            DB::commit();
+         } catch (\Exception $th) {
+            echo $th->getMessage();
+            DB::rollBack();
+        }
+
+
         return redirect(route('skill.index'));
     }
 
