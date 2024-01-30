@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class CoverPhotoService {
   private userEmail:string = 'root@gmail.com'
-  private URL:string = `${environment.urlApi}/coverphoto/${this.userEmail}`
+  private URL:string = `${environment.urlApi}/api/coverphoto/${this.userEmail}`
 
   constructor(private http:HttpClient) { }
 

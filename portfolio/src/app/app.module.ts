@@ -18,6 +18,7 @@ import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.com
 import { YouTubePlayerModule } from '@angular/youtube-player';
 import { CoverComponent } from './components/cover/cover.component';
 import { MyYoutubePlayerComponent } from './components/my-youtube-player/my-youtube-player.component';
+import { UrlImagePipe } from './pipes/url-image.pipe';
 
 
 @NgModule({
@@ -33,7 +34,8 @@ import { MyYoutubePlayerComponent } from './components/my-youtube-player/my-yout
     ContactComponent,
     PageNotFoundComponent,
     CoverComponent,
-    MyYoutubePlayerComponent
+    MyYoutubePlayerComponent,
+    UrlImagePipe
   ],
   imports: [
     BrowserModule,

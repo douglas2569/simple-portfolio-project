@@ -21,9 +21,7 @@ class CoverphotoController extends Controller
             $about = $user->about()->get()[0];
             $coverPhoto = $about->coverPhoto()->get();
 
-            $this->response['data'] = [
-                'cover_photo' => $coverPhoto
-            ];
+            $this->response['data'] = $coverPhoto;
 
 
             DB::commit();

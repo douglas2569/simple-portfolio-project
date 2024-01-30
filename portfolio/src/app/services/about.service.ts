@@ -10,7 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AboutService {
   private userEmail:string = 'root@gmail.com'
-  private URL:string = `${environment.urlApi}/${this.userEmail}/about`
+  private URL:string = `${environment.urlApi}/api/about/${this.userEmail}`
 
   constructor(private http:HttpClient) { }
 

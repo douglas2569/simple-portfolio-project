@@ -1,7 +1,7 @@
 <div class="cover md:w-[48rem] mx-auto" >
     <picture>
-      <source media="(max-width: 640px)" [srcset]="coverPhoto[0].image" />
-      <source media="(max-width: 1024px)" [srcset]="coverPhoto[1].image" />
+      <source media="(max-width: 640px)" srcset="{{ coverPhoto[1].image | urlImage }}" />
+      <source media="(max-width: 1024px)" srcset="{{ coverPhoto[0].image | urlImage }}" />
       <img [src]="coverPhoto[1].image" [alt]="coverPhoto[0].name" />
     </picture>
 
