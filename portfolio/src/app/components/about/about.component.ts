@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AboutService } from 'src/app/services/about.service';
-import SocialMedia from '../../models/Tag';
-
+import SocialMedia from '../../models/SocialMedia';
 
 @Component({
   selector: 'app-about',
@@ -21,41 +20,18 @@ export class AboutComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // this.mount()
+    this.mount()
   }
 
-  // mount():void{
-  //   this.aboutService.getAbout().subscribe((about)=>{
-  //     this.photoProfile = about.data.profile_photo
-  //     this.name = about.data.name
-  //     this.position = about.data.profile_photo
-  //     this.title = about.data.profile_photo
-  //     this.description = about.data.profile_photo
-  //     this.socialMedia = about.data.social_media
-  //   })
+  mount():void{
 
-  //   if(dataBase.about.photoProfile)
-  //     this.photoProfile = dataBase.about.photoProfile
-  //   else
-  //     this.photoProfile = '../../../assets/images/profile-default.png'
-
-  //   this.name = dataBase.about.name
-  //   this.position = dataBase.about.position
-  //   this.title = dataBase.about.title
-  //   this.description = dataBase.about.description
-  //   this.socialMedia = dataBase.about.socialMedia
-  // }
-
-  // mount(dataBase:Database):void{
-  //   if(dataBase.about.photoProfile)
-  //     this.photoProfile = dataBase.about.photoProfile
-  //   else
-  //     this.photoProfile = '../../../assets/images/profile-default.png'
-
-  //   this.name = dataBase.about.name
-  //   this.position = dataBase.about.position
-  //   this.title = dataBase.about.title
-  //   this.description = dataBase.about.description
-  //   this.socialMedia = dataBase.about.socialMedia
-  // }
+    this.aboutService.getAbout().subscribe((response)=>{
+      this.photoProfile = response.data.profile_photo
+      this.name = response.data.name
+      this.position = response.data.position
+      this.title = response.data.title
+      this.description = response.data.description
+      this.socialMedia = response.data.social_media
+    })
+  }
 }

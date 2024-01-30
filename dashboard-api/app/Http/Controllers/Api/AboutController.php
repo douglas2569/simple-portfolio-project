@@ -18,15 +18,10 @@ class AboutController extends Controller
         try {
             DB::beginTransaction();
             $user = User::where('email', $email)->get()[0];
-            $about = $user->about()->get()[0];
-            $coverPhoto = $about->coverPhoto()->get();
-            $socialMedia = $about->socialMedia()->get();
-
-            $this->response['data'] = response()->json([
-                'about' => $about,
-                'cover_photo' => $coverPhoto,
-                'social_media' => $socialMedia
-            ]);
+            $about = $user->about()->get()[0];                        
+			$about['social_media'] = $about->socialMedia()->get();
+			
+            $this->response['data'] = $about;
 
 
             DB::commit();
@@ -35,7 +30,7 @@ class AboutController extends Controller
             DB::rollBack();
         }
 
-        return $this->response;
+        return json_encode($this->response);
 
     }
 }

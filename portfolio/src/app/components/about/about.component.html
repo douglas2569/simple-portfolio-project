@@ -1,6 +1,6 @@
 <section id="about" class="px-4 pb-4 mb-4 bg-gray-50 md:w-[48rem] mx-auto">
   <div class="flex flex-col items-center">
-      <img class="h-28 w-28 border-8 border-white -mt-12 rounded-full" [src]="photoProfile" alt="">
+      <img class="h-28 w-28 border-8 border-white -mt-12 rounded-full" src="{{ photoProfile | urlImage }}" alt="">
 
       <div class="w-auto my-1">
         <h1 class="text-center font-semibold text-lg">{{ name }} | {{ position }}</h1>
@@ -8,9 +8,9 @@
         <p class="text-sm">{{description}}</p>
         <ul class="flex gap-2 mt-4 text-sm flex-wrap">
           <li *ngFor="let media of socialMedia" >
-            <!-- <a [href]="media.url" target="_blank" [title]="media.name">
-              <img class="h-6 w-6" [src]="media.icon" [alt]="media.name" srcset="">
-            </a> -->
+            <a [href]="media.url" target="_blank" [title]="media.name">
+              <img class="h-6 w-6" src="{{ media.icon | urlImage}}" [alt]="media.name" srcset="">
+            </a>
           </li>
         </ul>
       </div>
