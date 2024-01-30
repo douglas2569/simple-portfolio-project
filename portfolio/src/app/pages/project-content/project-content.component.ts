@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute} from '@angular/router';
-import {dataBase} from '../../database'
-import { Project } from '../../models/database';
+import Project from '../../models/Project';
 
 @Component({
   selector: 'app-project-content',
@@ -25,7 +24,7 @@ export class ProjectContentComponent implements OnInit {
   }
 
   mount(id:string|null):void{
-    this.project = dataBase.projects.filter((project)=>project.id == id)[0]
+    // this.project = dataBase.projects.filter((project)=>project.id == id)[0]
   }
 
   apiYoutubeLoaded():void{

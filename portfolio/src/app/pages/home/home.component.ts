@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { dataBase } from '../../database';
-import { Database, Project, Skill } from '../../models/database';
+import Project from '../../models/Project';
+import Skill from '../../models/Skill';
 
 @Component({
   selector: 'app-home',
@@ -14,12 +14,12 @@ export class HomeComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    this.mount(dataBase)
+
   }
 
-  mount(dataBase:Database):void{
-    this.skills = dataBase.skills
-    this.projects = dataBase.projects
+  mount():void{
+    // this.skills = dataBase.skills
+    // this.projects = dataBase.projects
   }
 
 }

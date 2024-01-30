@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import {Tag} from '../../models/database'
+import Tag from '../../models/Tag';
 
 @Component({
   selector: 'app-project',
@@ -20,7 +20,7 @@ export class ProjectComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    
+
   }
 
 
