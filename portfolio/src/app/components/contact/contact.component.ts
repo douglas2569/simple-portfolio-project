@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import SendEmail from '../../models/SendEmail';
+import { SendEmailService } from 'src/app/services/sendemail.service';
 
 @Component({
   selector: 'app-contact',
@@ -7,18 +10,19 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./contact.component.css']
 })
 export class ContactComponent implements OnInit {
-  @Input()
   to!:string
-
   emailForm!:FormGroup
 
-  constructor() { }
+  constructor(private sendEmailService:SendEmailService) { }
 
   ngOnInit(): void {
     this.emailForm = new FormGroup({
       subject: new FormControl('',Validators.required),
       message: new FormControl('',Validators.required),
     })
+
+    this.to = environment.userEmail
+
   }
 
 
@@ -33,7 +37,15 @@ export class ContactComponent implements OnInit {
   submit():void{
     if(this.emailForm.invalid) return
 
-    console.log(`${this.message} | ${this.to} `)
+    const data:SendEmail = {
+      to:this.to,
+      subject:this.subject.value,
+      message:this.message.value
+    }
+
+    this.sendEmailService.send(data).subscribe((response)=>{
+      console.log(response.data)
+    })
   }
 
 }
