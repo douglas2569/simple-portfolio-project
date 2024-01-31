@@ -23,23 +23,13 @@ class projectController extends Controller
             $user = User::where('email', $email)->get()[0];
             $projects = $user->project()->get();
 
-            foreach($projects as $project){
-                $technologies = $project->technologies()->get();
-                array_push($this->response['data'], $project);
-                $project['technologies'] =  new ArrayObject(array());
-                foreach($technologies as $technology){
-                    $project['technologies']->append($technology);
-                }
-
-                $externalLinks = $project->externalLink()->get();
-                $project['external_links'] =  new ArrayObject(array());
-                foreach($externalLinks as $externalLink){
-                    $project['external_links']->append($externalLink);
-                }
+            foreach($projects as $project){                                                
+                $project['technologies'] = $project->technologies()->get();
+				$project['external_links']= $project->externallink()->get();
+				
+				array_push($this->response['data'], $project);  
 
             }
-
-
 
             DB::commit();
         } catch (\ErrorException $th) {
@@ -47,7 +37,7 @@ class projectController extends Controller
             DB::rollBack();
         }
 
-        return $this->response;
+        return json_encode($this->response);
 
     }
 }

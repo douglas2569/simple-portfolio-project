@@ -21,19 +21,8 @@ class SkillController extends Controller
         try {
             DB::beginTransaction();
             $user = User::where('email', $email)->get()[0];
-            $skills = $user->skill()->get();
-
-            /*
-			foreach($skills as $skill){
-                $technologies = $skill->technologies()->get();
-                array_push($this->response['data'], $skill);
-                $skill['technologies'] =  new ArrayObject(array());
-                foreach($technologies as $technology){
-                    $skill['technologies']->append($technology);
-                }
-            }
-			*/
-			
+            $skills = $user->skill()->get();            
+						
 			foreach($skills as $skill){                
 				$skill['technologies'] = $skill->technologies()->get();
                 array_push($this->response['data'], $skill);
