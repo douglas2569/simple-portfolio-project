@@ -41,4 +41,8 @@ export class ProjectContentComponent implements OnInit {
     }
   }
 
+  back(){
+    history.back()
+  }
+
 }
