@@ -1,7 +1,8 @@
 <div class="bg-gray-50 p-4 md:w-[48rem] mx-auto" >
   <header name="project-header" class="mb-5">
       <!-- <a [routerLink]="['']"> -->
-        <a href="/">
+      <!-- <a href="/"> -->
+      <a href="/" (click)="$any('history.back()')">
         <img class="w-4 h-4" src="../../../assets/images/left-arrow.png" alt="voltar">
       </a>
   </header>
