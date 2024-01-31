@@ -1,12 +1,16 @@
 import Technology from './Technology'
+import ExternalLink from './ExternalLink';
 
 export default interface Project{
   id:string,
-  thumbnail:string,
   name:string,
-  technologies:Array<Technology>,
+  thumbnail:string,
+  video_youtube_id:string,
   description:string,
-  repository?:string,
-  documentation?:string,
-  videoId:string,
+  user_id:string,
+  created_at:string,
+  updated_at:string,
+  technologies:Array<Technology>,
+  external_links:Array<ExternalLink>,
+
 }

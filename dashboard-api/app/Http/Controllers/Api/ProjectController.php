@@ -46,8 +46,8 @@ class projectController extends Controller
         try {
             DB::beginTransaction();
             $user = User::where('email', $email)->get()[0];            
-			$project = Project::where(['user_id'=>$user->id, 'id'=>$projectId])->get();
-             print_r($project); die();                                             
+			$project = Project::where(['user_id'=>$user->id, 'id'=>$projectId])->get()[0];
+                                                        
 			$project['technologies'] = $project->technologies()->get();
 			$project['external_links']= $project->externallink()->get();
 			

@@ -52,7 +52,7 @@ class ProjectController extends Controller
     public function store(Request $request):RedirectResponse
     {
         $validated = $request->validate([
-            'thumbnail' => 'image|required|max:500',
+            'thumbnail' => 'image|required|max:600',
             'name' => 'required|string|min:4',
             'video_youtube_id' => 'required|string|min:4',
             'description' => 'required|string|min:4',
@@ -124,7 +124,7 @@ class ProjectController extends Controller
 
             $validated = Validator::make(
                 ['thumbnail' => $request->file('thumbnail')],
-                ['thumbnail' => 'image|required|max:500'],
+                ['thumbnail' => 'image|required|max:600'],
                 ['required' => 'The :attribute field is required'],
                 )->validate();
 
@@ -139,6 +139,7 @@ class ProjectController extends Controller
 
             $this->authorize('update', $project);
             $project->update($validated);
+
             if(count($validated['technologiesIds']) > 0){
                 ProjectTechnology::where(['project_id'=>$project->id])->delete();
 
@@ -146,13 +147,12 @@ class ProjectController extends Controller
                     ProjectTechnology::create(['project_id'=>$project->id, 'technology_id'=>$technologyId]);
                 }
             }
-
             DB::commit();
-         } catch (\Exception $th) {
+        } catch (\Exception $th) {
             echo $th->getMessage();
             DB::rollBack();
         }
-
+        die();
         return redirect(route('project.index'));
     }
 

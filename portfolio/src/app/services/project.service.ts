@@ -17,4 +17,9 @@ export class ProjectService {
     return this.http.get<Response<Project[]>>(url)
   }
 
+  getProject(id:string|null):Observable<Response<Project>>{
+    const url:string = `${environment.urlApi}/api/project/${environment.userEmail}/${id}`
+    return this.http.get<Response<Project>>(url)
+  }
+
 }

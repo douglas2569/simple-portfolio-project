@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute} from '@angular/router';
+import { ActivatedRoute, Router} from '@angular/router';
 import Project from '../../models/Project';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'app-project-content',
@@ -12,19 +13,21 @@ export class ProjectContentComponent implements OnInit {
   project!:Project
   apiLoaded:boolean = false
 
-  constructor(private route:ActivatedRoute) { }
+  constructor(private route:ActivatedRoute, private projectService:ProjectService) { }
 
   ngOnInit(): void {
-    let id!:string | null
-    this.route.paramMap.subscribe(value=> id = value.get('id'))
+    const id =  this.route.snapshot.paramMap.get('id')
     this.mount(id)
     this.apiYoutubeLoaded()
 
     window.scroll(0,0)
   }
 
-  mount(id:string|null):void{
-    this.project = dataBase.projects.filter((project)=>project.id == id)[0]
+  mount(projectId:string|null):void{
+    this.projectService.getProject(projectId).subscribe((response)=>{
+      this.project = response.data
+    })
+
   }
 
   apiYoutubeLoaded():void{
