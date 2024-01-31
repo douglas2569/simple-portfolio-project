@@ -1,3 +1,10 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@media screen and (max-width:640px){
+  #works div+div{
+    display: flex;
+    justify-content: center;
+  }
+}
