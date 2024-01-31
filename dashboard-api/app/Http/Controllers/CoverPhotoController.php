@@ -97,14 +97,14 @@ class CoverPhotoController extends Controller
 
         if($request->hasFile('image')){
 
-            $validated = Validator::make(
+            array_push($validated, Validator::make(
                 ['image' => $request->file('image')],
                 ['image' => 'image|required|max:1024'],
                 ['required' => 'The :attribute field is required'],
-                )->validate();
+                )->validate());
 
-                $validated['image']->store('public/images');
-                $validated['image'] =  $validated['image']->hashName();
+                $validated[0]['image']->store('public/images');
+                $validated['image'] =  $validated[0]['image']->hashName();
                 Storage::delete('public/images/'.$coverphoto->image);
 
         }

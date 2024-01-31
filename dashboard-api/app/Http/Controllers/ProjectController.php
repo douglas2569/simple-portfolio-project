@@ -122,23 +122,25 @@ class ProjectController extends Controller
 
         if($request->hasFile('thumbnail')){
 
-            $validated = Validator::make(
-                ['thumbnail' => $request->file('thumbnail')],
-                ['thumbnail' => 'image|required|max:600'],
-                ['required' => 'The :attribute field is required'],
-                )->validate();
+            array_push($validated, Validator::make(
+            ['thumbnail' => $request->file('thumbnail')],
+            ['thumbnail' => 'image|required|max:600'],
+            ['required' => 'The :attribute field is required'],
+            )->validate());
 
-                $validated['thumbnail']->store('public/images');
-                $validated['thumbnail'] =  $validated['thumbnail']->hashName();
-                Storage::delete('public/images/'.$project->thumbnail);
+            $validated[0]['thumbnail']->store('public/images');
+            $validated['thumbnail'] =  $validated[0]['thumbnail']->hashName();
+            Storage::delete('public/images/'.$project->thumbnail);
 
         }
+
 
         try {
             DB::beginTransaction();
 
             $this->authorize('update', $project);
             $project->update($validated);
+
 
             if(count($validated['technologiesIds']) > 0){
                 ProjectTechnology::where(['project_id'=>$project->id])->delete();
@@ -152,7 +154,7 @@ class ProjectController extends Controller
             echo $th->getMessage();
             DB::rollBack();
         }
-        die();
+
         return redirect(route('project.index'));
     }
 

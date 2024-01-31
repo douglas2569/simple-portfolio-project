@@ -93,14 +93,14 @@ class SocialMediaController extends Controller
 
         if($request->hasFile('icon')){
 
-            $validated = Validator::make(
+            array_push($validated, Validator::make(
                 ['icon' => $request->file('icon')],
-                ['icon' => 'icon|required|max:1024'],
+                ['icon' => 'image|required|max:50'],
                 ['required' => 'The :attribute field is required'],
-                )->validate();
+                )->validate());
 
-                $validated['icon']->store('public/images');
-                $validated['icon'] =  $validated['icon']->hashName();
+                $validated[0]['icon']->store('public/images');
+                $validated['icon'] =  $validated[0]['icon']->hashName();
                 Storage::delete('public/images/'.$socialmedia->icon);
 
         }

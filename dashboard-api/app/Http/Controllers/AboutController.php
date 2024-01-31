@@ -81,14 +81,14 @@ class AboutController extends Controller
         ]);
 
         if ($request->hasFile('profilePhoto')) {
-            $validated = Validator::make(
+            array_push($validated, Validator::make(
                 ['profile_photo' => $request->file('profilePhoto')],
                 ['profile_photo' => 'image|max:100'],
                 ['required' => 'The :attribute field is required'],
-                )->validate();
+                )->validate());
 
-                $validated['profile_photo']->store('public/images');
-                $validated['profile_photo'] =  $validated['profile_photo']->hashName();
+                $validated[0]['profile_photo']->store('public/images');
+                $validated['profile_photo'] =  $validated[0]['profile_photo']->hashName();
                 Storage::delete('public/images/'.$about->profile_photo);
             }
 
