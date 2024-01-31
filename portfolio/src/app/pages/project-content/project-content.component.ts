@@ -24,8 +24,10 @@ export class ProjectContentComponent implements OnInit {
   }
 
   mount(projectId:string|null):void{
+
     this.projectService.getProject(projectId).subscribe((response)=>{
       this.project = response.data
+      console.log(this.project )
     })
 
   }

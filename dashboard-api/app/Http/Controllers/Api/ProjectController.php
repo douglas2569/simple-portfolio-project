@@ -51,7 +51,7 @@ class projectController extends Controller
 			$project['technologies'] = $project->technologies()->get();
 			$project['external_links']= $project->externallink()->get();
 			
-			array_push($this->response['data'], $project);  
+			$this->response['data']= $project;  
             
 
             DB::commit();
