@@ -24,7 +24,7 @@ export class ProjectContentComponent implements OnInit {
   }
 
   mount(id:string|null):void{
-    // this.project = dataBase.projects.filter((project)=>project.id == id)[0]
+    this.project = dataBase.projects.filter((project)=>project.id == id)[0]
   }
 
   apiYoutubeLoaded():void{

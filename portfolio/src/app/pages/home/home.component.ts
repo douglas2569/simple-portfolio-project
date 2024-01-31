@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import Project from '../../models/Project';
 import Skill from '../../models/Skill';
 import { SkillService } from '../../services/skill.service';
+import { ProjectService } from '../../services/project.service';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +13,7 @@ export class HomeComponent implements OnInit {
   skills!:Array<Skill>
   projects!:Array<Project>
 
-  constructor(private skillService:SkillService) { }
+  constructor(private skillService:SkillService, private projectService:ProjectService) { }
 
   ngOnInit(): void {
     this.mount()
@@ -24,7 +25,11 @@ export class HomeComponent implements OnInit {
       this.skills = response.data
     })
 
-    // this.projects = dataBase.projects
+    this.projectService.getProjects().subscribe((response)=>{
+      this.projects = response.data
+    })
+
+
   }
 
 }

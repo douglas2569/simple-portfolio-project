@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import Tag from '../../models/Technology';
+import technology from '../../models/Technology';
 
 @Component({
   selector: 'app-project',
@@ -15,7 +15,7 @@ export class ProjectComponent implements OnInit {
   @Input()
   name!:string
   @Input()
-  tags!:Array<Tag>
+  technologies!:Array<technology>
 
   constructor() { }
 

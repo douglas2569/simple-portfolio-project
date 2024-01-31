@@ -1,10 +1,10 @@
-import Tag from './Technology'
+import Technology from './Technology'
 
 export default interface Project{
   id:string,
   thumbnail:string,
   name:string,
-  tags:Array<Tag>,
+  technologies:Array<Technology>,
   description:string,
   repository?:string,
   documentation?:string,

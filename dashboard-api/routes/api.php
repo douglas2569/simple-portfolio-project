@@ -26,4 +26,5 @@ Route::get('about/{email}', [AboutController::class, 'about'])->name('about');
 Route::get('coverphoto/{email}', [CoverphotoController::class, 'coverphoto'])->name('coverphoto');
 Route::get('skill/{email}',[SkillController::class, 'skill'])->name('skill');
 Route::get('project/{email}',[ProjectController::class, 'project'])->name('project');
+Route::get('project/{email}/{id}',[ProjectController::class, 'projectById'])->name('project');
 
