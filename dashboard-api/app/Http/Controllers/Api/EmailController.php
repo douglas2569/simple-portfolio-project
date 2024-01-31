@@ -26,7 +26,7 @@ class EmailController extends Controller
 
         try {
 
-        } catch (\ErrorException $th) {
+        } catch (\Exception $th) {
             $this->response['error'] = $th->getMessage();
         }
 
