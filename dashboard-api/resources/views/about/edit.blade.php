@@ -60,15 +60,12 @@
             </div>
 
             <div>
+                <x-input-label for="title" :value="__('Description')" />
                 <x-text-area name="description" rows="8" :value="old('description', $about->description)" ></x-text-area>
+                <x-input-error :messages="$errors->get('description')" class="mt-2" />
             </div>
 
 
-            <x-input-error :messages="$errors->get('profilePhoto')" class="mt-2" />
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-            <x-input-error :messages="$errors->get('title')" class="mt-2" />
-            <x-input-error :messages="$errors->get('position')" class="mt-2" />
-            <x-input-error :messages="$errors->get('description')" class="mt-2" />
             <x-primary-button class="mt-4">{{ __('Save') }}</x-primary-button>
 
         </form>
