@@ -12,49 +12,39 @@
          <form class="mt-6 space-y-6" method="POST" action="{{ route('coverphoto.update', $coverphoto) }}" enctype="multipart/form-data">
             @csrf
             @method('patch')
-                <div class="flex items-center space-x-6">
-                    @if($coverphoto->image)
-                            <div class="shrink-0">
-                                <img
-                                    class="h-16 object-cover rounded-sm"
-                                    src="{{asset('storage/images/'.$coverphoto->image)}}" />
-                            </div>
-                    @endif
+            <div class="flex flex-col">
+                <x-input-label for="image" class="mb-2" :value="__('Cover photo')" />
+                <x-file-input-image
+                    type="file"
+                    :imagePath="$coverphoto->image"
+                    name="image"
+                    id="image"
+                    :rounded="__('sm')"
+                />
+                <x-input-error :messages="$errors->get('image')" class="mt-2" />
+            </div>
 
-                    <label class="block" for="">
-                    <span class="sr-only">{{__('Choose cover photo')}}</span>
+            <div>
+                <x-input-label for="name" :value="__('Name')" />
+                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $coverphoto->name)" required autofocus autocomplete="name" />
+                <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            </div>
 
-                    <input
-                        name="image"
-                        type="file"
-                        class="block w-full text-sm text-slate-500
-                                file:mr-4 file:py-2 file:px-4
-                                file:rounded-full file:border-0
-                                file:text-sm file:font-semibold
-                                file:bg-violet-50 file:text-violet-700
-                                hover:file:bg-violet-100"
-                    />
-                    </label>
-                </div>
-
-
-            <input
-                name="name"
-                placeholder="{{ __('Name') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                value="{{$coverphoto->name}}"
-            />
+            <div>
+            {{$coverphoto->size}}
+            <x-input-label for="size" :value="__('Size')" />
+                <x-select
+                    :message="__('Qual o tamanho da imagem?')"
+                    :options="[ ['value' =>'sm', 'name'=> 'Pequena'],
+                                ['value' =>'md', 'name'=> 'Média'] ]"
+                    id="size"
+                    name="size"
+                    :conditionSelect="$coverphoto->size"
+                />
+                <x-input-error :messages="$errors->get('size')" class="mt-2" />
+            </div>
 
 
-            <select name="size" id="photo-size" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                <option>Qual o tamanho da imagem?</option>
-                <option {{ ($coverphoto->size == 'sm') ? 'selected' : '' }} value="sm">Pequena</option>
-                <option {{ ($coverphoto->size == 'md') ? 'selected' : '' }} value="md">Média</option>
-            </select>
-
-            <x-input-error :messages="$errors->get('name')" class="mt-2" />
-            <x-input-error :messages="$errors->get('image')" class="mt-2" />
-            <x-input-error :messages="$errors->get('size')" class="mt-2" />
             <div class="mt-4 space-x-2">
                 <x-primary-button>{{ __('Save') }}</x-primary-button>
                 <a href="{{ route('coverphoto.index') }}">{{ __('Cancel') }}</a>

@@ -21,6 +21,7 @@
                     :imagePath="$about->profile_photo"
                     name="profilePhoto"
                     id="profilePhoto"
+                    :rounded="__('full')"
 
                 />
             </div>

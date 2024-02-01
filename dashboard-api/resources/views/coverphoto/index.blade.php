@@ -11,30 +11,34 @@
         </header>
          @if(count($about) > 0)
             <form class="mt-6 space-y-6" method="POST" action="{{ route('coverphoto.store') }}" enctype="multipart/form-data">
-            @csrf
+                @csrf
+                <div class="flex flex-col">
+                    <x-input-label  for="image" class="mb-2" :value="__('Cover photo')" />
+                        <x-file-input
+                            name="image"
+                            id="image"
+                            type="file"
+                        />
+                    <x-input-error :messages="$errors->get('image')" class="mt-2" />
+                </div>
+                <div>
+                    <x-input-label for="name" :value="__('Name')" />
+                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name')" required autofocus autocomplete="name" />
+                    <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                </div>
 
-                <x-file-input
-                    name="image"
-                    type="file"
-                    :label="__('Choose profile photo')"
-                />
+                <div>
+                    <x-input-label for="size" :value="__('Size')" />
+                    <x-select
+                        :message="__('Qual o tamanho da imagem?')"
+                        :options="[ ['value' =>'sm', 'name'=> 'Pequena'],
+                                 ['value' =>'md', 'name'=> 'Média'] ]"
+                        id="size"
+                        name="size"
+                     />
+                     <x-input-error :messages="$errors->get('size')" class="mt-2" />
+                </div>
 
-                <input
-                    name="name"
-                    placeholder="{{ __('Name') }}"
-                    class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                />
-
-                <select name="size" id="photo-size" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected>Qual o tamanho da imagem?</option>
-                    <option value="sm">Pequena</option>
-                    <option value="md">Média</option>
-                </select>
-
-
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                <x-input-error :messages="$errors->get('image')" class="mt-2" />
-                <x-input-error :messages="$errors->get('size')" class="mt-2" />
                 <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
             </form>
         @else
@@ -90,8 +94,8 @@
 
                     <div>
                         <img src="{{ $image }}" alt="{{ $coverphoto->name }}" srcset="">
-                        <p class="mt-4 text-lg text-gray-900">{{ $size }}</p>
-                        <p class="mt-4 text-lg text-gray-900">{{ $coverphoto->name }}</p>
+                        <p class="mt-4 text-md text-gray-900">{{ $size }}</p>
+                        <p class="mt-4 text-md text-gray-900">{{ $coverphoto->name }}</p>
                     </div>
 
                 </div>

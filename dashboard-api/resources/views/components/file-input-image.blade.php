@@ -1,18 +1,24 @@
-@props(['disabled' => false, 'imagePath'])
+@props(['disabled' => false, 'rounded', 'imagePath'])
 <div class="flex items-center">
 
     @if($imagePath)
         <div class="shrink-0">
-            <img
-                class="h-16 w-16 object-cover rounded-full"
-                src="{{asset('storage/images/'.$imagePath)}}"
-            />
+            @if($rounded == 'full')
+                <img
+                    class="h-16 w-16 object-cover rounded-full"
+                    src="{{asset('storage/images/'.$imagePath)}}"
+                />
+            @else
+                <img
+                    class="h-16 object-cover rounded-sm"
+                    src="{{asset('storage/images/'.$imagePath)}}"
+                    />
+            @endif
         </div>
     @endif
 
     <input
     {{ $disabled ? 'disabled' : '' }}
-        type="file"
         {!! $attributes->merge(['class' => 'block w-full text-sm text-slate-500
                             file:mr-4 file:py-2 file:px-4
                             file:rounded-full file:border-0
