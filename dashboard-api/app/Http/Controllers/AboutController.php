@@ -14,9 +14,9 @@ class AboutController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index():RedirectResponse
     {
-
+        return redirect(route('about.create'));
     }
 
     /**
