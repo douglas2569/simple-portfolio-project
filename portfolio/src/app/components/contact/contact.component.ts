@@ -35,6 +35,7 @@ export class ContactComponent implements OnInit {
   }
 
   submit():void{
+
     if(this.emailForm.invalid) return
 
     const data:SendEmail = {
@@ -46,6 +47,12 @@ export class ContactComponent implements OnInit {
     this.sendEmailService.send(data).subscribe((response)=>{
       console.log(response.data)
     })
+
+    this.emailForm = new FormGroup({
+      subject: new FormControl(''),
+      message: new FormControl(''),
+    })
+
   }
 
 }
