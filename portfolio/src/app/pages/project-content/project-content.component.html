@@ -11,11 +11,11 @@
       <li *ngFor="let tag of project.technologies" class="font-semibold bg-{{tag.color}}-100 text-{{tag.color}}-800 font-medium me-2 px-2.5 py-0.5 rounded dark:bg-{{tag.color}}-900 dark:text-{{tag.color}}-300" >{{tag.name}}</li>
   </ul>
 
-  <div class="documentation flex gap-1 items-center text-sm" *ngFor="let externalLink of project.external_links">
+  <div class="documentation mt-2 flex gap-1 items-center text-sm" *ngFor="let externalLink of project.external_links">
       <img class="w-4 h-4" src="../../../assets/images/link.png" [alt]="externalLink.name">
       <a [href]="externalLink.url" target="_blank" rel="noopener noreferrer">{{externalLink.name}}</a>
   </div>
 
-  <p class="mt-2 mb-2 leading-5 text-sm" >{{project.description}}</p>
+  <p class="mt-2 mb-4 leading-5 text-sm" >{{project.description}}</p>
   <app-my-youtube-player [videoId]="project.video_youtube_id"> </app-my-youtube-player>
 </div>
