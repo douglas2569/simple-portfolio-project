@@ -94,8 +94,8 @@
                     </div>
 
                     <div>
-                        <p class="mt-4 text-lg text-gray-900">{{ $externalLinkProjectItem->external_link_name }}</p>
-                        <p class="mt-4 text-lg text-gray-900">{{ $externalLinkProjectItem->external_link_url }}</p>
+                        <p class="mt-2 text-lg text-gray-900">{{ $externalLinkProjectItem->external_link_name }}</p>
+                        <p class="mt-2 text-lg text-gray-900">{{ $externalLinkProjectItem->external_link_url }}</p>
                     </div>
 
                 </div>
