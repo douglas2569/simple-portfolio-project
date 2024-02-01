@@ -1,16 +1,14 @@
-@props(['disabled' => false, 'imagePath', 'label'])
+@props(['disabled' => false, 'imagePath'])
+<div class="flex items-center">
 
-@if($imagePath)
-    <div class="shrink-0">
-        <img
-            class="h-16 w-16 object-cover rounded-full"
-            src="{{asset('storage/images/'.$imagePath)}}"
-        />
-    </div>
-@endif
-
-<label class="block">
-    <span class="sr-only">{{$label}}</span>
+    @if($imagePath)
+        <div class="shrink-0">
+            <img
+                class="h-16 w-16 object-cover rounded-full"
+                src="{{asset('storage/images/'.$imagePath)}}"
+            />
+        </div>
+    @endif
 
     <input
     {{ $disabled ? 'disabled' : '' }}
@@ -23,4 +21,9 @@
                             hover:file:bg-violet-100']) !!}
 
     />
-</label>
+</div>
+
+
+
+
+

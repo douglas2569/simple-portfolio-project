@@ -13,21 +13,11 @@
             <form class="mt-6 space-y-6" method="POST" action="{{ route('coverphoto.store') }}" enctype="multipart/form-data">
             @csrf
 
-                <label class="block" for="">
-                <span class="sr-only">{{__('Choose cover photo')}}</span>
-
-                <input
+                <x-file-input
                     name="image"
                     type="file"
-                    class="block w-full text-sm text-slate-500
-                            file:mr-4 file:py-2 file:px-4
-                            file:rounded-full file:border-0
-                            file:text-sm file:font-semibold
-                            file:bg-violet-50 file:text-violet-700
-                            hover:file:bg-violet-100"
+                    :label="__('Choose profile photo')"
                 />
-                </label>
-
 
                 <input
                     name="name"

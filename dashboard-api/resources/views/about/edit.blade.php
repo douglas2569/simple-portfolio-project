@@ -14,14 +14,15 @@
             @csrf
             @method('patch')
 
-            <div class="flex items-center space-x-6">
-
+            <div class="flex flex-col">
+                <x-input-label  for="profilePhoto" class="mb-2" :value="__('Profile photo')" />
                 <x-file-input-image
+                    type="file"
                     :imagePath="$about->profile_photo"
-                    :label="__('Choose profile photo')"
                     name="profilePhoto"
-                />
+                    id="profilePhoto"
 
+                />
             </div>
 
             <div>
