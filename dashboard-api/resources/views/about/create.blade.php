@@ -18,7 +18,6 @@
                 <x-file-input
                     name="profilePhoto"
                     type="file"
-                    :label="__('Choose profile photo')"
                     id="profilePhoto"
                 />
             </div>
