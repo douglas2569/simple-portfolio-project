@@ -22,6 +22,8 @@
                     name="profilePhoto"
                     id="profilePhoto"
                     :rounded="__('full')"
+                    :height="__('h-16')"
+                    :width="__('w-16')"
 
                 />
             </div>

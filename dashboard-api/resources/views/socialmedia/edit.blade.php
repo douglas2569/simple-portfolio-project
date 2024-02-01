@@ -1,48 +1,44 @@
 <x-app-layout>
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-         <form method="POST" action="{{ route('socialmedia.update', $socialmedia) }}" enctype="multipart/form-data">
+    <div class="mt-4 max-w-2xl mx-auto sm:p-6 p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+        <header>
+            <h2 class="text-lg font-medium text-gray-900">
+                {{ __('Social Media') }}
+            </h2>
+
+            <p class="mt-1 text-sm text-gray-600">
+                {{ __("Update your social media.") }}
+            </p>
+        </header>
+         <form class="mt-6 space-y-6" method="POST" action="{{ route('socialmedia.update', $socialmedia) }}" enctype="multipart/form-data">
+            @csrf
             @method('patch')
 
-                <div class="flex items-center space-x-6">
-                    @if($socialmedia->icon)
-                            <div class="shrink-0">
-                                <img
-                                    class="w-10 h-10 object-cover rounded-md"
-                                    src="{{asset('storage/images/'.$socialmedia->icon)}}" />
-                            </div>
-                    @endif
+            <div class="flex flex-col">
+                <x-input-label for="icon" class="mb-2" :value="__('Icon')" />
+                <x-file-input-image
+                    type="file"
+                    :imagePath="$socialmedia->icon"
+                    name="icon"
+                    id="icon"
+                    :rounded="__('full')"
+                    :height="__('h-16')"
+                    :width="__('w-16')"
+                />
+                <x-input-error :messages="$errors->get('icon')" class="mt-2" />
+            </div>
 
-                    <label class="block" for="">
-                    <span class="sr-only">{{__('Choose social media')}}</span>
-                    @csrf
-                    <input
-                        name="icon"
-                        type="file"
-                        class="block w-full text-sm text-slate-500
-                                file:mr-4 file:py-2 file:px-4
-                                file:rounded-full file:border-0
-                                file:text-sm file:font-semibold
-                                file:bg-violet-50 file:text-violet-700
-                                hover:file:bg-violet-100"
-                    />
-                    </label>
-                </div>
 
-            @csrf
-            <input
-                name="name"
-                placeholder="{{ __('Name') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                value="{{$socialmedia->name}}"
-            />
+            <div>
+                <x-input-label for="name" :value="__('Name')" />
+                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $socialmedia->name)" required autofocus autocomplete="name" />
+                <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            </div>
 
-            @csrf
-            <input
-                name="url"
-                placeholder="{{ __('URL') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                value="{{$socialmedia->name}}"
-            />
+            <div>
+                <x-input-label for="url" :value="__('URL')" />
+                <x-text-input id="url" name="url" type="text" class="mt-1 block w-full" :value="old('url',$socialmedia->url)" required autocomplete="url" />
+                <x-input-error class="mt-2" :messages="$errors->get('url')" />
+            </div>
 
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
             <x-input-error :messages="$errors->get('icon')" class="mt-2" />

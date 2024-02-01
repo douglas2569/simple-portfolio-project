@@ -20,6 +20,8 @@
                     name="image"
                     id="image"
                     :rounded="__('sm')"
+                    :height="__('h-16')"
+                    :width="__('w-auto')"
                 />
                 <x-input-error :messages="$errors->get('image')" class="mt-2" />
             </div>

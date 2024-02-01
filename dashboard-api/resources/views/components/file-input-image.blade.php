@@ -1,19 +1,13 @@
-@props(['disabled' => false, 'rounded', 'imagePath'])
+@props(['disabled' => false, 'rounded', 'imagePath', 'height', 'width'])
 <div class="flex items-center">
 
     @if($imagePath)
         <div class="shrink-0">
-            @if($rounded == 'full')
-                <img
-                    class="h-16 w-16 object-cover rounded-full"
-                    src="{{asset('storage/images/'.$imagePath)}}"
-                />
-            @else
-                <img
-                    class="h-16 object-cover rounded-sm"
-                    src="{{asset('storage/images/'.$imagePath)}}"
-                    />
-            @endif
+            <img
+                class="{{$height}} {{$width}} object-cover rounded-{{$rounded}}"
+                src="{{asset('storage/images/'.$imagePath)}}"
+            />
+
         </div>
     @endif
 
