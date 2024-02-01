@@ -89,7 +89,7 @@
 
                     @php
                         $image = asset(Storage::url('images/'.$coverphoto->image));
-                        $size =  ($coverphoto->size == "sm")? "Pequena":"Média";
+                        $size =  ($coverphoto->size == "sm")? __("Small"):__("Medium");
                     @endphp
 
                     <div>
