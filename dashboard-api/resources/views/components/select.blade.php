@@ -4,7 +4,7 @@
         <option>{{$message}}</option>
         @foreach($options as $option)
             <option
-            {{ ($conditionSelect == "__('$option[value]')")? "__('selected')" : '' }}
-            value="{{$option['value']}}">{{$option['name']}}</option>
+                {{ $conditionSelect == $option['value']?'selected':'' }}
+                value="{{$option['value']}}">{{$option['name']}}</option>
         @endforeach
 </select>

@@ -31,12 +31,11 @@
             </div>
 
             <div>
-            {{$coverphoto->size}}
             <x-input-label for="size" :value="__('Size')" />
                 <x-select
-                    :message="__('Qual o tamanho da imagem?')"
-                    :options="[ ['value' =>'sm', 'name'=> 'Pequena'],
-                                ['value' =>'md', 'name'=> 'Média'] ]"
+                    :message="__('How big is the image?')"
+                    :options="[ ['value' =>'sm', 'name'=> 'Small'],
+                                ['value' =>'md', 'name'=> 'Medium'] ]"
                     id="size"
                     name="size"
                     :conditionSelect="$coverphoto->size"
