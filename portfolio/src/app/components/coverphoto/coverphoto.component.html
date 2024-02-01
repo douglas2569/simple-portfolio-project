@@ -1,8 +1,16 @@
 <div class="cover md:w-[48rem] mx-auto" >
-    <picture>
+    <!-- <picture>
       <source media="(max-width: 640px)" srcset="{{ coverPhoto[1].image | urlImage }}" />
       <source media="(min-width: 640px)" srcset="{{ coverPhoto[0].image | urlImage }}" />
       <img [src]="coverPhoto[1].image" [alt]="coverPhoto[0].name" />
+    </picture> -->
+    <picture>
+      <source
+        *ngFor="let coverPhoto of coverPhotos"
+        media="{{(coverPhoto.size == 'sm')?'(max-width: 425px)':'(min-width: 425px)'}}"
+        srcset="{{ coverPhoto.image | urlImage }}" />
+
+      <img [src]="coverPhotos[0].image" [alt]="coverPhotos[0].name" />
     </picture>
 
 </div>

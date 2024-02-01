@@ -8,7 +8,7 @@ import { CoverPhotoService } from 'src/app/services/coverphoto.service';
   styleUrls: ['./coverphoto.component.css']
 })
 export class CoverPhotoComponent implements OnInit {
-  coverPhoto!:Array<CoverPhoto>
+  coverPhotos!:Array<CoverPhoto>
 
   constructor(private coverPhotoService:CoverPhotoService) { }
 
@@ -19,7 +19,7 @@ export class CoverPhotoComponent implements OnInit {
   mount():void{
 
     this.coverPhotoService.getCoverPhoto().subscribe((response)=>{
-      this.coverPhoto = response.data
+      this.coverPhotos = response.data
     })
   }
 

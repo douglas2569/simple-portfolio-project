@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 class EmailController extends Controller
 {
@@ -16,6 +16,7 @@ class EmailController extends Controller
         ]
     ];
 
+
     public function send(Request $request){
 
         $validated = $request->validate([
@@ -24,9 +25,32 @@ class EmailController extends Controller
             'message' => 'required|string|max:1600'
         ]);
 
-        try {
+        $mail = new PHPMailer(true);
 
-        } catch (\Exception $th) {
+        try {
+            $mail->SMTPSecure = 'plain';
+            $mail->isSMTP();
+            $mail->Host = env('MAIL_HOST');
+            $mail->Port = env('MAIL_PORT');
+            $mail->SMTPAuth = true;
+            $mail->Username = env('MAIL_USERNAME');
+            $mail->Password = env('MAIL_PASSWORD');
+            $mail->SMTPSecure = env('MAIL_ENCRYPTION');
+            $mail->setFrom(env('MAIL_FROM_ADDRESS'));
+
+            $mail->isHTML(true);
+            $mail->CharSet = 'utf-8';
+            $mail->FromName = env('MAIL_FROM_NAME');
+
+            $mail->Subject = $validated['subject'];
+            $mail->Body    = $validated['message'];
+            $mail->addAddress($validated['to']);
+
+            if( !$mail->send() ) {
+                $this->response['error'] = "Email not sent: ".$mail->ErrorInfo;
+            }
+
+        } catch (Exception $th) {
             $this->response['error'] = $th->getMessage();
         }
 
