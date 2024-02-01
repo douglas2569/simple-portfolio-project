@@ -12,11 +12,16 @@
 
         <form class="mt-6 space-y-6" method="POST" action="{{ route('about.store') }}" enctype="multipart/form-data">
             @csrf
-            <x-file-input
-                name="profilePhoto"
-                type="file"
-                :label="__('Choose profile photo')"
-            />
+
+            <div class="flex flex-col">
+                <x-input-label  for="profilePhoto" class="mb-2" :value="__('Profile photo')" />
+                <x-file-input
+                    name="profilePhoto"
+                    type="file"
+                    :label="__('Choose profile photo')"
+                    id="profilePhoto"
+                />
+            </div>
 
 
             <div>
