@@ -1,6 +1,17 @@
 <x-app-layout>
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
-        <form method="POST" action="{{ route('about.update',$about) }}" enctype="multipart/form-data">
+    <div class="mt-4 max-w-2xl mx-auto sm:p-6 p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+        <header>
+            <h2 class="text-lg font-medium text-gray-900">
+                {{ __('About') }}
+            </h2>
+
+            <p class="mt-1 text-sm text-gray-600">
+                {{ __("Update information about you.") }}
+            </p>
+        </header>
+
+        <form class="mt-6 space-y-6" method="POST" action="{{ route('about.update',$about) }}" enctype="multipart/form-data">
+            @csrf
             @method('patch')
 
             <div class="flex items-center space-x-6">
@@ -15,7 +26,7 @@
 
                 <label class="block">
                     <span class="sr-only">Choose profile photo</span>
-                    @csrf
+
                     <input
                     name="profilePhoto"
                     type="file"
@@ -29,38 +40,29 @@
                 </label>
             </div>
 
-            @csrf
-            <input
-                name="name"
-                placeholder="{{ __('Nome') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                value="{{$about->name}}"
-            />
+            <div>
+                <x-input-label for="name" :value="__('Name')" />
+                <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $about->name)" required autofocus autocomplete="name" />
+                <x-input-error class="mt-2" :messages="$errors->get('name')" />
+            </div>
 
-            @csrf
-            <input
-                name="position"
-                placeholder="{{ __('Position') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                value="{{$about->position}}"
-            />
-
-            @csrf
-            <input
-                name="title"
-                placeholder="{{ __('Title') }}"
-                class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                value="{{$about->title}}"
-            />
+            <div>
+                <x-input-label for="position" :value="__('Position')" />
+                <x-text-input id="position" name="position" type="text" class="mt-1 block w-full" :value="old('position', $about->position)" required autofocus autocomplete="position" />
+                <x-input-error class="mt-2" :messages="$errors->get('position')" />
+            </div>
 
 
-            @csrf
-            <textarea
-                name="description"
-                placeholder="{{ __('Write your description here...') }}"
-                rows="4"
-                class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-            >{{$about->description}}</textarea>
+            <div>
+                <x-input-label for="title" :value="__('Title')" />
+                <x-text-input id="title" name="title" type="text" class="mt-1 block w-full" :value="old('title', $about->title)" required autofocus autocomplete="title" />
+                <x-input-error class="mt-2" :messages="$errors->get('title')" />
+            </div>
+
+            <div>
+                <x-text-area name="description" rows="8" :value="old('description', $about->description)" ></x-text-area>
+            </div>
+
 
             <x-input-error :messages="$errors->get('profilePhoto')" class="mt-2" />
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
@@ -70,5 +72,9 @@
             <x-primary-button class="mt-4">{{ __('Save') }}</x-primary-button>
 
         </form>
+
+
+
+
     </div>
 </x-app-layout>
