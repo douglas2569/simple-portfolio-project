@@ -10,7 +10,7 @@
             </p>
         </header>
          @if(count($about) > 0)
-            <form class="mt-6 space-y-6" method="POST" action="{{ route('coverphoto.store') }}" enctype="multipart/form-data">
+            <form class="p-8" method="POST" action="{{ route('coverphoto.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="flex flex-col">
                     <x-input-label  for="image" class="mb-2" :value="__('Cover photo')" />

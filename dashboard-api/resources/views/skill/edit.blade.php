@@ -8,7 +8,7 @@
             <p class="mt-1 text-base text-gray-600">
                 {{ __("Update your skill.") }}
             </p>
-         <form class="mt-6 space-y-6" method="POST" action="{{ route('skill.update', $skill) }}" enctype="multipart/form-data">
+         <form class="p-8" method="POST" action="{{ route('skill.update', $skill) }}" enctype="multipart/form-data">
             @method('patch')
             @csrf
             <div class="flex flex-col">

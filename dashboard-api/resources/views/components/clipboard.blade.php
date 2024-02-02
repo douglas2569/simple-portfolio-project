@@ -25,17 +25,17 @@
         class="absolute left-0"
         x-cloak>
 
-        <div class="px-3 h-7 -ml-1.5 items-center flex text-xs bg-green-500 border-r border-green-500 -translate-x-full text-white rounded">
+        <div class="px-3 h-7 -ml-1.5 items-center flex text-xs bg-violet-500 border-r border-violet-500 -translate-x-full text-white rounded">
             <span>Copied!</span>
             <div class="absolute right-0 inline-block h-full -mt-px overflow-hidden translate-x-3 -translate-y-2 top-1/2">
-                <div class="w-3 h-3 origin-top-left transform rotate-45 bg-green-500 border border-transparent"></div>
+                <div class="w-3 h-3 origin-top-left transform rotate-45 bg-violet-500 border border-transparent"></div>
             </div>
         </div>
     </div>
     <button
         @click="copyToClipboard();"
         class="flex items-center justify-center h-8 text-xs bg-white border rounded-md cursor-pointer w-9 border-neutral-200/60 hover:bg-neutral-100 active:bg-white focus:bg-white focus:outline-none text-neutral-500 hover:text-neutral-600 group">
-        <svg x-show="copyNotification" class="w-4 h-4 text-green-500 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" x-cloak>
+        <svg x-show="copyNotification" class="w-4 h-4 text-violet-500 stroke-current" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" x-cloak>
             <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
         </svg>
         <svg x-show="!copyNotification" class="w-4 h-4 stroke-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

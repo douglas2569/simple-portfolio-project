@@ -9,7 +9,7 @@
                 {{ __("Update your social media.") }}
             </p>
         </header>
-         <form class="mt-6 space-y-6" method="POST" action="{{ route('socialmedia.update', $socialmedia) }}" enctype="multipart/form-data">
+         <form class="p-8" method="POST" action="{{ route('socialmedia.update', $socialmedia) }}" enctype="multipart/form-data">
             @csrf
             @method('patch')
 

@@ -10,7 +10,7 @@
             </p>
         </header>
 
-        <form class="mt-6 space-y-6" method="POST" action="{{ route('technology.store') }}" enctype="multipart/form-data">
+        <form class="p-8" method="POST" action="{{ route('technology.store') }}" enctype="multipart/form-data">
             @csrf
             <div>
                 <x-input-label for="name" :value="__('Name')" />

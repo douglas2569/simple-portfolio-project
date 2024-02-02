@@ -9,7 +9,7 @@
                 {{ __("Update your cover images. Small for cell phones and medium for devices with larger screens.") }}
             </p>
         </header>
-         <form class="mt-6 space-y-6" method="POST" action="{{ route('coverphoto.update', $coverphoto) }}" enctype="multipart/form-data">
+         <form class="p-8" method="POST" action="{{ route('coverphoto.update', $coverphoto) }}" enctype="multipart/form-data">
             @csrf
             @method('patch')
             <div class="flex flex-col">

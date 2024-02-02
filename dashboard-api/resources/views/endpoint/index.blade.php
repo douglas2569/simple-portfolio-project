@@ -11,9 +11,9 @@
         </header>
 
 
-<div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
+<div class="bg-white shadow-sm rounded-lg">
 
-    <div class="px-6 flex mt-2 space-x-2">
+    <div class="flex mt-2">
         <div class="flex-1">
 
              <x-accordion :endpoints="$endpoints"  />

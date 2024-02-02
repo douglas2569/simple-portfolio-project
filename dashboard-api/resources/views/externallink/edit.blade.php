@@ -9,7 +9,7 @@
                 {{ __("Update your external link.") }}
             </p>
         </header>
-         <form class="mt-6 space-y-6" method="POST" action="{{ route('externallink.update', $externallink) }}" enctype="multipart/form-data">
+         <form class="p-8" method="POST" action="{{ route('externallink.update', $externallink) }}" enctype="multipart/form-data">
             @method('patch')
             @csrf
 
