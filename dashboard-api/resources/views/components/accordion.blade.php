@@ -5,7 +5,7 @@
     @foreach($endpoints as $endpoint)
     <div class="mt-4">
         <h2 id="accordion-collapse-heading-1">
-            <span type="button" class="bg-gray-50 cursor-pointer flex items-baseline justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-100 rounded-t-xl focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-200 dark:hover:bg-gray-800 gap-3" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
+            <span type="button" class="bg-violet-50 cursor-pointer flex items-baseline justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-100 rounded-t-xl focus:ring-4 focus:ring-violet-200 dark:focus:ring-violet-800 dark:border-gray-700 dark:text-gray-400 hover:bg-violet-200 dark:hover:bg-violet-800 gap-3" data-accordion-target="#accordion-collapse-body-1" aria-expanded="true" aria-controls="accordion-collapse-body-1">
                 <div class="flex items-center gap-4">
                     <x-clipboard  :text="$endpoint['endpoint']" />
                     <span>{{$endpoint['endpoint']}}</span>

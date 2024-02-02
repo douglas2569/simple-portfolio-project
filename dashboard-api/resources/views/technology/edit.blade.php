@@ -21,10 +21,10 @@
 
             <div>
                 <x-input-label for="color" :value="__('Color')" />
-                <select name="color" id="photo-size" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select name="color" id="photo-size" class="bg-violet-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-violet-500 focus:border-violet-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-violet-500 dark:focus:border-violet-500">
                     <option>{{ __('What color is your technology?') }}</option>
                     <option {{ ($technology->color == 'default') ? 'selected' : '' }} value="default" style="font-weight:bold">Padrão</option>
-                    <option {{ ($technology->color == 'blue') ? 'selected' : '' }} value="blue" style="color:blue; font-weight:bold">Azul</option>
+                    <option {{ ($technology->color == 'violet') ? 'selected' : '' }} value="violet" style="color:violet; font-weight:bold">Azul</option>
                     <option {{ ($technology->color == 'gray') ? 'selected' : '' }} value="gray" style="color:gray; font-weight:bold">Cinza</option>
                     <option {{ ($technology->color == 'red') ? 'selected' : '' }} value="red" style="color:red; font-weight:bold">Vermelho</option>
                     <option {{ ($technology->color == 'green') ? 'selected' : '' }} value="green" style="color:green; font-weight:bold">Verde</option>
