@@ -19,10 +19,5 @@ Esse projeto foi desenvolvido com o intuito de criar um espaço onde eu possa mo
 #### 1° Aplicação
 ![Alt text](showcase-image/00-1.png) ![Alt text](showcase-image/011.png)
 
-![Alt text](showcase-image/01-2.png) ![Alt text](showcase-image/02-2.png)
-
- ![Alt text](showcase-image/03.png) ![Alt text](showcase-image/04-1.png)
-
 #### 2° Aplicação (em desenvolvimento)
 
-![Alt text](showcase-image/05.png)
