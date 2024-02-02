@@ -4,8 +4,8 @@
   <figure class="shadow-gray-300 relative max-w-sm transition-all duration-300 cursor-pointer filter lg:grayscale hover:grayscale-0">
    <img class="rounded-lg" [src]="thumbnail" [alt]="name">
 
-    <figcaption class="absolute p-4 text-lg text-black bottom-0 h-25 w-full bg-gray-50">
-      <h3 class="font-semibold text-base">{{name}}</h3>
+    <figcaption class="absolute p-2 text-lg text-black bottom-0 h-25 w-full bg-gray-50">
+      <h3 class="font-semibold text-sm">{{name}}</h3>
       <ul class="flex gap-1 mt-1 text-sm flex-wrap">
           <li *ngFor="let technology of technologies" class="font-semibold bg-{{technology.color}}-100 text-{{technology.color}}-800 text-xs font-medium me-2 px-2.5 py-0.5 rounded dark:bg-{{technology.color}}-900 dark:text-{{technology.color}}-300">{{technology.name}}</li>
       </ul>
