@@ -1,36 +1,49 @@
 <x-app-layout>
-    <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
+    <div class="mt-4 max-w-2xl mx-auto sm:p-6 p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+        <header>
+            <h2 class="text-lg font-medium text-gray-900">
+                {{ __('External Link') }}
+            </h2>
+
+            <p class="mt-1 text-sm text-gray-600">
+                {{ __("Add your external link.") }}
+            </p>
+        </header>
          @if(count($projects) > 0)
-         <form method="POST" action="{{ route('externallink.store') }}" enctype="multipart/form-data">
-
+        <form class="mt-6 space-y-6" method="POST" action="{{ route('externallink.store') }}" enctype="multipart/form-data">
                 @csrf
-                <select name="project_id" id="photo-size" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                    <option selected>{{ __('Choose the project this link belongs to') }}</option>
-                    @foreach($projects as $project)
-                        <option value="{{$project->id}}">{{$project->name}}</option>
-                    @endforeach
-                </select>
 
-                @csrf
-                <input
-                    name="name"
-                    placeholder="{{ __('Name') }}"
-                    class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                />
+                <div>
+                    @php
+                        $options = [];
+                        foreach($projects as $project):
+                            array_push($options, ['value' =>$project->id, 'name'=> $project->name]);
+                        endforeach
+                    @endphp
+                    <x-input-label for="project-id" :value="__('Size')" />
+                    <x-select
+                        :message="__('Choose the project this link belongs to')"
+                        :options="$options"
+                        id="project-id"
+                        name="project_id"
+                     />
+                     <x-input-error :messages="$errors->get('project_id')" class="mt-2" />
+                </div>
 
-                @csrf
-                <input
-                    name="url"
-                    placeholder="{{ __('URL') }}"
-                    class="block w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
-                />
+                <div>
+                    <x-input-label for="name" :value="__('Name')" />
+                    <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name')" required autofocus autocomplete="name" />
+                    <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                </div>
 
+                <div>
+                    <x-input-label for="url" :value="__('URL')" />
+                    <x-text-input id="url" name="url" type="text" class="mt-1 block w-full" :value="old('url')" required autocomplete="url" />
+                    <x-input-error class="mt-2" :messages="$errors->get('url')" />
+                </div>
 
-                <x-input-error :messages="$errors->get('project_id')" class="mt-2" />
-                <x-input-error :messages="$errors->get('name')" class="mt-2" />
-                <x-input-error :messages="$errors->get('url')" class="mt-2" />
                 <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
-            </form>
+        </form>
         @else
             {{ $message['content'] }}
         @endif
@@ -50,7 +63,7 @@
 
             @foreach ($externalLinkProject as $externalLinkProjectItem)
 
-            <div class="p-6 flex space-x-2">
+            <div class="flex space-x-2">
                 <div class="flex-1">
                     <div class="flex justify-between items-center">
 
@@ -94,8 +107,8 @@
                     </div>
 
                     <div>
-                        <p class="mt-2 text-lg text-gray-900">{{ $externalLinkProjectItem->external_link_name }}</p>
-                        <p class="mt-2 text-lg text-gray-900">{{ $externalLinkProjectItem->external_link_url }}</p>
+                        <p class="mt-2 font-medium text-sm text-gray-600">{{ $externalLinkProjectItem->external_link_name }}</p>
+                        <p class="mt-2 text-sm text-gray-900">{{ $externalLinkProjectItem->external_link_url }}</p>
                     </div>
 
                 </div>

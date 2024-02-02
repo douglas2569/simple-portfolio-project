@@ -90,8 +90,8 @@
                     <div class="flex items-center gap-4 pt-2">
                         <img class="w-10 h-10" src="{{ $icon }}" alt="{{ $socialmediaitem->name }}" srcset="">
                         <div>
-                            <p class="text-md text-gray-900">{{$socialmediaitem->name}}</p>
-                            <p class="text-md text-gray-900">{{$socialmediaitem->url}}</p>
+                            <p class="text-sm font-medium text-gray-600">{{$socialmediaitem->name}}</p>
+                            <p class="text-sm text-gray-900">{{$socialmediaitem->url}}</p>
                         </div>
                     </div>
 
