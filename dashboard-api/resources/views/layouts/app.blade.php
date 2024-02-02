@@ -31,6 +31,9 @@
             <main>
                 {{ $slot }}
             </main>
+
+            <!-- Page Content -->
+
         </div>
     </body>
 </html>

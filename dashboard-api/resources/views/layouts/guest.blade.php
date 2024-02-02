@@ -25,6 +25,12 @@
             <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                 {{ $slot }}
             </div>
+
+            <section id="footer" class="text-center p-8 text-sm">
+                    <p>© 2024 | Todos os direitos reservados</p>
+                    <p class="mt-1">Desenvolvidor por <a _ngcontent-srq-c60="" href="https://www.linkedin.com/in/carlos-douglas-79746927a/" target="_blank" class="font-semibold">Carlos Douglas</a></p>
+            </section>
+
         </div>
     </body>
 </html>
