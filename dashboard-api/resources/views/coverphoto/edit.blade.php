@@ -9,7 +9,7 @@
                 {{ __("Update your cover images. Small for cell phones and medium for devices with larger screens.") }}
             </p>
         </header>
-         <form class="p-8" method="POST" action="{{ route('coverphoto.update', $coverphoto) }}" enctype="multipart/form-data">
+         <form class="py-4 px-8 space-y-4" method="POST" action="{{ route('coverphoto.update', $coverphoto) }}" enctype="multipart/form-data">
             @csrf
             @method('patch')
             <div class="flex flex-col">
@@ -47,8 +47,10 @@
 
 
             <div class="mt-4 space-x-2">
-                <x-primary-button>{{ __('Save') }}</x-primary-button>
-                <a href="{{ route('coverphoto.index') }}">{{ __('Cancel') }}</a>
+                <div class="flex gap-8 items-center">
+                    <x-primary-button>{{ __('Save') }}</x-primary-button>
+                    <a href="{{ route('coverphoto.index') }}">{{ __('Cancel') }}</a>
+                </div>
             </div>
         </form>
 

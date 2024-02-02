@@ -10,7 +10,7 @@
             </p>
         </header>
         @if(count($technologies) > 0)
-            <form class="p-8" method="POST" action="{{ route('skill.store') }}" enctype="multipart/form-data">
+            <form class="py-4 px-8 space-y-4" method="POST" action="{{ route('skill.store') }}" enctype="multipart/form-data">
             @csrf
                 <div class="flex flex-col">
                     <x-input-label  for="icon" class="mb-2" :value="__('Icon')" />

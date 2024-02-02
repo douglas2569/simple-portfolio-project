@@ -10,7 +10,7 @@
             </p>
         </header>
          @if(count($projects) > 0)
-        <form class="p-8" method="POST" action="{{ route('externallink.store') }}" enctype="multipart/form-data">
+        <form class="py-4 px-8 space-y-4" method="POST" action="{{ route('externallink.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div>
                     @php
@@ -41,7 +41,9 @@
                     <x-input-error class="mt-2" :messages="$errors->get('url')" />
                 </div>
 
-                <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
+                <div class="flex gap-8 items-center">
+                    <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
+                </div>
         </form>
         @else
             {{ $message['content'] }}

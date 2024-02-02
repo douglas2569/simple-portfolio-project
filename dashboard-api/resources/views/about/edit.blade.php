@@ -10,7 +10,7 @@
             </p>
         </header>
 
-        <form class="p-8" method="POST" action="{{ route('about.update',$about) }}" enctype="multipart/form-data">
+        <form class="py-4 px-8 space-y-4" method="POST" action="{{ route('about.update',$about) }}" enctype="multipart/form-data">
             @csrf
             @method('patch')
 
@@ -54,7 +54,9 @@
             </div>
 
 
-            <x-primary-button class="mt-4">{{ __('Save') }}</x-primary-button>
+            <div>
+                <x-primary-button class="mt-4">{{ __('Save') }}</x-primary-button>
+            </div>
 
         </form>
 

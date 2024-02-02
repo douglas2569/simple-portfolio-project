@@ -9,7 +9,7 @@
                 {{ __("Update your external link.") }}
             </p>
         </header>
-         <form class="p-8" method="POST" action="{{ route('externallink.update', $externallink) }}" enctype="multipart/form-data">
+         <form class="py-4 px-8 space-y-4" method="POST" action="{{ route('externallink.update', $externallink) }}" enctype="multipart/form-data">
             @method('patch')
             @csrf
 
@@ -44,7 +44,7 @@
             </div>
 
 
-            <div class="mt-4 space-x-2">
+            <div class="flex gap-8 items-center">
                 <x-primary-button>{{ __('Save') }}</x-primary-button>
                 <a href="{{ route('externallink.index') }}">{{ __('Cancel') }}</a>
             </div>

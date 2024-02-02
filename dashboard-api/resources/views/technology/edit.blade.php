@@ -9,7 +9,7 @@
                 {{ __("Update your technology.") }}
             </p>
         </header>
-         <form class="p-8" method="POST" action="{{ route('technology.update', $technology) }}" enctype="multipart/form-data">
+         <form class="py-4 px-8 space-y-4" method="POST" action="{{ route('technology.update', $technology) }}" enctype="multipart/form-data">
             @method('patch')
             @csrf
 
@@ -36,7 +36,7 @@
                 <x-input-error :messages="$errors->get('color')" class="mt-2" />
             </div>
 
-            <div class="mt-4 space-x-2">
+            <div class="flex gap-8 items-center">
                 <x-primary-button>{{ __('Save') }}</x-primary-button>
                 <a href="{{ route('technology.index') }}">{{ __('Cancel') }}</a>
             </div>

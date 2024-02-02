@@ -10,7 +10,7 @@
             </p>
         </header>
          @if(count($about) > 0)
-            <form class="p-8" method="POST" action="{{ route('coverphoto.store') }}" enctype="multipart/form-data">
+            <form class="py-4 px-8 space-y-4" method="POST" action="{{ route('coverphoto.store') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="flex flex-col">
                     <x-input-label  for="image" class="mb-2" :value="__('Cover photo')" />
@@ -39,7 +39,9 @@
                      <x-input-error :messages="$errors->get('size')" class="mt-2" />
                 </div>
 
-                <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
+                <div>
+                    <x-primary-button class="mt-4">{{ __('Create') }}</x-primary-button>
+                </div>
             </form>
         @else
             {{ $message['content'] }}

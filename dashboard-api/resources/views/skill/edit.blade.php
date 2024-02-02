@@ -8,7 +8,7 @@
             <p class="mt-1 text-base text-gray-600">
                 {{ __("Update your skill.") }}
             </p>
-         <form class="p-8" method="POST" action="{{ route('skill.update', $skill) }}" enctype="multipart/form-data">
+         <form class="py-4 px-8 space-y-4" method="POST" action="{{ route('skill.update', $skill) }}" enctype="multipart/form-data">
             @method('patch')
             @csrf
             <div class="flex flex-col">
@@ -52,7 +52,7 @@
              <x-input-error :messages="$errors->get('technologiesIds')" class="mt-2" />
 
 
-            <div class="mt-4 space-x-2">
+            <div class="flex gap-8 items-center">
                 <x-primary-button>{{ __('Save') }}</x-primary-button>
                 <a href="{{ route('skill.index') }}">{{ __('Cancel') }}</a>
             </div>

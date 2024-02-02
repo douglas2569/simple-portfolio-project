@@ -9,7 +9,7 @@
                 {{ __("Update your social media.") }}
             </p>
         </header>
-         <form class="p-8" method="POST" action="{{ route('socialmedia.update', $socialmedia) }}" enctype="multipart/form-data">
+         <form class="py-4 px-8 space-y-4" method="POST" action="{{ route('socialmedia.update', $socialmedia) }}" enctype="multipart/form-data">
             @csrf
             @method('patch')
 
@@ -43,7 +43,7 @@
             <x-input-error :messages="$errors->get('name')" class="mt-2" />
             <x-input-error :messages="$errors->get('icon')" class="mt-2" />
             <x-input-error :messages="$errors->get('url')" class="mt-2" />
-            <div class="mt-4 space-x-2">
+            <div class="flex gap-8 items-center">
                 <x-primary-button>{{ __('Save') }}</x-primary-button>
                 <a href="{{ route('socialmedia.index') }}">{{ __('Cancel') }}</a>
             </div>
