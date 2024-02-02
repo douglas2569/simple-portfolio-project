@@ -3,13 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\Auth\RegisteredUserController;
-use App\Http\Controllers\CoverPhotoController;
 use App\Http\Controllers\ExternalLinkController;
-use App\Http\Controllers\ProjectController;
-use App\Http\Controllers\SkillController;
-use App\Http\Controllers\SocialMediaController;
-use App\Http\Controllers\TechnologyController;
-use App\Http\Controllers\EndpointController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,37 +25,14 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('endpoint',EndpointController::class)
-        ->only(['index'])
-        ->middleware(['auth', 'verified']);
 
 Route::resource('about',AboutController::class)
         ->only(['index','create','store','edit','update'])
         ->middleware(['auth', 'verified']);
 
-Route::resource('coverphoto',CoverPhotoController::class)
-        ->only(['index','store','edit','update','destroy'])
-        ->middleware(['auth','verified']);
-
-Route::resource('project',ProjectController::class)
-        ->only(['index','create','store','show','edit','update','destroy'])
-        ->middleware(['auth', 'verified']);
-
-Route::resource('skill', SkillController::class)
-        ->only(['index','create','store','show','edit','update','destroy'])
-        ->middleware(['auth', 'verified']);
-
 Route::resource('externallink',ExternalLinkController::class)
         ->only(['index','store','edit','update','destroy'])
         ->middleware(['auth','verified']);
-
-Route::resource('socialmedia',SocialMediaController::class)
-        ->only(['index','create','store','show','edit','update','destroy'])
-        ->middleware(['auth', 'verified']);
-
-Route::resource('technology', TechnologyController::class)
-        ->only(['index','create','store','show','edit','update','destroy'])
-        ->middleware(['auth', 'verified']);
 
 
 require __DIR__.'/auth.php';
