@@ -77,9 +77,9 @@
                     <div class="flex justify-between items-center">
 
                         <div>
-                            <small class="ml-2 text-base text-gray-600">{{ $project->created_at->format('j M Y, g:i a') }}</small>
+                            <small class="ml-2 text-sm text-gray-600">{{ $project->created_at->format('j M Y, g:i a') }}</small>
                             @unless ($project->created_at->eq($project->updated_at))
-                                <small class="text-base text-gray-600"> &middot; {{ __('edited') }}</small>
+                                <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
                             @endunless
                         </div>
 

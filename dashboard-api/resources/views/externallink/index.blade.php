@@ -5,7 +5,7 @@
                 {{ __('External Links') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-base text-gray-600">
                 {{ __("Add your external link.") }}
             </p>
         </header>
@@ -55,9 +55,9 @@
 <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
 
     @foreach ($externalLinksProjects as $key => $externalLinkProject)
-        <div class="flex-1 my-4">
+        <div class="flex-1 my-4 pt-2">
             @if(count($externalLinksProjects[$key]) > 0)
-                <h4 class="pl-6 text-sm">{{$externalLinksProjects[$key][0]->project_name}}</h4>
+                <h4 class="pl-6 font-medium text-base text-gray-700">{{$externalLinksProjects[$key][0]->project_name}}</h4>
             @endif
 
             @foreach ($externalLinkProject as $externalLinkProjectItem)
@@ -106,8 +106,8 @@
                     </div>
 
                     <div>
-                        <p class="mt-1 font-medium text-sm text-gray-600">{{ $externalLinkProjectItem->external_link_name }}</p>
-                        <p class="mt-1 text-sm text-gray-900">{{ $externalLinkProjectItem->external_link_url }}</p>
+                        <p class="mt-1 text-base text-gray-900">{{ $externalLinkProjectItem->external_link_name }}</p>
+                        <p class="mt-1 text-base text-gray-900">{{ $externalLinkProjectItem->external_link_url }}</p>
                     </div>
 
                 </div>
