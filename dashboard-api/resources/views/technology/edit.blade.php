@@ -5,7 +5,7 @@
                 {{ __('Technology') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-base text-gray-600">
                 {{ __("Update your technology.") }}
             </p>
         </header>
@@ -21,7 +21,7 @@
 
             <div>
                 <x-input-label for="color" :value="__('Color')" />
-                <select name="color" id="photo-size" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                <select name="color" id="photo-size" class="bg-gray-50 border border-gray-300 text-gray-900 text-base rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                     <option>{{ __('What color is your technology?') }}</option>
                     <option {{ ($technology->color == 'default') ? 'selected' : '' }} value="default" style="font-weight:bold">Padrão</option>
                     <option {{ ($technology->color == 'blue') ? 'selected' : '' }} value="blue" style="color:blue; font-weight:bold">Azul</option>
