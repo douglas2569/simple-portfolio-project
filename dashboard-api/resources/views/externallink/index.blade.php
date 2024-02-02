@@ -2,7 +2,7 @@
     <div class="mt-4 max-w-2xl mx-auto sm:p-6 p-4 sm:p-8 bg-white shadow sm:rounded-lg">
         <header>
             <h2 class="text-lg font-medium text-gray-900">
-                {{ __('External Link') }}
+                {{ __('External Links') }}
             </h2>
 
             <p class="mt-1 text-sm text-gray-600">
@@ -12,7 +12,6 @@
          @if(count($projects) > 0)
         <form class="mt-6 space-y-6" method="POST" action="{{ route('externallink.store') }}" enctype="multipart/form-data">
                 @csrf
-
                 <div>
                     @php
                         $options = [];
@@ -20,7 +19,7 @@
                             array_push($options, ['value' =>$project->id, 'name'=> $project->name]);
                         endforeach
                     @endphp
-                    <x-input-label for="project-id" :value="__('Size')" />
+                    <x-input-label for="project-id" :value="__('Project')" />
                     <x-select
                         :message="__('Choose the project this link belongs to')"
                         :options="$options"
@@ -56,18 +55,18 @@
 <div class="mt-6 bg-white shadow-sm rounded-lg divide-y">
 
     @foreach ($externalLinksProjects as $key => $externalLinkProject)
-        <div class="flex-1 mb-4">
+        <div class="flex-1 my-4">
             @if(count($externalLinksProjects[$key]) > 0)
-                <h4 >{{$externalLinksProjects[$key][0]->project_name}}</h4>
+                <h4 class="pl-6 text-sm">{{$externalLinksProjects[$key][0]->project_name}}</h4>
             @endif
 
             @foreach ($externalLinkProject as $externalLinkProjectItem)
 
-            <div class="flex space-x-2">
+            <div class="px-6 flex mt-2 space-x-2">
                 <div class="flex-1">
                     <div class="flex justify-between items-center">
 
-                        <div>
+                        <div >
                             @php
                                 date_default_timezone_set('America/Fortaleza');
                                 $dateCreated = new DateTime( $externalLinkProjectItem->external_link_created_at);
@@ -107,8 +106,8 @@
                     </div>
 
                     <div>
-                        <p class="mt-2 font-medium text-sm text-gray-600">{{ $externalLinkProjectItem->external_link_name }}</p>
-                        <p class="mt-2 text-sm text-gray-900">{{ $externalLinkProjectItem->external_link_url }}</p>
+                        <p class="mt-1 font-medium text-sm text-gray-600">{{ $externalLinkProjectItem->external_link_name }}</p>
+                        <p class="mt-1 text-sm text-gray-900">{{ $externalLinkProjectItem->external_link_url }}</p>
                     </div>
 
                 </div>
