@@ -5,7 +5,7 @@
                 {{ __('Social Media') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-base text-gray-600">
                 {{ __("Add your social media.") }}
             </p>
         </header>
@@ -90,8 +90,8 @@
                     <div class="flex items-center gap-4 pt-2">
                         <img class="w-10 h-10" src="{{ $icon }}" alt="{{ $socialmediaitem->name }}" srcset="">
                         <div>
-                            <p class="text-sm font-medium text-gray-600">{{$socialmediaitem->name}}</p>
-                            <p class="text-sm text-gray-900">{{$socialmediaitem->url}}</p>
+                            <p class="text-base font-medium text-gray-600">{{$socialmediaitem->name}}</p>
+                            <p class="text-base text-gray-900">{{$socialmediaitem->url}}</p>
                         </div>
                     </div>
 

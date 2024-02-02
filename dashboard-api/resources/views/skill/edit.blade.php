@@ -5,7 +5,7 @@
                 {{ __('Skill') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-base text-gray-600">
                 {{ __("Update your skill.") }}
             </p>
          <form class="mt-6 space-y-6" method="POST" action="{{ route('skill.update', $skill) }}" enctype="multipart/form-data">

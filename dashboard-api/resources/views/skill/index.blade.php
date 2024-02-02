@@ -5,7 +5,7 @@
                 {{ __('Skills') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-base text-gray-600">
                 {{ __("Register your skills.") }}
             </p>
         </header>
@@ -107,9 +107,9 @@
                     <div>
                         <div class="flex items-center gap-4 pt-2">
                             <img class="w-20" src="{{ $icon }}" alt="{{ $skill->name }}" srcset="">
-                            <p class="mt-4 text-sm">{{ $skill->name }}</p>
+                            <p class="mt-4 text-base">{{ $skill->name }}</p>
                         </div>
-                        <ul class="grid mt-4 text-gray-900 justify-center text-sm sm:grid-cols-5">
+                        <ul class="grid mt-4 text-gray-900 justify-center text-base sm:grid-cols-5">
                             @foreach($myTechnologies as $technology)
                                 <li>{{$technology->technology_name}}</li>
                             @endforeach
