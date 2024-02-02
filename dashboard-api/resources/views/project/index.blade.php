@@ -5,7 +5,7 @@
                 {{ __('Projects') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-base text-gray-600">
                 {{ __("Register your projects.") }}
             </p>
         </header>
@@ -77,9 +77,9 @@
                     <div class="flex justify-between items-center">
 
                         <div>
-                            <small class="ml-2 text-sm text-gray-600">{{ $project->created_at->format('j M Y, g:i a') }}</small>
+                            <small class="ml-2 text-base text-gray-600">{{ $project->created_at->format('j M Y, g:i a') }}</small>
                             @unless ($project->created_at->eq($project->updated_at))
-                                <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
+                                <small class="text-base text-gray-600"> &middot; {{ __('edited') }}</small>
                             @endunless
                         </div>
 
@@ -115,8 +115,8 @@
 
                     <div>
                         <img src="{{ $thumbnail }}" alt="{{ $project->name }}" srcset="">
-                        <p class="mt-4 text-sm text-gray-600">{{ $project->name }}</p>
-                        <ul class="grid text-sm grid-cols-4">
+                        <p class="mt-4 text-base text-gray-600">{{ $project->name }}</p>
+                        <ul class="grid text-base grid-cols-4">
                             @foreach($myTechnologies as $technology)
                                 <li>{{$technology->technology_name}}</li>
                             @endforeach

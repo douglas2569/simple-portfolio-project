@@ -5,7 +5,7 @@
                 {{ __('Project') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-base text-gray-600">
                 {{ __("Update your project.") }}
             </p>
         </header>
