@@ -5,7 +5,7 @@
                 {{ __('Cover Photo') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-base text-gray-600">
                 {{ __("Update your cover images. Small for cell phones and medium for devices with larger screens.") }}
             </p>
         </header>

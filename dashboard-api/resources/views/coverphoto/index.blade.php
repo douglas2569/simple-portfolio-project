@@ -5,7 +5,7 @@
                 {{ __('Cover Photo') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-base text-gray-600">
                 {{ __("Update your cover images. Small for cell phones and medium for devices with larger screens.") }}
             </p>
         </header>
@@ -58,7 +58,7 @@
                         <div>
                             <small class="ml-2 text-sm text-gray-600">{{ $coverphoto->created_at->format('j M Y, g:i a') }}</small>
                             @unless ($coverphoto->created_at->eq($coverphoto->updated_at))
-                                <small class="text-sm text-gray-600"> &middot; {{ __('edited') }}</small>
+                                <small class="text-base text-gray-600"> &middot; {{ __('edited') }}</small>
                             @endunless
                         </div>
 
@@ -94,8 +94,8 @@
 
                     <div>
                         <img src="{{ $image }}" alt="{{ $coverphoto->name }}" srcset="">
-                        <p class="mt-4 text-md text-gray-900">{{ $size }}</p>
-                        <p class="mt-4 text-md text-gray-900">{{ $coverphoto->name }}</p>
+                        <p class="mt-4 text-base text-gray-900">{{ $size }}</p>
+                        <p class="mt-1 text-base text-gray-900">{{ $coverphoto->name }}</p>
                     </div>
 
                 </div>

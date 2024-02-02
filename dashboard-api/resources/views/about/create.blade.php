@@ -5,7 +5,7 @@
                 {{ __('About') }}
             </h2>
 
-            <p class="mt-1 text-sm text-gray-600">
+            <p class="mt-1 text-base text-gray-600">
                 {{ __("Enter information about yourself.") }}
             </p>
         </header>
