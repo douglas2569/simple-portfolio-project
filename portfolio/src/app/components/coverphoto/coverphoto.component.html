@@ -5,7 +5,9 @@
         media="{{(coverPhoto.size == 'sm')?'(min-width: 425px)':'(max-width: 425px)'}}"
         srcset="{{ coverPhoto.image | urlImage }}" />
 
-      <img [src]="coverPhotos[0].image" [alt]="coverPhotos[0].name" />
+      <ng-container *ngIf="coverPhotos">
+        <img [src]="coverPhotos[0].image" [alt]="coverPhotos[0].name" />
+      </ng-container>
     </picture>
 
 </div>
