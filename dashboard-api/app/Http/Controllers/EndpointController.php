@@ -59,22 +59,27 @@ class EndpointController extends Controller
         return view('endpoint.index', [
             'endpoints' => [
                 'about' => [
+                    'name'=> 'About',
                     'endpoint'=> asset('api/about/'.auth()->user()->email),
                     'data'=> $aboutData,
                 ],
                 'coverphoto' => [
+                    'name'=> 'Cover Photo',
                     'endpoint'=> asset('api/coverphoto/'.auth()->user()->email),
                     'data'=> $coverphotoData,
                 ],
                 'skill' => [
+                    'name'=> 'Skill',
                     'endpoint'=> asset('api/skill/'.auth()->user()->email),
                     'data'=> $skillsData,
                 ],
                 'project' => [
+                    'name'=> 'Project',
                     'endpoint'=> asset('api/project/'.auth()->user()->email),
                     'data'=> $projectsData,
                 ],
                 'projectId' => [
+                    'name'=> 'Project ID',
                     'endpoint'=> asset('api/project/project_id/'.auth()->user()->email),
                     'data'=> $projectIdData,
                 ],
