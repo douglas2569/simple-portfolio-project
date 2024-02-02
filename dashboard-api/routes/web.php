@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\CoverPhotoController;
 use App\Http\Controllers\ExternalLinkController;
 use App\Http\Controllers\ProjectController;
@@ -22,9 +23,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return redirect()->intended(RouteServiceProvider::HOME);
-});
+Route::get('/', [RegisteredUserController::class, 'create']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
