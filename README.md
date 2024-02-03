@@ -18,22 +18,37 @@ Esse projeto foi desenvolvido com o intuito de criar um espaço onde eu possa mo
 ### Showcase
 #### 1° Aplicação
 
+
 ![Alt text](showcase-image/portfolio/0.png)
+
 ![Alt text](showcase-image/portfolio/1.png)
+
 ![Alt text](showcase-image/portfolio/2.png)
+
 ![Alt text](showcase-image/portfolio/3.png)
+
 ![Alt text](showcase-image/portfolio/4.png)
+
 ![Alt text](showcase-image/portfolio/5.png)
+
 ![Alt text](showcase-image/portfolio/6.png)
 
-#### 2° Aplicação (em desenvolvimento)
+#### 2° Aplicação
+
 
 ![Alt text](showcase-image/dashboard/00.png)
+
 ![Alt text](showcase-image/dashboard/01.png)
+
 ![Alt text](showcase-image/dashboard/02.png)
+
 ![Alt text](showcase-image/dashboard/03.png)
+
 ![Alt text](showcase-image/dashboard/05.png)
+
 ![Alt text](showcase-image/dashboard/06.png)
+
 ![Alt text](showcase-image/dashboard/07.png)
+
 ![Alt text](showcase-image/dashboard/08.png)
 
